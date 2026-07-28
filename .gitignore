@@ -5,6 +5,10 @@
 out/
 evals/results/
 
+# Generated git fixtures. A nested .git inside a tracked directory becomes a
+# broken gitlink; rebuild with each incident's build_repo.py.
+evals/incidents/*/repo/
+
 # --- python ---
 .venv/
 __pycache__/

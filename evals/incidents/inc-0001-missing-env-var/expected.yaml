@@ -1,0 +1,13 @@
+# THE LABEL. See docs/07-evaluation.md.
+root_cause_event_id: "commit:remove unused DB_POOL_MAX from settings"
+root_cause_summary: "Deploy removed DB_POOL_MAX; pool exhausted under load"
+acceptable_alternates: []
+must_cite_events:
+  - "log:sig:connectionerror: pool exhausted (<num>/<num>)"
+  - "alert:HighErrorRate"
+# The decoy. A run that blames these has failed the case even if it is fluent.
+must_not_conclude:
+  - "inventory page size"
+  - "payment gateway latency"
+  - "disk space"
+min_confidence: 0.70

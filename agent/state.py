@@ -477,6 +477,7 @@ class PipelineState(TypedDict, total=False):
     """
 
     incident_id: str
+    incident: Incident
     window: tuple[datetime, datetime]
     events: Sequence[Event]
     graph_ready: bool
@@ -484,6 +485,14 @@ class PipelineState(TypedDict, total=False):
     hypotheses: Sequence[Hypothesis]
     similar_incidents: Sequence[SimilarIncident]
     draft_md: str
+    #: The assembled document — draft plus the code-rendered header and
+    #: timeline. This, not `draft_md`, is what gets validated and published:
+    #: nothing should ship that the verification plane has not seen.
+    document_md: str
     validation: ValidationReport | None
     retry_count: int
     token_usage: Mapping[str, int]
+    #: Collectors that worked, and the ones that did not. Drives the
+    #: availability-aware denominator and the postmortem header.
+    sources_used: Sequence[str]
+    sources_failed: Sequence[SourceFailure]

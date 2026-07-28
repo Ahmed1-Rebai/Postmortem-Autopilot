@@ -1,0 +1,28 @@
+{
+  "alerts": [
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "HighErrorRate",
+        "service": "checkout",
+        "severity": "page"
+      },
+      "annotations": {
+        "summary": "checkout error rate above 5% for 5m"
+      },
+      "startsAt": "2026-03-12T14:03:00Z"
+    },
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "DiskSpaceLow",
+        "service": "inventory",
+        "severity": "warning"
+      },
+      "annotations": {
+        "summary": "inventory disk 82% full"
+      },
+      "startsAt": "2026-03-12T14:05:00Z"
+    }
+  ]
+}

@@ -28,7 +28,7 @@ from datetime import datetime
 from types import TracebackType
 from typing import Any, Final, Self
 
-from neo4j import Driver, GraphDatabase
+from neo4j import Driver, GraphDatabase, NotificationDisabledCategory
 from neo4j.time import DateTime as Neo4jDateTime
 
 from agent.config import Neo4jConfig
@@ -169,7 +169,18 @@ class Neo4jMemory:
 
     @classmethod
     def from_config(cls, config: Neo4jConfig, database: str | None = None) -> Self:
-        driver = GraphDatabase.driver(config.uri, auth=(config.user, config.password))
+        driver = GraphDatabase.driver(
+            config.uri,
+            auth=(config.user, config.password),
+            # Silence "the label CorrectiveAction is not in the database"
+            # notifications. Queries legitimately reference labels that only
+            # appear once a feature is used — recurrence writes the first
+            # CorrectiveAction — and three paragraphs of server warning per run
+            # trains people to ignore output that sometimes matters.
+            notifications_disabled_categories=[
+                NotificationDisabledCategory.UNRECOGNIZED
+            ],
+        )
         return cls(driver, database=database)
 
     def close(self) -> None:

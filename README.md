@@ -33,9 +33,14 @@ incident window ──► collect evidence ──► temporal knowledge graph
 
 ## Status
 
-Pre-implementation. Design is complete; see [TODO.md](TODO.md) for the phased
-build plan. Phase 1 (local, Docker Compose) must work end-to-end before any
-k3s work starts.
+**Phase 1 runs end to end.** Collectors → graph → candidate links → ranked
+hypotheses → drafted postmortem → mechanical validation, with a bounded repair
+loop. On golden incident 0001 the current numbers are 100% citation coverage
+and **zero hallucinated citations**, with the correct root cause ranked first.
+
+Still open: the remaining golden incidents and the eval harness that turns one
+run into a measured corpus (Phase 3), then k3s (Phase 2). See
+[TODO.md](TODO.md) for the build order.
 
 ## Docs
 
@@ -52,13 +57,39 @@ k3s work starts.
 | [docs/adr/](docs/adr/) | Architecture decision records (the "why not X" answers) |
 | [TODO.md](TODO.md) | Phased task list — the build order |
 
-## Quickstart (once Phase 1 exists)
+## Quickstart
 
 ```bash
-cp .env.example .env          # add ANTHROPIC_API_KEY
-docker compose up -d          # neo4j + valkey
-python -m agent.run --incident evals/incidents/inc-0001-missing-env-var/
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements-dev.txt
+
+cp .env.example .env                 # add an API key, or set LLM_PROVIDER=mock
+docker compose up -d                 # neo4j + valkey, ~20s to healthy
+python -m agent.cli schema-init
+
+# `repo/` is generated, not committed — a nested .git would become a gitlink
+python evals/incidents/inc-0001-missing-env-var/build_repo.py
+
+python -m agent.cli run --incident evals/incidents/inc-0001-missing-env-var/
+# -> out/postmortem_INC-0001.md
+# -> out/run_report_INC-0001.json
 ```
+
+A run exits **non-zero if the document failed validation**, and writes the
+rejected draft and the report anyway — you cannot see what was wrong with a
+document you were not given.
+
+```bash
+python -m agent.cli validate --incident-id INC-0001 \
+    --document out/postmortem_INC-0001.md
+
+pytest tests/unit -q          # no containers, no API key
+pytest tests/integration -q   # real Neo4j via testcontainers, mock provider
+```
+
+Then open the Neo4j browser at http://localhost:7474 and run the timeline query
+from [docs/02](docs/02-knowledge-graph.md). **That side-by-side — the document
+and the graph it was built from — is the demo.**
 
 ## Why k3s and not Kubernetes
 

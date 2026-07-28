@@ -1,0 +1,14 @@
+# Golden incident 0001 — the happy path with a strong change-path signal.
+id: INC-0001
+title: checkout 500s after deploy
+start: 2026-03-12T14:00:00Z
+end: 2026-03-12T15:00:00Z
+severity: sev2
+status: closed
+services:
+  - checkout
+description: >
+  A commit removed the DB_POOL_MAX setting from the checkout service. The
+  connection pool exhausted under normal load and the error rate alert fired
+  about two minutes later. An unrelated inventory change landed in the same
+  window and is the decoy.
