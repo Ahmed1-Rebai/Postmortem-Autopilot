@@ -27,8 +27,10 @@ from typing import Any, Final, Protocol
 from agent.config import LLMConfig
 
 #: Generous by default. Reasoning tokens count against this on most models, so
-#: a tight budget truncates the visible answer rather than shortening it.
-DEFAULT_MAX_TOKENS: Final[int] = 8000
+#: a tight budget truncates the visible answer rather than shortening it. 8000
+#: was not enough for a repair call, which carries the previous draft, the
+#: evidence and the complaints before the model has written a word.
+DEFAULT_MAX_TOKENS: Final[int] = 16000
 
 _EVENT_ID: Final[re.Pattern[str]] = re.compile(r"\b[0-9a-f]{16}\b")
 _JSON_FENCE: Final[re.Pattern[str]] = re.compile(r"```(?:json)?\s*(.*?)```", re.DOTALL)

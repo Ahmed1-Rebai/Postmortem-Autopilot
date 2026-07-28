@@ -401,12 +401,27 @@ class ValidationReport:
         return self.citations_hallucinated / self.citations_total
 
     @property
+    def timestamp_mismatches(self) -> int:
+        return sum(
+            1
+            for complaint in self.complaints
+            if complaint.kind is ComplaintKind.TIMESTAMP_MISMATCH
+        )
+
+    @property
     def passed(self) -> bool:
         """Invariant 3: a single hallucinated citation fails the document
         outright, regardless of coverage. It is not a quality score to trade
-        off — it is the guarantee the architecture exists to provide."""
+        off — it is the guarantee the architecture exists to provide.
+
+        A timestamp mismatch is equally disqualifying. A citation naming the
+        right event at the wrong time is worse than an uncited sentence,
+        because it reads as checked — so it fails the document rather than
+        merely being noted in the complaints.
+        """
         return (
             self.citations_hallucinated == 0
+            and self.timestamp_mismatches == 0
             and self.coverage >= self.coverage_threshold
         )
 

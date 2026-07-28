@@ -124,20 +124,29 @@ out.** Nothing else matters until that works.
 
 ### 1.6 Verification plane ⭐ 🔴
 This is the project. Give it real attention.
-- [ ] `nodes/validator.py`:
-  - [ ] extract all `[src:...]` tags
-  - [ ] one `resolve_citations()` round trip
-  - [ ] uncited factual sentences → complaint
-  - [ ] unresolvable ID → **hallucination**, hard failure
-  - [ ] cited timestamp ≠ node timestamp → complaint
-  - [ ] coverage ratio vs. threshold
-- [ ] "Factual sentence" classifier — deliberately dumb regex/heuristics,
+- [x] `nodes/validator.py`:
+  - [x] extract all `[src:...]` tags
+  - [x] one `resolve_citations()` round trip *(asserted by test)*
+  - [x] uncited factual sentences → complaint
+  - [x] unresolvable ID → **hallucination**, hard failure
+  - [x] cited timestamp ≠ node timestamp → complaint *(and fails the document —
+        a citation naming the right event at the wrong time reads as checked)*
+  - [x] coverage ratio vs. threshold
+- [x] "Factual sentence" classifier — deliberately dumb regex/heuristics,
       section allow-list; its accuracy is itself measured in evals
-- [ ] Structured `ValidationReport`, not a boolean
-- [ ] LangGraph retry edge: validate → write, max 2, feedback injected
-- [ ] Fail loudly after 2 retries: write draft + report to disk, exit non-zero
-- [ ] Unit tests with hand-written bad documents: missing citation, fabricated
+- [x] Structured `ValidationReport`, not a boolean
+- [x] Retry loop: validate → write, max 2, feedback injected
+      *(`revise_until_valid`, with the rewriter injected so it is testable
+      without a model; Phase 1.7 expresses it as the LangGraph edge)*
+- [~] Fail loudly after 2 retries — the loop never reports a failing draft as
+      passing; writing draft + report to disk and exiting non-zero is 1.7's
+      CLI work
+- [x] Unit tests with hand-written bad documents: missing citation, fabricated
       ID, wrong timestamp, ID from another incident
+
+> **Verified against the real model (2026-07-28):** first draft 57.1% coverage
+> → rejected with 10 complaints → one rewrite → 100% coverage, 0 hallucinated,
+> passed. 114s, two model calls.
 
 ### 1.7 Wiring
 - [ ] `agent/graph.py` — LangGraph DAG
