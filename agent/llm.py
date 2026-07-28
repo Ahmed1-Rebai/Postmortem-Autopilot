@@ -20,7 +20,8 @@ from __future__ import annotations
 import json
 import random
 import re
-from collections.abc import Sequence
+import time
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass, field
 from typing import Any, Final, Protocol
 
@@ -38,6 +39,15 @@ _JSON_FENCE: Final[re.Pattern[str]] = re.compile(r"```(?:json)?\s*(.*?)```", re.
 
 class LLMError(RuntimeError):
     """The model could not be reached, or answered unusably."""
+
+
+class TransientLLMError(LLMError):
+    """A failure worth retrying: rate limits, upstream 5xx, timeouts.
+
+    Deliberately distinct from `LLMError`. Truncation and malformed JSON are
+    *not* transient — retrying an over-long prompt just spends the budget
+    again, and the fix is a larger budget, not another attempt.
+    """
 
 
 @dataclass(frozen=True, slots=True)
@@ -211,6 +221,9 @@ class AnthropicProvider:
                 messages=[{"role": "user", "content": user}],
             )
         except Exception as exc:  # the SDK raises many shapes
+            status = getattr(exc, "status_code", None)
+            if isinstance(status, int) and _is_transient(status):
+                raise TransientLLMError(f"anthropic call failed: {exc}") from exc
             raise LLMError(f"anthropic call failed: {exc}") from exc
 
         if message.stop_reason == "max_tokens":
@@ -265,16 +278,26 @@ class OpenRouterProvider:
                 json=payload,
                 timeout=self.timeout_seconds,
             )
+        except (httpx.TimeoutException, httpx.NetworkError) as exc:
+            raise TransientLLMError(f"openrouter unreachable: {exc}") from exc
         except httpx.HTTPError as exc:
             raise LLMError(f"openrouter call failed: {exc}") from exc
 
         if response.status_code != 200:
-            raise LLMError(
+            error = LLMError if not _is_transient(response.status_code) else _transient
+            raise error(
                 f"openrouter returned {response.status_code}: {response.text[:300]}"
             )
         body = response.json()
         if "error" in body:
-            raise LLMError(f"openrouter error: {body['error']}")
+            # A 200 carrying an error body is normal here: gateways report
+            # upstream rate limits and 5xx this way, and those are worth
+            # retrying even though the HTTP call itself succeeded.
+            detail = body["error"]
+            code = detail.get("code") if isinstance(detail, dict) else None
+            if isinstance(code, int) and _is_transient(code):
+                raise TransientLLMError(f"openrouter upstream error: {detail}")
+            raise LLMError(f"openrouter error: {detail}")
 
         choices = body.get("choices") or []
         if not choices:
@@ -301,18 +324,78 @@ class OpenRouterProvider:
 
 
 # ---------------------------------------------------------------------------
+# retry
+# ---------------------------------------------------------------------------
+def _is_transient(status: int) -> bool:
+    return status == 429 or status >= 500
+
+
+def _transient(message: str) -> TransientLLMError:
+    return TransientLLMError(message)
+
+
+@dataclass
+class RetryingProvider:
+    """Exponential backoff around a provider, per the docs/01 failure table.
+
+    Three attempts, then abort. Only `TransientLLMError` is retried: a
+    truncated response or unparseable JSON will fail identically on the next
+    attempt, so retrying it burns the budget and delays the real diagnosis.
+
+    `sleep` is injected so tests exercise the backoff without waiting.
+    """
+
+    inner: LLMProvider
+    attempts: int = 3
+    base_delay_seconds: float = 2.0
+    sleep: Callable[[float], None] = time.sleep
+    #: A plain field rather than a property: the protocol declares `name` as a
+    #: settable attribute, and a read-only property does not satisfy that.
+    name: str = ""
+
+    def __post_init__(self) -> None:
+        self.name = self.inner.name
+
+    def complete(
+        self,
+        *,
+        system: str,
+        user: str,
+        model: str,
+        max_tokens: int = DEFAULT_MAX_TOKENS,
+    ) -> LLMResponse:
+        last: TransientLLMError | None = None
+        for attempt in range(1, self.attempts + 1):
+            try:
+                return self.inner.complete(
+                    system=system, user=user, model=model, max_tokens=max_tokens
+                )
+            except TransientLLMError as exc:
+                last = exc
+                if attempt == self.attempts:
+                    break
+                self.sleep(self.base_delay_seconds * (2 ** (attempt - 1)))
+        raise LLMError(
+            f"model call failed after {self.attempts} attempts: {last}"
+        ) from last
+
+
+# ---------------------------------------------------------------------------
 # factory
 # ---------------------------------------------------------------------------
 def build_provider(config: LLMConfig) -> LLMProvider:
     if config.provider == "mock":
+        # No network, so nothing to back off from.
         return MockProvider()
     if config.provider == "anthropic":
         if not config.api_key:
             raise LLMError("anthropic provider requires an API key")
-        return AnthropicProvider(api_key=config.api_key)
+        return RetryingProvider(AnthropicProvider(api_key=config.api_key))
     if not config.api_key or not config.base_url:
         raise LLMError("openrouter provider requires an API key and base URL")
-    return OpenRouterProvider(api_key=config.api_key, base_url=config.base_url)
+    return RetryingProvider(
+        OpenRouterProvider(api_key=config.api_key, base_url=config.base_url)
+    )
 
 
 def deterministic_shuffle(items: Sequence[str], seed: int = 0) -> list[str]:

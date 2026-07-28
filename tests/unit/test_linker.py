@@ -100,12 +100,13 @@ def test_exact_candidate_edge_set(linker: CandidateLinker):
             "effect_log",
             ("temporal_proximity", "service_overlap", "change_path_overlap"),
         ),
-        # also all three: the commit's `checkout/` path segment maps to the
-        # alert's failing service, which is the definition in docs/01
+        # only two: the alert's text names no module the commit touched, and
+        # the `checkout/` path segment is already accounted for by
+        # service_overlap, so counting it again would double-weight one fact
         (
             "cause_commit",
             "effect_alert",
-            ("temporal_proximity", "service_overlap", "change_path_overlap"),
+            ("temporal_proximity", "service_overlap"),
         ),
         # the decoy is in the window but touches another service
         ("decoy_commit", "effect_log", ("temporal_proximity",)),
@@ -214,6 +215,59 @@ def test_path_segment_matches_the_failing_service(linker: CandidateLinker):
         log_error("e", 30, signature="boom", service="checkout"),
     ]
     assert "change_path_overlap" in linker.link(events)[0].heuristics
+
+
+def test_two_commits_to_the_same_service_are_separated_by_the_module(
+    linker: CandidateLinker,
+):
+    """Golden incident 0004, in miniature.
+
+    Both commits touch `checkout/`, so temporal proximity and service overlap
+    fire for both and tell you nothing. Only the module the failure names
+    separates them — and before the de-duplication rule they scored
+    identically, which is a confidence separation of exactly zero on the case
+    built to measure discrimination.
+    """
+    events = [
+        commit("decoy", 0, ("checkout/templates/receipt.py", "checkout/mailer.py")),
+        commit("cause", 40, ("checkout/db/pool.py", "checkout/db/session.py")),
+        log_error(
+            "symptom",
+            100,
+            summary="OperationalError: connection pool exhausted",
+            signature="operationalerror: connection pool exhausted",
+        ),
+    ]
+    by_cause = {
+        link.cause_id: link
+        for link in linker.link(events)
+        if link.effect_id == "symptom"
+    }
+
+    assert "change_path_overlap" in by_cause["cause"].heuristics
+    assert "change_path_overlap" not in by_cause["decoy"].heuristics
+    assert by_cause["cause"].score > by_cause["decoy"].score
+
+
+def test_the_path_branch_still_works_when_service_overlap_cannot(
+    linker: CandidateLinker,
+):
+    """A commit spanning two services has no single service, so service overlap
+    cannot fire — and the path segment is then real, un-double-counted
+    evidence."""
+    spanning = Event(
+        id="spanning",
+        type=EventType.COMMIT,
+        timestamp=at(0),
+        source="git",
+        summary="touch two services",
+        service=None,
+        attributes={"files_changed": ("checkout/handler.py", "inventory/views.py")},
+    )
+    events = [spanning, log_error("e", 30, summary="boom", signature="boom")]
+    heuristics = linker.link(events)[0].heuristics
+    assert "service_overlap" not in heuristics
+    assert "change_path_overlap" in heuristics
 
 
 def test_generic_module_names_do_not_fire(linker: CandidateLinker):
@@ -334,9 +388,10 @@ def test_summarize_counts_heuristics(linker: CandidateLinker):
     counts = summarize(linker.link(events))
     # 3 edges: c->e1, c->e2, e1->e2
     assert counts["temporal_proximity"] == 3
-    # both commit edges overlap — via `pool` for e1, via the `checkout/` path
-    # segment for e2. e1->e2 has no files, so it cannot overlap.
-    assert counts["change_path_overlap"] == 2
+    # only c->e1: `pool` appears in that failure's text. c->e2 names no module
+    # the commit touched, and its `checkout/` path segment is already counted
+    # by service_overlap. e1->e2 has no files at all.
+    assert counts["change_path_overlap"] == 1
 
 
 def test_candidate_cap_is_enforced():

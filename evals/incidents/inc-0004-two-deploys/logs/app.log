@@ -1,0 +1,2200 @@
+2026-05-04T09:00:00Z INFO [checkout] order 72342 placed
+2026-05-04T09:00:01Z INFO [checkout] order 56524 placed
+2026-05-04T09:00:02Z INFO [checkout] order 75516 placed
+2026-05-04T09:00:03Z INFO [checkout] order 76901 placed
+2026-05-04T09:00:04Z INFO [checkout] order 17017 placed
+2026-05-04T09:00:05Z INFO [checkout] order 62394 placed
+2026-05-04T09:00:06Z INFO [checkout] order 13677 placed
+2026-05-04T09:00:07Z INFO [checkout] order 68730 placed
+2026-05-04T09:00:08Z INFO [checkout] order 10197 placed
+2026-05-04T09:00:09Z INFO [checkout] order 59604 placed
+2026-05-04T09:00:10Z INFO [checkout] order 96870 placed
+2026-05-04T09:00:11Z INFO [checkout] order 88797 placed
+2026-05-04T09:00:12Z INFO [checkout] order 38557 placed
+2026-05-04T09:00:13Z INFO [checkout] order 42634 placed
+2026-05-04T09:00:14Z INFO [checkout] order 63153 placed
+2026-05-04T09:00:15Z INFO [checkout] order 37800 placed
+2026-05-04T09:00:16Z INFO [checkout] order 90341 placed
+2026-05-04T09:00:17Z INFO [checkout] order 54018 placed
+2026-05-04T09:00:18Z INFO [checkout] order 40313 placed
+2026-05-04T09:00:19Z INFO [checkout] order 12378 placed
+2026-05-04T09:00:20Z INFO [checkout] order 19919 placed
+2026-05-04T09:00:21Z INFO [checkout] order 94974 placed
+2026-05-04T09:00:22Z INFO [checkout] order 82079 placed
+2026-05-04T09:00:23Z INFO [checkout] order 36386 placed
+2026-05-04T09:00:24Z INFO [checkout] order 84339 placed
+2026-05-04T09:00:25Z INFO [checkout] order 25638 placed
+2026-05-04T09:00:26Z INFO [checkout] order 34628 placed
+2026-05-04T09:00:27Z INFO [checkout] order 79035 placed
+2026-05-04T09:00:28Z INFO [checkout] order 84695 placed
+2026-05-04T09:00:29Z INFO [checkout] order 39380 placed
+2026-05-04T09:00:30Z INFO [checkout] order 47629 placed
+2026-05-04T09:00:31Z INFO [checkout] order 74271 placed
+2026-05-04T09:00:32Z INFO [checkout] order 84511 placed
+2026-05-04T09:00:33Z INFO [checkout] order 46496 placed
+2026-05-04T09:00:34Z INFO [checkout] order 30079 placed
+2026-05-04T09:00:35Z INFO [checkout] order 20027 placed
+2026-05-04T09:00:36Z INFO [checkout] order 35830 placed
+2026-05-04T09:00:37Z INFO [checkout] order 26808 placed
+2026-05-04T09:00:38Z INFO [checkout] order 90641 placed
+2026-05-04T09:00:39Z INFO [checkout] order 16790 placed
+2026-05-04T09:00:40Z INFO [checkout] order 38292 placed
+2026-05-04T09:00:41Z INFO [checkout] order 71140 placed
+2026-05-04T09:00:42Z INFO [checkout] order 94281 placed
+2026-05-04T09:00:43Z INFO [checkout] order 30920 placed
+2026-05-04T09:00:44Z INFO [checkout] order 59239 placed
+2026-05-04T09:00:45Z INFO [checkout] order 80793 placed
+2026-05-04T09:00:46Z INFO [checkout] order 45196 placed
+2026-05-04T09:00:47Z INFO [checkout] order 91332 placed
+2026-05-04T09:00:48Z INFO [checkout] order 13489 placed
+2026-05-04T09:00:49Z INFO [checkout] order 10066 placed
+2026-05-04T09:00:50Z INFO [checkout] order 57613 placed
+2026-05-04T09:00:51Z INFO [checkout] order 28334 placed
+2026-05-04T09:00:52Z INFO [checkout] order 71179 placed
+2026-05-04T09:00:53Z INFO [checkout] order 83487 placed
+2026-05-04T09:00:54Z INFO [checkout] order 36367 placed
+2026-05-04T09:00:55Z INFO [checkout] order 32300 placed
+2026-05-04T09:00:56Z INFO [checkout] order 81278 placed
+2026-05-04T09:00:57Z INFO [checkout] order 42346 placed
+2026-05-04T09:00:58Z INFO [checkout] order 54879 placed
+2026-05-04T09:00:59Z INFO [checkout] order 41680 placed
+2026-05-04T09:01:00Z INFO [checkout] order 34029 placed
+2026-05-04T09:01:01Z INFO [checkout] order 56091 placed
+2026-05-04T09:01:02Z INFO [checkout] order 70905 placed
+2026-05-04T09:01:03Z INFO [checkout] order 98563 placed
+2026-05-04T09:01:04Z INFO [checkout] order 83437 placed
+2026-05-04T09:01:05Z INFO [checkout] order 57882 placed
+2026-05-04T09:01:06Z INFO [checkout] order 73959 placed
+2026-05-04T09:01:07Z INFO [checkout] order 14792 placed
+2026-05-04T09:01:08Z INFO [checkout] order 97792 placed
+2026-05-04T09:01:09Z INFO [checkout] order 92731 placed
+2026-05-04T09:01:10Z INFO [checkout] order 88072 placed
+2026-05-04T09:01:11Z INFO [checkout] order 37990 placed
+2026-05-04T09:01:12Z INFO [checkout] order 85645 placed
+2026-05-04T09:01:13Z INFO [checkout] order 17949 placed
+2026-05-04T09:01:14Z INFO [checkout] order 62391 placed
+2026-05-04T09:01:15Z INFO [checkout] order 72199 placed
+2026-05-04T09:01:16Z INFO [checkout] order 82759 placed
+2026-05-04T09:01:17Z INFO [checkout] order 50997 placed
+2026-05-04T09:01:18Z INFO [checkout] order 76431 placed
+2026-05-04T09:01:19Z INFO [checkout] order 50773 placed
+2026-05-04T09:01:20Z INFO [checkout] order 85070 placed
+2026-05-04T09:01:21Z INFO [checkout] order 48254 placed
+2026-05-04T09:01:22Z INFO [checkout] order 18614 placed
+2026-05-04T09:01:23Z INFO [checkout] order 52712 placed
+2026-05-04T09:01:24Z INFO [checkout] order 88997 placed
+2026-05-04T09:01:25Z INFO [checkout] order 82758 placed
+2026-05-04T09:01:26Z INFO [checkout] order 25541 placed
+2026-05-04T09:01:27Z INFO [checkout] order 61664 placed
+2026-05-04T09:01:28Z INFO [checkout] order 59429 placed
+2026-05-04T09:01:29Z INFO [checkout] order 41637 placed
+2026-05-04T09:01:30Z INFO [checkout] order 51731 placed
+2026-05-04T09:01:31Z INFO [checkout] order 26731 placed
+2026-05-04T09:01:32Z INFO [checkout] order 70309 placed
+2026-05-04T09:01:33Z INFO [checkout] order 22842 placed
+2026-05-04T09:01:34Z INFO [checkout] order 67867 placed
+2026-05-04T09:01:35Z INFO [checkout] order 30713 placed
+2026-05-04T09:01:36Z INFO [checkout] order 79691 placed
+2026-05-04T09:01:37Z INFO [checkout] order 41291 placed
+2026-05-04T09:01:38Z INFO [checkout] order 38976 placed
+2026-05-04T09:01:39Z INFO [checkout] order 30265 placed
+2026-05-04T09:01:40Z INFO [checkout] order 16044 placed
+2026-05-04T09:01:41Z INFO [checkout] order 75304 placed
+2026-05-04T09:01:42Z INFO [checkout] order 73201 placed
+2026-05-04T09:01:43Z INFO [checkout] order 24400 placed
+2026-05-04T09:01:44Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:01:45Z INFO [checkout] order 23216 placed
+2026-05-04T09:01:46Z INFO [checkout] order 13316 placed
+2026-05-04T09:01:47Z INFO [checkout] order 57683 placed
+2026-05-04T09:01:48Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:01:49Z INFO [checkout] order 64748 placed
+2026-05-04T09:01:50Z INFO [checkout] order 29587 placed
+2026-05-04T09:01:51Z ERROR [checkout] TimeoutError: acquiring db session timed out after 3955ms
+2026-05-04T09:01:52Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:01:53Z INFO [checkout] order 83253 placed
+2026-05-04T09:01:54Z INFO [checkout] order 44242 placed
+2026-05-04T09:01:55Z INFO [checkout] order 80700 placed
+2026-05-04T09:01:56Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:01:57Z INFO [checkout] order 93319 placed
+2026-05-04T09:01:58Z INFO [checkout] order 60893 placed
+2026-05-04T09:01:59Z INFO [checkout] order 63411 placed
+2026-05-04T09:02:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:02:01Z INFO [checkout] order 58430 placed
+2026-05-04T09:02:02Z INFO [checkout] order 50134 placed
+2026-05-04T09:02:03Z INFO [checkout] order 85409 placed
+2026-05-04T09:02:04Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:02:05Z INFO [checkout] order 82169 placed
+2026-05-04T09:02:06Z INFO [checkout] order 11511 placed
+2026-05-04T09:02:07Z INFO [checkout] order 54887 placed
+2026-05-04T09:02:08Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:02:09Z INFO [checkout] order 48106 placed
+2026-05-04T09:02:10Z INFO [checkout] order 78307 placed
+2026-05-04T09:02:11Z INFO [checkout] order 24195 placed
+2026-05-04T09:02:12Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:02:13Z INFO [checkout] order 27493 placed
+2026-05-04T09:02:14Z INFO [checkout] order 76803 placed
+2026-05-04T09:02:15Z INFO [checkout] order 11273 placed
+2026-05-04T09:02:16Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:02:17Z INFO [checkout] order 21250 placed
+2026-05-04T09:02:18Z INFO [checkout] order 34043 placed
+2026-05-04T09:02:19Z INFO [checkout] order 31062 placed
+2026-05-04T09:02:20Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:02:21Z INFO [checkout] order 29821 placed
+2026-05-04T09:02:22Z INFO [checkout] order 75538 placed
+2026-05-04T09:02:23Z INFO [checkout] order 97379 placed
+2026-05-04T09:02:24Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:02:25Z INFO [checkout] order 30691 placed
+2026-05-04T09:02:26Z INFO [checkout] order 78699 placed
+2026-05-04T09:02:27Z INFO [checkout] order 99170 placed
+2026-05-04T09:02:28Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:02:29Z INFO [checkout] order 31332 placed
+2026-05-04T09:02:30Z INFO [checkout] order 73652 placed
+2026-05-04T09:02:31Z INFO [checkout] order 72743 placed
+2026-05-04T09:02:32Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:02:33Z INFO [checkout] order 92241 placed
+2026-05-04T09:02:34Z INFO [checkout] order 28975 placed
+2026-05-04T09:02:35Z INFO [checkout] order 37446 placed
+2026-05-04T09:02:36Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:02:37Z INFO [checkout] order 31265 placed
+2026-05-04T09:02:38Z INFO [checkout] order 41588 placed
+2026-05-04T09:02:39Z INFO [checkout] order 81831 placed
+2026-05-04T09:02:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:02:41Z INFO [checkout] order 91920 placed
+2026-05-04T09:02:42Z INFO [checkout] order 19239 placed
+2026-05-04T09:02:43Z INFO [checkout] order 42320 placed
+2026-05-04T09:02:44Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:02:45Z INFO [checkout] order 57363 placed
+2026-05-04T09:02:46Z INFO [checkout] order 36455 placed
+2026-05-04T09:02:47Z INFO [checkout] order 75528 placed
+2026-05-04T09:02:48Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:02:49Z INFO [checkout] order 34771 placed
+2026-05-04T09:02:50Z INFO [checkout] order 56610 placed
+2026-05-04T09:02:51Z INFO [checkout] order 82990 placed
+2026-05-04T09:02:52Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:02:53Z INFO [checkout] order 97051 placed
+2026-05-04T09:02:54Z INFO [checkout] order 18493 placed
+2026-05-04T09:02:55Z INFO [checkout] order 75137 placed
+2026-05-04T09:02:56Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:02:57Z INFO [checkout] order 52456 placed
+2026-05-04T09:02:58Z INFO [checkout] order 81623 placed
+2026-05-04T09:02:59Z INFO [checkout] order 51384 placed
+2026-05-04T09:03:00Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:03:01Z INFO [checkout] order 75261 placed
+2026-05-04T09:03:02Z INFO [checkout] order 52306 placed
+2026-05-04T09:03:03Z INFO [checkout] order 12446 placed
+2026-05-04T09:03:04Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:03:05Z ERROR [checkout] TimeoutError: acquiring db session timed out after 2451ms
+2026-05-04T09:03:06Z INFO [checkout] order 30096 placed
+2026-05-04T09:03:07Z INFO [checkout] order 15864 placed
+2026-05-04T09:03:08Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:03:09Z INFO [checkout] order 25778 placed
+2026-05-04T09:03:10Z INFO [checkout] order 28454 placed
+2026-05-04T09:03:11Z INFO [checkout] order 31438 placed
+2026-05-04T09:03:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:03:13Z INFO [checkout] order 40638 placed
+2026-05-04T09:03:14Z INFO [checkout] order 58194 placed
+2026-05-04T09:03:15Z INFO [checkout] order 33628 placed
+2026-05-04T09:03:16Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:03:17Z INFO [checkout] order 30417 placed
+2026-05-04T09:03:18Z INFO [checkout] order 90189 placed
+2026-05-04T09:03:19Z INFO [checkout] order 31310 placed
+2026-05-04T09:03:20Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:03:21Z INFO [checkout] order 29509 placed
+2026-05-04T09:03:22Z INFO [checkout] order 86003 placed
+2026-05-04T09:03:23Z INFO [checkout] order 58377 placed
+2026-05-04T09:03:24Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:03:25Z INFO [checkout] order 68787 placed
+2026-05-04T09:03:26Z INFO [checkout] order 51089 placed
+2026-05-04T09:03:27Z INFO [checkout] order 26619 placed
+2026-05-04T09:03:28Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:03:29Z INFO [checkout] order 35113 placed
+2026-05-04T09:03:30Z INFO [checkout] order 34700 placed
+2026-05-04T09:03:31Z INFO [checkout] order 17520 placed
+2026-05-04T09:03:32Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:03:33Z INFO [checkout] order 68085 placed
+2026-05-04T09:03:34Z INFO [checkout] order 68213 placed
+2026-05-04T09:03:35Z INFO [checkout] order 62572 placed
+2026-05-04T09:03:36Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:03:37Z INFO [checkout] order 44708 placed
+2026-05-04T09:03:38Z INFO [checkout] order 23984 placed
+2026-05-04T09:03:39Z INFO [checkout] order 37797 placed
+2026-05-04T09:03:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:03:41Z INFO [checkout] order 70533 placed
+2026-05-04T09:03:42Z ERROR [checkout] TimeoutError: acquiring db session timed out after 5680ms
+2026-05-04T09:03:43Z INFO [checkout] order 51125 placed
+2026-05-04T09:03:44Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:03:45Z INFO [checkout] order 22494 placed
+2026-05-04T09:03:46Z INFO [checkout] order 72444 placed
+2026-05-04T09:03:47Z INFO [checkout] order 90351 placed
+2026-05-04T09:03:48Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:03:49Z INFO [checkout] order 41324 placed
+2026-05-04T09:03:50Z INFO [checkout] order 93195 placed
+2026-05-04T09:03:51Z INFO [checkout] order 54410 placed
+2026-05-04T09:03:52Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:03:53Z INFO [checkout] order 57900 placed
+2026-05-04T09:03:54Z INFO [checkout] order 79977 placed
+2026-05-04T09:03:55Z INFO [checkout] order 91617 placed
+2026-05-04T09:03:56Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:03:57Z INFO [checkout] order 19515 placed
+2026-05-04T09:03:58Z INFO [checkout] order 48927 placed
+2026-05-04T09:03:59Z INFO [checkout] order 71938 placed
+2026-05-04T09:04:00Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:04:01Z INFO [checkout] order 58300 placed
+2026-05-04T09:04:02Z INFO [checkout] order 54900 placed
+2026-05-04T09:04:03Z INFO [checkout] order 32071 placed
+2026-05-04T09:04:04Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:04:05Z INFO [checkout] order 10968 placed
+2026-05-04T09:04:06Z INFO [checkout] order 61634 placed
+2026-05-04T09:04:07Z INFO [checkout] order 94076 placed
+2026-05-04T09:04:08Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:04:09Z INFO [checkout] order 68945 placed
+2026-05-04T09:04:10Z INFO [checkout] order 92948 placed
+2026-05-04T09:04:11Z INFO [checkout] order 73778 placed
+2026-05-04T09:04:12Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:04:13Z INFO [checkout] order 21323 placed
+2026-05-04T09:04:14Z INFO [checkout] order 86047 placed
+2026-05-04T09:04:15Z INFO [checkout] order 26899 placed
+2026-05-04T09:04:16Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:04:17Z INFO [checkout] order 86177 placed
+2026-05-04T09:04:18Z INFO [checkout] order 59600 placed
+2026-05-04T09:04:19Z ERROR [checkout] TimeoutError: acquiring db session timed out after 2903ms
+2026-05-04T09:04:20Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:04:21Z INFO [checkout] order 39874 placed
+2026-05-04T09:04:22Z INFO [checkout] order 96901 placed
+2026-05-04T09:04:23Z INFO [checkout] order 69685 placed
+2026-05-04T09:04:24Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:04:25Z INFO [checkout] order 72062 placed
+2026-05-04T09:04:26Z INFO [checkout] order 72794 placed
+2026-05-04T09:04:27Z INFO [checkout] order 80612 placed
+2026-05-04T09:04:28Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:04:29Z INFO [checkout] order 71495 placed
+2026-05-04T09:04:30Z INFO [checkout] order 47192 placed
+2026-05-04T09:04:31Z INFO [checkout] order 53931 placed
+2026-05-04T09:04:32Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:04:33Z INFO [checkout] order 92316 placed
+2026-05-04T09:04:34Z INFO [checkout] order 58524 placed
+2026-05-04T09:04:35Z INFO [checkout] order 29184 placed
+2026-05-04T09:04:36Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:04:37Z INFO [checkout] order 59566 placed
+2026-05-04T09:04:38Z INFO [checkout] order 22267 placed
+2026-05-04T09:04:39Z INFO [checkout] order 91168 placed
+2026-05-04T09:04:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:04:41Z INFO [checkout] order 45355 placed
+2026-05-04T09:04:42Z INFO [checkout] order 15992 placed
+2026-05-04T09:04:43Z INFO [checkout] order 90687 placed
+2026-05-04T09:04:44Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:04:45Z INFO [checkout] order 39652 placed
+2026-05-04T09:04:46Z INFO [checkout] order 73059 placed
+2026-05-04T09:04:47Z INFO [checkout] order 95280 placed
+2026-05-04T09:04:48Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:04:49Z INFO [checkout] order 97334 placed
+2026-05-04T09:04:50Z INFO [checkout] order 34360 placed
+2026-05-04T09:04:51Z INFO [checkout] order 81105 placed
+2026-05-04T09:04:52Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:04:53Z INFO [checkout] order 82233 placed
+2026-05-04T09:04:54Z INFO [checkout] order 39364 placed
+2026-05-04T09:04:55Z INFO [checkout] order 76670 placed
+2026-05-04T09:04:56Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:04:57Z INFO [checkout] order 96406 placed
+2026-05-04T09:04:58Z INFO [checkout] order 30078 placed
+2026-05-04T09:04:59Z INFO [checkout] order 93255 placed
+2026-05-04T09:05:00Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:05:01Z INFO [checkout] order 43280 placed
+2026-05-04T09:05:02Z INFO [checkout] order 17240 placed
+2026-05-04T09:05:03Z INFO [checkout] order 43332 placed
+2026-05-04T09:05:04Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:05:05Z INFO [checkout] order 77184 placed
+2026-05-04T09:05:06Z INFO [checkout] order 10583 placed
+2026-05-04T09:05:07Z INFO [checkout] order 61446 placed
+2026-05-04T09:05:08Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:05:09Z INFO [checkout] order 95372 placed
+2026-05-04T09:05:10Z INFO [checkout] order 28082 placed
+2026-05-04T09:05:11Z INFO [checkout] order 39415 placed
+2026-05-04T09:05:12Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:05:13Z INFO [checkout] order 28787 placed
+2026-05-04T09:05:14Z INFO [checkout] order 91870 placed
+2026-05-04T09:05:15Z INFO [checkout] order 58821 placed
+2026-05-04T09:05:16Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:05:17Z INFO [checkout] order 54292 placed
+2026-05-04T09:05:18Z INFO [checkout] order 31974 placed
+2026-05-04T09:05:19Z INFO [checkout] order 15095 placed
+2026-05-04T09:05:20Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:05:21Z INFO [checkout] order 94052 placed
+2026-05-04T09:05:22Z INFO [checkout] order 42992 placed
+2026-05-04T09:05:23Z INFO [checkout] order 74794 placed
+2026-05-04T09:05:24Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:05:25Z INFO [checkout] order 34464 placed
+2026-05-04T09:05:26Z INFO [checkout] order 69556 placed
+2026-05-04T09:05:27Z INFO [checkout] order 15047 placed
+2026-05-04T09:05:28Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:05:29Z INFO [checkout] order 20523 placed
+2026-05-04T09:05:30Z INFO [checkout] order 63031 placed
+2026-05-04T09:05:31Z INFO [checkout] order 25946 placed
+2026-05-04T09:05:32Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:05:33Z ERROR [checkout] TimeoutError: acquiring db session timed out after 3242ms
+2026-05-04T09:05:34Z INFO [checkout] order 39277 placed
+2026-05-04T09:05:35Z INFO [checkout] order 16290 placed
+2026-05-04T09:05:36Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:05:37Z INFO [checkout] order 43176 placed
+2026-05-04T09:05:38Z INFO [checkout] order 67591 placed
+2026-05-04T09:05:39Z INFO [checkout] order 94921 placed
+2026-05-04T09:05:40Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:05:41Z INFO [checkout] order 49368 placed
+2026-05-04T09:05:42Z INFO [checkout] order 13359 placed
+2026-05-04T09:05:43Z INFO [checkout] order 98578 placed
+2026-05-04T09:05:44Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:05:45Z INFO [checkout] order 67100 placed
+2026-05-04T09:05:46Z INFO [checkout] order 11583 placed
+2026-05-04T09:05:47Z INFO [checkout] order 83703 placed
+2026-05-04T09:05:48Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:05:49Z INFO [checkout] order 61842 placed
+2026-05-04T09:05:50Z INFO [checkout] order 42161 placed
+2026-05-04T09:05:51Z INFO [checkout] order 82597 placed
+2026-05-04T09:05:52Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:05:53Z INFO [checkout] order 89591 placed
+2026-05-04T09:05:54Z INFO [checkout] order 34746 placed
+2026-05-04T09:05:55Z INFO [checkout] order 39057 placed
+2026-05-04T09:05:56Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:05:57Z INFO [checkout] order 89727 placed
+2026-05-04T09:05:58Z INFO [checkout] order 13067 placed
+2026-05-04T09:05:59Z INFO [checkout] order 72552 placed
+2026-05-04T09:06:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:06:01Z INFO [checkout] order 67949 placed
+2026-05-04T09:06:02Z INFO [checkout] order 12391 placed
+2026-05-04T09:06:03Z INFO [checkout] order 21931 placed
+2026-05-04T09:06:04Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:06:05Z INFO [checkout] order 44059 placed
+2026-05-04T09:06:06Z INFO [checkout] order 87733 placed
+2026-05-04T09:06:07Z INFO [checkout] order 85845 placed
+2026-05-04T09:06:08Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:06:09Z INFO [checkout] order 27138 placed
+2026-05-04T09:06:10Z ERROR [checkout] TimeoutError: acquiring db session timed out after 2828ms
+2026-05-04T09:06:11Z INFO [checkout] order 45491 placed
+2026-05-04T09:06:12Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:06:13Z INFO [checkout] order 11332 placed
+2026-05-04T09:06:14Z INFO [checkout] order 64648 placed
+2026-05-04T09:06:15Z INFO [checkout] order 56057 placed
+2026-05-04T09:06:16Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:06:17Z INFO [checkout] order 23855 placed
+2026-05-04T09:06:18Z INFO [checkout] order 59211 placed
+2026-05-04T09:06:19Z INFO [checkout] order 63739 placed
+2026-05-04T09:06:20Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:06:21Z INFO [checkout] order 16128 placed
+2026-05-04T09:06:22Z INFO [checkout] order 90879 placed
+2026-05-04T09:06:23Z INFO [checkout] order 37050 placed
+2026-05-04T09:06:24Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:06:25Z INFO [checkout] order 95690 placed
+2026-05-04T09:06:26Z INFO [checkout] order 50648 placed
+2026-05-04T09:06:27Z INFO [checkout] order 70760 placed
+2026-05-04T09:06:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:06:29Z INFO [checkout] order 98332 placed
+2026-05-04T09:06:30Z INFO [checkout] order 18875 placed
+2026-05-04T09:06:31Z INFO [checkout] order 19876 placed
+2026-05-04T09:06:32Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:06:33Z INFO [checkout] order 58073 placed
+2026-05-04T09:06:34Z INFO [checkout] order 70800 placed
+2026-05-04T09:06:35Z INFO [checkout] order 15307 placed
+2026-05-04T09:06:36Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:06:37Z INFO [checkout] order 43496 placed
+2026-05-04T09:06:38Z INFO [checkout] order 37844 placed
+2026-05-04T09:06:39Z INFO [checkout] order 39194 placed
+2026-05-04T09:06:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:06:41Z INFO [checkout] order 70657 placed
+2026-05-04T09:06:42Z INFO [checkout] order 19949 placed
+2026-05-04T09:06:43Z INFO [checkout] order 33558 placed
+2026-05-04T09:06:44Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:06:45Z INFO [checkout] order 77613 placed
+2026-05-04T09:06:46Z INFO [checkout] order 82408 placed
+2026-05-04T09:06:47Z ERROR [checkout] TimeoutError: acquiring db session timed out after 6207ms
+2026-05-04T09:06:48Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:06:49Z INFO [checkout] order 72126 placed
+2026-05-04T09:06:50Z INFO [checkout] order 41355 placed
+2026-05-04T09:06:51Z INFO [checkout] order 26924 placed
+2026-05-04T09:06:52Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:06:53Z INFO [checkout] order 54786 placed
+2026-05-04T09:06:54Z INFO [checkout] order 44645 placed
+2026-05-04T09:06:55Z INFO [checkout] order 75537 placed
+2026-05-04T09:06:56Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:06:57Z INFO [checkout] order 72926 placed
+2026-05-04T09:06:58Z INFO [checkout] order 27320 placed
+2026-05-04T09:06:59Z INFO [checkout] order 78057 placed
+2026-05-04T09:07:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:07:01Z INFO [checkout] order 14229 placed
+2026-05-04T09:07:02Z INFO [checkout] order 18810 placed
+2026-05-04T09:07:03Z INFO [checkout] order 10796 placed
+2026-05-04T09:07:04Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:07:05Z INFO [checkout] order 63538 placed
+2026-05-04T09:07:06Z INFO [checkout] order 26447 placed
+2026-05-04T09:07:07Z INFO [checkout] order 28805 placed
+2026-05-04T09:07:08Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:07:09Z INFO [checkout] order 67586 placed
+2026-05-04T09:07:10Z INFO [checkout] order 23470 placed
+2026-05-04T09:07:11Z INFO [checkout] order 42097 placed
+2026-05-04T09:07:12Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:07:13Z INFO [checkout] order 29428 placed
+2026-05-04T09:07:14Z INFO [checkout] order 85380 placed
+2026-05-04T09:07:15Z INFO [checkout] order 14280 placed
+2026-05-04T09:07:16Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:07:17Z INFO [checkout] order 67654 placed
+2026-05-04T09:07:18Z INFO [checkout] order 45963 placed
+2026-05-04T09:07:19Z INFO [checkout] order 78201 placed
+2026-05-04T09:07:20Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:07:21Z INFO [checkout] order 32733 placed
+2026-05-04T09:07:22Z INFO [checkout] order 70655 placed
+2026-05-04T09:07:23Z INFO [checkout] order 33830 placed
+2026-05-04T09:07:24Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:07:25Z INFO [checkout] order 70825 placed
+2026-05-04T09:07:26Z INFO [checkout] order 28953 placed
+2026-05-04T09:07:27Z INFO [checkout] order 57868 placed
+2026-05-04T09:07:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:07:29Z INFO [checkout] order 56400 placed
+2026-05-04T09:07:30Z INFO [checkout] order 76910 placed
+2026-05-04T09:07:31Z INFO [checkout] order 12760 placed
+2026-05-04T09:07:32Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:07:33Z INFO [checkout] order 23365 placed
+2026-05-04T09:07:34Z INFO [checkout] order 89869 placed
+2026-05-04T09:07:35Z INFO [checkout] order 79981 placed
+2026-05-04T09:07:36Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:07:37Z INFO [checkout] order 46721 placed
+2026-05-04T09:07:38Z INFO [checkout] order 54746 placed
+2026-05-04T09:07:39Z INFO [checkout] order 54006 placed
+2026-05-04T09:07:40Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:07:41Z INFO [checkout] order 70941 placed
+2026-05-04T09:07:42Z INFO [checkout] order 78243 placed
+2026-05-04T09:07:43Z INFO [checkout] order 69126 placed
+2026-05-04T09:07:44Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:07:45Z INFO [checkout] order 10973 placed
+2026-05-04T09:07:46Z INFO [checkout] order 92774 placed
+2026-05-04T09:07:47Z INFO [checkout] order 32552 placed
+2026-05-04T09:07:48Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:07:49Z INFO [checkout] order 52115 placed
+2026-05-04T09:07:50Z INFO [checkout] order 70537 placed
+2026-05-04T09:07:51Z INFO [checkout] order 52555 placed
+2026-05-04T09:07:52Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:07:53Z INFO [checkout] order 27216 placed
+2026-05-04T09:07:54Z INFO [checkout] order 51823 placed
+2026-05-04T09:07:55Z INFO [checkout] order 73653 placed
+2026-05-04T09:07:56Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:07:57Z INFO [checkout] order 11019 placed
+2026-05-04T09:07:58Z INFO [checkout] order 44342 placed
+2026-05-04T09:07:59Z INFO [checkout] order 50800 placed
+2026-05-04T09:08:00Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:08:01Z ERROR [checkout] TimeoutError: acquiring db session timed out after 3708ms
+2026-05-04T09:08:02Z INFO [checkout] order 18606 placed
+2026-05-04T09:08:03Z INFO [checkout] order 77556 placed
+2026-05-04T09:08:04Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:08:05Z INFO [checkout] order 54236 placed
+2026-05-04T09:08:06Z INFO [checkout] order 80513 placed
+2026-05-04T09:08:07Z INFO [checkout] order 65049 placed
+2026-05-04T09:08:08Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:08:09Z INFO [checkout] order 13305 placed
+2026-05-04T09:08:10Z INFO [checkout] order 97815 placed
+2026-05-04T09:08:11Z INFO [checkout] order 70740 placed
+2026-05-04T09:08:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:08:13Z INFO [checkout] order 46824 placed
+2026-05-04T09:08:14Z INFO [checkout] order 92327 placed
+2026-05-04T09:08:15Z INFO [checkout] order 82033 placed
+2026-05-04T09:08:16Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:08:17Z INFO [checkout] order 15810 placed
+2026-05-04T09:08:18Z INFO [checkout] order 18600 placed
+2026-05-04T09:08:19Z INFO [checkout] order 59082 placed
+2026-05-04T09:08:20Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:08:21Z INFO [checkout] order 21055 placed
+2026-05-04T09:08:22Z INFO [checkout] order 77044 placed
+2026-05-04T09:08:23Z INFO [checkout] order 89224 placed
+2026-05-04T09:08:24Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:08:25Z INFO [checkout] order 35726 placed
+2026-05-04T09:08:26Z INFO [checkout] order 88723 placed
+2026-05-04T09:08:27Z INFO [checkout] order 34123 placed
+2026-05-04T09:08:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:08:29Z INFO [checkout] order 28046 placed
+2026-05-04T09:08:30Z INFO [checkout] order 68744 placed
+2026-05-04T09:08:31Z INFO [checkout] order 67239 placed
+2026-05-04T09:08:32Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:08:33Z INFO [checkout] order 56425 placed
+2026-05-04T09:08:34Z INFO [checkout] order 17095 placed
+2026-05-04T09:08:35Z INFO [checkout] order 75205 placed
+2026-05-04T09:08:36Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:08:37Z INFO [checkout] order 95242 placed
+2026-05-04T09:08:38Z ERROR [checkout] TimeoutError: acquiring db session timed out after 4811ms
+2026-05-04T09:08:39Z INFO [checkout] order 22011 placed
+2026-05-04T09:08:40Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:08:41Z INFO [checkout] order 15126 placed
+2026-05-04T09:08:42Z INFO [checkout] order 86041 placed
+2026-05-04T09:08:43Z INFO [checkout] order 80362 placed
+2026-05-04T09:08:44Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:08:45Z INFO [checkout] order 39366 placed
+2026-05-04T09:08:46Z INFO [checkout] order 17379 placed
+2026-05-04T09:08:47Z INFO [checkout] order 87171 placed
+2026-05-04T09:08:48Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:08:49Z INFO [checkout] order 85739 placed
+2026-05-04T09:08:50Z INFO [checkout] order 49937 placed
+2026-05-04T09:08:51Z INFO [checkout] order 31336 placed
+2026-05-04T09:08:52Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:08:53Z INFO [checkout] order 76379 placed
+2026-05-04T09:08:54Z INFO [checkout] order 63518 placed
+2026-05-04T09:08:55Z INFO [checkout] order 82244 placed
+2026-05-04T09:08:56Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:08:57Z INFO [checkout] order 20122 placed
+2026-05-04T09:08:58Z INFO [checkout] order 18810 placed
+2026-05-04T09:08:59Z INFO [checkout] order 14800 placed
+2026-05-04T09:09:00Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:09:01Z INFO [checkout] order 44282 placed
+2026-05-04T09:09:02Z INFO [checkout] order 88013 placed
+2026-05-04T09:09:03Z INFO [checkout] order 12076 placed
+2026-05-04T09:09:04Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:09:05Z INFO [checkout] order 16298 placed
+2026-05-04T09:09:06Z INFO [checkout] order 36976 placed
+2026-05-04T09:09:07Z INFO [checkout] order 51275 placed
+2026-05-04T09:09:08Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:09:09Z INFO [checkout] order 21996 placed
+2026-05-04T09:09:10Z INFO [checkout] order 22337 placed
+2026-05-04T09:09:11Z INFO [checkout] order 35469 placed
+2026-05-04T09:09:12Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:09:13Z INFO [checkout] order 81844 placed
+2026-05-04T09:09:14Z INFO [checkout] order 68306 placed
+2026-05-04T09:09:15Z ERROR [checkout] TimeoutError: acquiring db session timed out after 3401ms
+2026-05-04T09:09:16Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:09:17Z INFO [checkout] order 70338 placed
+2026-05-04T09:09:18Z INFO [checkout] order 98847 placed
+2026-05-04T09:09:19Z INFO [checkout] order 55045 placed
+2026-05-04T09:09:20Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:09:21Z INFO [checkout] order 39966 placed
+2026-05-04T09:09:22Z INFO [checkout] order 57508 placed
+2026-05-04T09:09:23Z INFO [checkout] order 17476 placed
+2026-05-04T09:09:24Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:09:25Z INFO [checkout] order 54939 placed
+2026-05-04T09:09:26Z INFO [checkout] order 39045 placed
+2026-05-04T09:09:27Z INFO [checkout] order 95609 placed
+2026-05-04T09:09:28Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:09:29Z INFO [checkout] order 92903 placed
+2026-05-04T09:09:30Z INFO [checkout] order 15636 placed
+2026-05-04T09:09:31Z INFO [checkout] order 79408 placed
+2026-05-04T09:09:32Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:09:33Z INFO [checkout] order 99389 placed
+2026-05-04T09:09:34Z INFO [checkout] order 90641 placed
+2026-05-04T09:09:35Z INFO [checkout] order 58893 placed
+2026-05-04T09:09:36Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:09:37Z INFO [checkout] order 63953 placed
+2026-05-04T09:09:38Z INFO [checkout] order 92670 placed
+2026-05-04T09:09:39Z INFO [checkout] order 54751 placed
+2026-05-04T09:09:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:09:41Z INFO [checkout] order 18591 placed
+2026-05-04T09:09:42Z INFO [checkout] order 70454 placed
+2026-05-04T09:09:43Z INFO [checkout] order 73323 placed
+2026-05-04T09:09:44Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:09:45Z INFO [checkout] order 17586 placed
+2026-05-04T09:09:46Z INFO [checkout] order 78193 placed
+2026-05-04T09:09:47Z INFO [checkout] order 55964 placed
+2026-05-04T09:09:48Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:09:49Z INFO [checkout] order 60235 placed
+2026-05-04T09:09:50Z INFO [checkout] order 54825 placed
+2026-05-04T09:09:51Z INFO [checkout] order 61135 placed
+2026-05-04T09:09:52Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:09:53Z INFO [checkout] order 14192 placed
+2026-05-04T09:09:54Z INFO [checkout] order 31507 placed
+2026-05-04T09:09:55Z INFO [checkout] order 22919 placed
+2026-05-04T09:09:56Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:09:57Z INFO [checkout] order 58290 placed
+2026-05-04T09:09:58Z INFO [checkout] order 52315 placed
+2026-05-04T09:09:59Z INFO [checkout] order 66957 placed
+2026-05-04T09:10:00Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:10:01Z INFO [checkout] order 44535 placed
+2026-05-04T09:10:02Z INFO [checkout] order 73286 placed
+2026-05-04T09:10:03Z INFO [checkout] order 66253 placed
+2026-05-04T09:10:04Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:10:05Z INFO [checkout] order 99823 placed
+2026-05-04T09:10:06Z INFO [checkout] order 15134 placed
+2026-05-04T09:10:07Z INFO [checkout] order 63767 placed
+2026-05-04T09:10:08Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:10:09Z INFO [checkout] order 33420 placed
+2026-05-04T09:10:10Z INFO [checkout] order 27483 placed
+2026-05-04T09:10:11Z INFO [checkout] order 98869 placed
+2026-05-04T09:10:12Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:10:13Z INFO [checkout] order 61447 placed
+2026-05-04T09:10:14Z INFO [checkout] order 68233 placed
+2026-05-04T09:10:15Z INFO [checkout] order 52138 placed
+2026-05-04T09:10:16Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:10:17Z INFO [checkout] order 68917 placed
+2026-05-04T09:10:18Z INFO [checkout] order 17105 placed
+2026-05-04T09:10:19Z INFO [checkout] order 35364 placed
+2026-05-04T09:10:20Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:10:21Z INFO [checkout] order 53533 placed
+2026-05-04T09:10:22Z INFO [checkout] order 36109 placed
+2026-05-04T09:10:23Z INFO [checkout] order 86872 placed
+2026-05-04T09:10:24Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:10:25Z INFO [checkout] order 68826 placed
+2026-05-04T09:10:26Z INFO [checkout] order 90010 placed
+2026-05-04T09:10:27Z INFO [checkout] order 74455 placed
+2026-05-04T09:10:28Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:10:29Z ERROR [checkout] TimeoutError: acquiring db session timed out after 3498ms
+2026-05-04T09:10:30Z INFO [checkout] order 73211 placed
+2026-05-04T09:10:31Z INFO [checkout] order 76259 placed
+2026-05-04T09:10:32Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:10:33Z INFO [checkout] order 35816 placed
+2026-05-04T09:10:34Z INFO [checkout] order 78395 placed
+2026-05-04T09:10:35Z INFO [checkout] order 60881 placed
+2026-05-04T09:10:36Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:10:37Z INFO [checkout] order 38469 placed
+2026-05-04T09:10:38Z INFO [checkout] order 82960 placed
+2026-05-04T09:10:39Z INFO [checkout] order 98713 placed
+2026-05-04T09:10:40Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:10:41Z INFO [checkout] order 32056 placed
+2026-05-04T09:10:42Z INFO [checkout] order 54557 placed
+2026-05-04T09:10:43Z INFO [checkout] order 51387 placed
+2026-05-04T09:10:44Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:10:45Z INFO [checkout] order 70249 placed
+2026-05-04T09:10:46Z INFO [checkout] order 47083 placed
+2026-05-04T09:10:47Z INFO [checkout] order 51095 placed
+2026-05-04T09:10:48Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:10:49Z INFO [checkout] order 23872 placed
+2026-05-04T09:10:50Z INFO [checkout] order 73010 placed
+2026-05-04T09:10:51Z INFO [checkout] order 57436 placed
+2026-05-04T09:10:52Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:10:53Z INFO [checkout] order 12871 placed
+2026-05-04T09:10:54Z INFO [checkout] order 15532 placed
+2026-05-04T09:10:55Z INFO [checkout] order 15712 placed
+2026-05-04T09:10:56Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:10:57Z INFO [checkout] order 10407 placed
+2026-05-04T09:10:58Z INFO [checkout] order 44669 placed
+2026-05-04T09:10:59Z INFO [checkout] order 69093 placed
+2026-05-04T09:11:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:11:01Z INFO [checkout] order 51017 placed
+2026-05-04T09:11:02Z INFO [checkout] order 73747 placed
+2026-05-04T09:11:03Z INFO [checkout] order 88113 placed
+2026-05-04T09:11:04Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:11:05Z INFO [checkout] order 26852 placed
+2026-05-04T09:11:06Z ERROR [checkout] TimeoutError: acquiring db session timed out after 4823ms
+2026-05-04T09:11:07Z INFO [checkout] order 90584 placed
+2026-05-04T09:11:08Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:11:09Z INFO [checkout] order 14940 placed
+2026-05-04T09:11:10Z INFO [checkout] order 73187 placed
+2026-05-04T09:11:11Z INFO [checkout] order 42879 placed
+2026-05-04T09:11:12Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:11:13Z INFO [checkout] order 44523 placed
+2026-05-04T09:11:14Z INFO [checkout] order 26653 placed
+2026-05-04T09:11:15Z INFO [checkout] order 15186 placed
+2026-05-04T09:11:16Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:11:17Z INFO [checkout] order 12575 placed
+2026-05-04T09:11:18Z INFO [checkout] order 29171 placed
+2026-05-04T09:11:19Z INFO [checkout] order 40213 placed
+2026-05-04T09:11:20Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:11:21Z INFO [checkout] order 11771 placed
+2026-05-04T09:11:22Z INFO [checkout] order 45526 placed
+2026-05-04T09:11:23Z INFO [checkout] order 86180 placed
+2026-05-04T09:11:24Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:11:25Z INFO [checkout] order 39920 placed
+2026-05-04T09:11:26Z INFO [checkout] order 75945 placed
+2026-05-04T09:11:27Z INFO [checkout] order 46564 placed
+2026-05-04T09:11:28Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:11:29Z INFO [checkout] order 25608 placed
+2026-05-04T09:11:30Z INFO [checkout] order 19491 placed
+2026-05-04T09:11:31Z INFO [checkout] order 78791 placed
+2026-05-04T09:11:32Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:11:33Z INFO [checkout] order 68590 placed
+2026-05-04T09:11:34Z INFO [checkout] order 99640 placed
+2026-05-04T09:11:35Z INFO [checkout] order 73243 placed
+2026-05-04T09:11:36Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:11:37Z INFO [checkout] order 29920 placed
+2026-05-04T09:11:38Z INFO [checkout] order 66670 placed
+2026-05-04T09:11:39Z INFO [checkout] order 31069 placed
+2026-05-04T09:11:40Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:11:41Z INFO [checkout] order 77459 placed
+2026-05-04T09:11:42Z INFO [checkout] order 79460 placed
+2026-05-04T09:11:43Z ERROR [checkout] TimeoutError: acquiring db session timed out after 4048ms
+2026-05-04T09:11:44Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:11:45Z INFO [checkout] order 54723 placed
+2026-05-04T09:11:46Z INFO [checkout] order 70103 placed
+2026-05-04T09:11:47Z INFO [checkout] order 78966 placed
+2026-05-04T09:11:48Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:11:49Z INFO [checkout] order 49205 placed
+2026-05-04T09:11:50Z INFO [checkout] order 13869 placed
+2026-05-04T09:11:51Z INFO [checkout] order 31350 placed
+2026-05-04T09:11:52Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:11:53Z INFO [checkout] order 36153 placed
+2026-05-04T09:11:54Z INFO [checkout] order 69149 placed
+2026-05-04T09:11:55Z INFO [checkout] order 26821 placed
+2026-05-04T09:11:56Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:11:57Z INFO [checkout] order 60076 placed
+2026-05-04T09:11:58Z INFO [checkout] order 81484 placed
+2026-05-04T09:11:59Z INFO [checkout] order 69172 placed
+2026-05-04T09:12:00Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:12:01Z INFO [checkout] order 81116 placed
+2026-05-04T09:12:02Z INFO [checkout] order 25729 placed
+2026-05-04T09:12:03Z INFO [checkout] order 14262 placed
+2026-05-04T09:12:04Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:12:05Z INFO [checkout] order 48123 placed
+2026-05-04T09:12:06Z INFO [checkout] order 94652 placed
+2026-05-04T09:12:07Z INFO [checkout] order 77587 placed
+2026-05-04T09:12:08Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:12:09Z INFO [checkout] order 36983 placed
+2026-05-04T09:12:10Z INFO [checkout] order 23277 placed
+2026-05-04T09:12:11Z INFO [checkout] order 78086 placed
+2026-05-04T09:12:12Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:12:13Z INFO [checkout] order 41136 placed
+2026-05-04T09:12:14Z INFO [checkout] order 18338 placed
+2026-05-04T09:12:15Z INFO [checkout] order 29523 placed
+2026-05-04T09:12:16Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:12:17Z INFO [checkout] order 63092 placed
+2026-05-04T09:12:18Z INFO [checkout] order 13809 placed
+2026-05-04T09:12:19Z INFO [checkout] order 89968 placed
+2026-05-04T09:12:20Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:12:21Z INFO [checkout] order 52533 placed
+2026-05-04T09:12:22Z INFO [checkout] order 71527 placed
+2026-05-04T09:12:23Z INFO [checkout] order 43006 placed
+2026-05-04T09:12:24Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:12:25Z INFO [checkout] order 43404 placed
+2026-05-04T09:12:26Z INFO [checkout] order 93495 placed
+2026-05-04T09:12:27Z INFO [checkout] order 28306 placed
+2026-05-04T09:12:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:12:29Z INFO [checkout] order 11136 placed
+2026-05-04T09:12:30Z INFO [checkout] order 38177 placed
+2026-05-04T09:12:31Z INFO [checkout] order 90567 placed
+2026-05-04T09:12:32Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:12:33Z INFO [checkout] order 11666 placed
+2026-05-04T09:12:34Z INFO [checkout] order 22543 placed
+2026-05-04T09:12:35Z INFO [checkout] order 83592 placed
+2026-05-04T09:12:36Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:12:37Z INFO [checkout] order 56495 placed
+2026-05-04T09:12:38Z INFO [checkout] order 78274 placed
+2026-05-04T09:12:39Z INFO [checkout] order 31075 placed
+2026-05-04T09:12:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:12:41Z INFO [checkout] order 99656 placed
+2026-05-04T09:12:42Z INFO [checkout] order 59560 placed
+2026-05-04T09:12:43Z INFO [checkout] order 81532 placed
+2026-05-04T09:12:44Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:12:45Z INFO [checkout] order 60739 placed
+2026-05-04T09:12:46Z INFO [checkout] order 81412 placed
+2026-05-04T09:12:47Z INFO [checkout] order 27280 placed
+2026-05-04T09:12:48Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:12:49Z INFO [checkout] order 63344 placed
+2026-05-04T09:12:50Z INFO [checkout] order 33025 placed
+2026-05-04T09:12:51Z INFO [checkout] order 77715 placed
+2026-05-04T09:12:52Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:12:53Z INFO [checkout] order 86907 placed
+2026-05-04T09:12:54Z INFO [checkout] order 12280 placed
+2026-05-04T09:12:55Z INFO [checkout] order 10584 placed
+2026-05-04T09:12:56Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:12:57Z ERROR [checkout] TimeoutError: acquiring db session timed out after 2139ms
+2026-05-04T09:12:58Z INFO [checkout] order 33233 placed
+2026-05-04T09:12:59Z INFO [checkout] order 46352 placed
+2026-05-04T09:13:00Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:13:01Z INFO [checkout] order 41978 placed
+2026-05-04T09:13:02Z INFO [checkout] order 55757 placed
+2026-05-04T09:13:03Z INFO [checkout] order 93363 placed
+2026-05-04T09:13:04Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:13:05Z INFO [checkout] order 33079 placed
+2026-05-04T09:13:06Z INFO [checkout] order 41445 placed
+2026-05-04T09:13:07Z INFO [checkout] order 79501 placed
+2026-05-04T09:13:08Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:13:09Z INFO [checkout] order 18285 placed
+2026-05-04T09:13:10Z INFO [checkout] order 96500 placed
+2026-05-04T09:13:11Z INFO [checkout] order 58207 placed
+2026-05-04T09:13:12Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:13:13Z INFO [checkout] order 22470 placed
+2026-05-04T09:13:14Z INFO [checkout] order 87189 placed
+2026-05-04T09:13:15Z INFO [checkout] order 63783 placed
+2026-05-04T09:13:16Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:13:17Z INFO [checkout] order 75732 placed
+2026-05-04T09:13:18Z INFO [checkout] order 85603 placed
+2026-05-04T09:13:19Z INFO [checkout] order 43652 placed
+2026-05-04T09:13:20Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:13:21Z INFO [checkout] order 55950 placed
+2026-05-04T09:13:22Z INFO [checkout] order 49468 placed
+2026-05-04T09:13:23Z INFO [checkout] order 78867 placed
+2026-05-04T09:13:24Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:13:25Z INFO [checkout] order 46667 placed
+2026-05-04T09:13:26Z INFO [checkout] order 41091 placed
+2026-05-04T09:13:27Z INFO [checkout] order 57073 placed
+2026-05-04T09:13:28Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:13:29Z INFO [checkout] order 21673 placed
+2026-05-04T09:13:30Z INFO [checkout] order 77322 placed
+2026-05-04T09:13:31Z INFO [checkout] order 43282 placed
+2026-05-04T09:13:32Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:13:33Z INFO [checkout] order 53050 placed
+2026-05-04T09:13:34Z ERROR [checkout] TimeoutError: acquiring db session timed out after 5013ms
+2026-05-04T09:13:35Z INFO [checkout] order 89975 placed
+2026-05-04T09:13:36Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:13:37Z INFO [checkout] order 63233 placed
+2026-05-04T09:13:38Z INFO [checkout] order 76700 placed
+2026-05-04T09:13:39Z INFO [checkout] order 58553 placed
+2026-05-04T09:13:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:13:41Z INFO [checkout] order 67695 placed
+2026-05-04T09:13:42Z INFO [checkout] order 33306 placed
+2026-05-04T09:13:43Z INFO [checkout] order 48618 placed
+2026-05-04T09:13:44Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:13:45Z INFO [checkout] order 73358 placed
+2026-05-04T09:13:46Z INFO [checkout] order 65693 placed
+2026-05-04T09:13:47Z INFO [checkout] order 54146 placed
+2026-05-04T09:13:48Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:13:49Z INFO [checkout] order 14659 placed
+2026-05-04T09:13:50Z INFO [checkout] order 87255 placed
+2026-05-04T09:13:51Z INFO [checkout] order 20865 placed
+2026-05-04T09:13:52Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:13:53Z INFO [checkout] order 46162 placed
+2026-05-04T09:13:54Z INFO [checkout] order 91913 placed
+2026-05-04T09:13:55Z INFO [checkout] order 78858 placed
+2026-05-04T09:13:56Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:13:57Z INFO [checkout] order 87551 placed
+2026-05-04T09:13:58Z INFO [checkout] order 41062 placed
+2026-05-04T09:13:59Z INFO [checkout] order 22098 placed
+2026-05-04T09:14:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:14:01Z INFO [checkout] order 17617 placed
+2026-05-04T09:14:02Z INFO [checkout] order 69276 placed
+2026-05-04T09:14:03Z INFO [checkout] order 37369 placed
+2026-05-04T09:14:04Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:14:05Z INFO [checkout] order 30865 placed
+2026-05-04T09:14:06Z INFO [checkout] order 10309 placed
+2026-05-04T09:14:07Z INFO [checkout] order 46290 placed
+2026-05-04T09:14:08Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:14:09Z INFO [checkout] order 81306 placed
+2026-05-04T09:14:10Z INFO [checkout] order 55219 placed
+2026-05-04T09:14:11Z ERROR [checkout] TimeoutError: acquiring db session timed out after 6722ms
+2026-05-04T09:14:12Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:14:13Z INFO [checkout] order 47584 placed
+2026-05-04T09:14:14Z INFO [checkout] order 68155 placed
+2026-05-04T09:14:15Z INFO [checkout] order 79580 placed
+2026-05-04T09:14:16Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:14:17Z INFO [checkout] order 64211 placed
+2026-05-04T09:14:18Z INFO [checkout] order 76787 placed
+2026-05-04T09:14:19Z INFO [checkout] order 75586 placed
+2026-05-04T09:14:20Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:14:21Z INFO [checkout] order 66660 placed
+2026-05-04T09:14:22Z INFO [checkout] order 78493 placed
+2026-05-04T09:14:23Z INFO [checkout] order 67766 placed
+2026-05-04T09:14:24Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:14:25Z INFO [checkout] order 29148 placed
+2026-05-04T09:14:26Z INFO [checkout] order 52855 placed
+2026-05-04T09:14:27Z INFO [checkout] order 98873 placed
+2026-05-04T09:14:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:14:29Z INFO [checkout] order 51487 placed
+2026-05-04T09:14:30Z INFO [checkout] order 38165 placed
+2026-05-04T09:14:31Z INFO [checkout] order 76561 placed
+2026-05-04T09:14:32Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:14:33Z INFO [checkout] order 37630 placed
+2026-05-04T09:14:34Z INFO [checkout] order 30856 placed
+2026-05-04T09:14:35Z INFO [checkout] order 78275 placed
+2026-05-04T09:14:36Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:14:37Z INFO [checkout] order 60983 placed
+2026-05-04T09:14:38Z INFO [checkout] order 59917 placed
+2026-05-04T09:14:39Z INFO [checkout] order 11564 placed
+2026-05-04T09:14:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:14:41Z INFO [checkout] order 35861 placed
+2026-05-04T09:14:42Z INFO [checkout] order 48097 placed
+2026-05-04T09:14:43Z INFO [checkout] order 76914 placed
+2026-05-04T09:14:44Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:14:45Z INFO [checkout] order 49373 placed
+2026-05-04T09:14:46Z INFO [checkout] order 62447 placed
+2026-05-04T09:14:47Z INFO [checkout] order 40591 placed
+2026-05-04T09:14:48Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:14:49Z INFO [checkout] order 99148 placed
+2026-05-04T09:14:50Z INFO [checkout] order 78533 placed
+2026-05-04T09:14:51Z INFO [checkout] order 53701 placed
+2026-05-04T09:14:52Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:14:53Z INFO [checkout] order 94342 placed
+2026-05-04T09:14:54Z INFO [checkout] order 21567 placed
+2026-05-04T09:14:55Z INFO [checkout] order 64824 placed
+2026-05-04T09:14:56Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:14:57Z INFO [checkout] order 26884 placed
+2026-05-04T09:14:58Z INFO [checkout] order 66817 placed
+2026-05-04T09:14:59Z INFO [checkout] order 14178 placed
+2026-05-04T09:15:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:15:01Z INFO [checkout] order 69380 placed
+2026-05-04T09:15:02Z INFO [checkout] order 13013 placed
+2026-05-04T09:15:03Z INFO [checkout] order 70116 placed
+2026-05-04T09:15:04Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:15:05Z INFO [checkout] order 74153 placed
+2026-05-04T09:15:06Z INFO [checkout] order 16768 placed
+2026-05-04T09:15:07Z INFO [checkout] order 39684 placed
+2026-05-04T09:15:08Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:15:09Z INFO [checkout] order 79748 placed
+2026-05-04T09:15:10Z INFO [checkout] order 96578 placed
+2026-05-04T09:15:11Z INFO [checkout] order 39583 placed
+2026-05-04T09:15:12Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:15:13Z INFO [checkout] order 38296 placed
+2026-05-04T09:15:14Z INFO [checkout] order 36709 placed
+2026-05-04T09:15:15Z INFO [checkout] order 63152 placed
+2026-05-04T09:15:16Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:15:17Z INFO [checkout] order 69229 placed
+2026-05-04T09:15:18Z INFO [checkout] order 11982 placed
+2026-05-04T09:15:19Z INFO [checkout] order 75114 placed
+2026-05-04T09:15:20Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:15:21Z INFO [checkout] order 52100 placed
+2026-05-04T09:15:22Z INFO [checkout] order 71900 placed
+2026-05-04T09:15:23Z INFO [checkout] order 71008 placed
+2026-05-04T09:15:24Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:15:25Z ERROR [checkout] TimeoutError: acquiring db session timed out after 3342ms
+2026-05-04T09:15:26Z INFO [checkout] order 87194 placed
+2026-05-04T09:15:27Z INFO [checkout] order 96694 placed
+2026-05-04T09:15:28Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:15:29Z INFO [checkout] order 78174 placed
+2026-05-04T09:15:30Z INFO [checkout] order 51384 placed
+2026-05-04T09:15:31Z INFO [checkout] order 65283 placed
+2026-05-04T09:15:32Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:15:33Z INFO [checkout] order 29151 placed
+2026-05-04T09:15:34Z INFO [checkout] order 54071 placed
+2026-05-04T09:15:35Z INFO [checkout] order 96042 placed
+2026-05-04T09:15:36Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:15:37Z INFO [checkout] order 51959 placed
+2026-05-04T09:15:38Z INFO [checkout] order 31827 placed
+2026-05-04T09:15:39Z INFO [checkout] order 38069 placed
+2026-05-04T09:15:40Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:15:41Z INFO [checkout] order 13207 placed
+2026-05-04T09:15:42Z INFO [checkout] order 56716 placed
+2026-05-04T09:15:43Z INFO [checkout] order 58596 placed
+2026-05-04T09:15:44Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:15:45Z INFO [checkout] order 58197 placed
+2026-05-04T09:15:46Z INFO [checkout] order 10867 placed
+2026-05-04T09:15:47Z INFO [checkout] order 86981 placed
+2026-05-04T09:15:48Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:15:49Z INFO [checkout] order 95936 placed
+2026-05-04T09:15:50Z INFO [checkout] order 74931 placed
+2026-05-04T09:15:51Z INFO [checkout] order 21755 placed
+2026-05-04T09:15:52Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:15:53Z INFO [checkout] order 26820 placed
+2026-05-04T09:15:54Z INFO [checkout] order 28003 placed
+2026-05-04T09:15:55Z INFO [checkout] order 14452 placed
+2026-05-04T09:15:56Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:15:57Z INFO [checkout] order 15086 placed
+2026-05-04T09:15:58Z INFO [checkout] order 39355 placed
+2026-05-04T09:15:59Z INFO [checkout] order 17539 placed
+2026-05-04T09:16:00Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:16:01Z INFO [checkout] order 42842 placed
+2026-05-04T09:16:02Z ERROR [checkout] TimeoutError: acquiring db session timed out after 3116ms
+2026-05-04T09:16:03Z INFO [checkout] order 70995 placed
+2026-05-04T09:16:04Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:16:05Z INFO [checkout] order 30362 placed
+2026-05-04T09:16:06Z INFO [checkout] order 82341 placed
+2026-05-04T09:16:07Z INFO [checkout] order 78297 placed
+2026-05-04T09:16:08Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:16:09Z INFO [checkout] order 28627 placed
+2026-05-04T09:16:10Z INFO [checkout] order 63187 placed
+2026-05-04T09:16:11Z INFO [checkout] order 59934 placed
+2026-05-04T09:16:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:16:13Z INFO [checkout] order 12632 placed
+2026-05-04T09:16:14Z INFO [checkout] order 15140 placed
+2026-05-04T09:16:15Z INFO [checkout] order 93099 placed
+2026-05-04T09:16:16Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:16:17Z INFO [checkout] order 39874 placed
+2026-05-04T09:16:18Z INFO [checkout] order 95251 placed
+2026-05-04T09:16:19Z INFO [checkout] order 66070 placed
+2026-05-04T09:16:20Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:16:21Z INFO [checkout] order 25700 placed
+2026-05-04T09:16:22Z INFO [checkout] order 10437 placed
+2026-05-04T09:16:23Z INFO [checkout] order 59685 placed
+2026-05-04T09:16:24Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:16:25Z INFO [checkout] order 16307 placed
+2026-05-04T09:16:26Z INFO [checkout] order 41586 placed
+2026-05-04T09:16:27Z INFO [checkout] order 74865 placed
+2026-05-04T09:16:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:16:29Z INFO [checkout] order 85087 placed
+2026-05-04T09:16:30Z INFO [checkout] order 89476 placed
+2026-05-04T09:16:31Z INFO [checkout] order 40077 placed
+2026-05-04T09:16:32Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:16:33Z INFO [checkout] order 13197 placed
+2026-05-04T09:16:34Z INFO [checkout] order 63282 placed
+2026-05-04T09:16:35Z INFO [checkout] order 93025 placed
+2026-05-04T09:16:36Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:16:37Z INFO [checkout] order 89591 placed
+2026-05-04T09:16:38Z INFO [checkout] order 48434 placed
+2026-05-04T09:16:39Z ERROR [checkout] TimeoutError: acquiring db session timed out after 4737ms
+2026-05-04T09:16:40Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:16:41Z INFO [checkout] order 46218 placed
+2026-05-04T09:16:42Z INFO [checkout] order 45509 placed
+2026-05-04T09:16:43Z INFO [checkout] order 13664 placed
+2026-05-04T09:16:44Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:16:45Z INFO [checkout] order 76327 placed
+2026-05-04T09:16:46Z INFO [checkout] order 25977 placed
+2026-05-04T09:16:47Z INFO [checkout] order 53903 placed
+2026-05-04T09:16:48Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:16:49Z INFO [checkout] order 53574 placed
+2026-05-04T09:16:50Z INFO [checkout] order 69606 placed
+2026-05-04T09:16:51Z INFO [checkout] order 39617 placed
+2026-05-04T09:16:52Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:16:53Z INFO [checkout] order 46840 placed
+2026-05-04T09:16:54Z INFO [checkout] order 36496 placed
+2026-05-04T09:16:55Z INFO [checkout] order 83128 placed
+2026-05-04T09:16:56Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:16:57Z INFO [checkout] order 95581 placed
+2026-05-04T09:16:58Z INFO [checkout] order 71918 placed
+2026-05-04T09:16:59Z INFO [checkout] order 83667 placed
+2026-05-04T09:17:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:17:01Z INFO [checkout] order 32534 placed
+2026-05-04T09:17:02Z INFO [checkout] order 43329 placed
+2026-05-04T09:17:03Z INFO [checkout] order 71422 placed
+2026-05-04T09:17:04Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:17:05Z INFO [checkout] order 34224 placed
+2026-05-04T09:17:06Z INFO [checkout] order 57577 placed
+2026-05-04T09:17:07Z INFO [checkout] order 33783 placed
+2026-05-04T09:17:08Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:17:09Z INFO [checkout] order 76952 placed
+2026-05-04T09:17:10Z INFO [checkout] order 39450 placed
+2026-05-04T09:17:11Z INFO [checkout] order 73449 placed
+2026-05-04T09:17:12Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:17:13Z INFO [checkout] order 31871 placed
+2026-05-04T09:17:14Z INFO [checkout] order 15229 placed
+2026-05-04T09:17:15Z INFO [checkout] order 11814 placed
+2026-05-04T09:17:16Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:17:17Z INFO [checkout] order 27764 placed
+2026-05-04T09:17:18Z INFO [checkout] order 30001 placed
+2026-05-04T09:17:19Z INFO [checkout] order 71034 placed
+2026-05-04T09:17:20Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:17:21Z INFO [checkout] order 55262 placed
+2026-05-04T09:17:22Z INFO [checkout] order 12026 placed
+2026-05-04T09:17:23Z INFO [checkout] order 68205 placed
+2026-05-04T09:17:24Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:17:25Z INFO [checkout] order 48442 placed
+2026-05-04T09:17:26Z INFO [checkout] order 22791 placed
+2026-05-04T09:17:27Z INFO [checkout] order 45586 placed
+2026-05-04T09:17:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:17:29Z INFO [checkout] order 50636 placed
+2026-05-04T09:17:30Z INFO [checkout] order 53322 placed
+2026-05-04T09:17:31Z INFO [checkout] order 12665 placed
+2026-05-04T09:17:32Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:17:33Z INFO [checkout] order 50518 placed
+2026-05-04T09:17:34Z INFO [checkout] order 10808 placed
+2026-05-04T09:17:35Z INFO [checkout] order 67031 placed
+2026-05-04T09:17:36Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:17:37Z INFO [checkout] order 36138 placed
+2026-05-04T09:17:38Z INFO [checkout] order 95522 placed
+2026-05-04T09:17:39Z INFO [checkout] order 27907 placed
+2026-05-04T09:17:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:17:41Z INFO [checkout] order 11563 placed
+2026-05-04T09:17:42Z INFO [checkout] order 21280 placed
+2026-05-04T09:17:43Z INFO [checkout] order 93748 placed
+2026-05-04T09:17:44Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:17:45Z INFO [checkout] order 78581 placed
+2026-05-04T09:17:46Z INFO [checkout] order 56722 placed
+2026-05-04T09:17:47Z INFO [checkout] order 72158 placed
+2026-05-04T09:17:48Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:17:49Z INFO [checkout] order 31301 placed
+2026-05-04T09:17:50Z INFO [checkout] order 34492 placed
+2026-05-04T09:17:51Z INFO [checkout] order 79731 placed
+2026-05-04T09:17:52Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:17:53Z ERROR [checkout] TimeoutError: acquiring db session timed out after 7930ms
+2026-05-04T09:17:54Z INFO [checkout] order 82713 placed
+2026-05-04T09:17:55Z INFO [checkout] order 82524 placed
+2026-05-04T09:17:56Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:17:57Z INFO [checkout] order 81155 placed
+2026-05-04T09:17:58Z INFO [checkout] order 55134 placed
+2026-05-04T09:17:59Z INFO [checkout] order 12176 placed
+2026-05-04T09:18:00Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:18:01Z INFO [checkout] order 37663 placed
+2026-05-04T09:18:02Z INFO [checkout] order 26013 placed
+2026-05-04T09:18:03Z INFO [checkout] order 36416 placed
+2026-05-04T09:18:04Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:18:05Z INFO [checkout] order 85713 placed
+2026-05-04T09:18:06Z INFO [checkout] order 27798 placed
+2026-05-04T09:18:07Z INFO [checkout] order 78115 placed
+2026-05-04T09:18:08Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:18:09Z INFO [checkout] order 12329 placed
+2026-05-04T09:18:10Z INFO [checkout] order 61177 placed
+2026-05-04T09:18:11Z INFO [checkout] order 41269 placed
+2026-05-04T09:18:12Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:18:13Z INFO [checkout] order 70739 placed
+2026-05-04T09:18:14Z INFO [checkout] order 83608 placed
+2026-05-04T09:18:15Z INFO [checkout] order 94795 placed
+2026-05-04T09:18:16Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:18:17Z INFO [checkout] order 88074 placed
+2026-05-04T09:18:18Z INFO [checkout] order 28583 placed
+2026-05-04T09:18:19Z INFO [checkout] order 92058 placed
+2026-05-04T09:18:20Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:18:21Z INFO [checkout] order 45414 placed
+2026-05-04T09:18:22Z INFO [checkout] order 87616 placed
+2026-05-04T09:18:23Z INFO [checkout] order 63684 placed
+2026-05-04T09:18:24Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:18:25Z INFO [checkout] order 56063 placed
+2026-05-04T09:18:26Z INFO [checkout] order 20152 placed
+2026-05-04T09:18:27Z INFO [checkout] order 66553 placed
+2026-05-04T09:18:28Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:18:29Z INFO [checkout] order 57434 placed
+2026-05-04T09:18:30Z ERROR [checkout] TimeoutError: acquiring db session timed out after 7780ms
+2026-05-04T09:18:31Z INFO [checkout] order 88181 placed
+2026-05-04T09:18:32Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:18:33Z INFO [checkout] order 79604 placed
+2026-05-04T09:18:34Z INFO [checkout] order 15938 placed
+2026-05-04T09:18:35Z INFO [checkout] order 62272 placed
+2026-05-04T09:18:36Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:18:37Z INFO [checkout] order 43098 placed
+2026-05-04T09:18:38Z INFO [checkout] order 83387 placed
+2026-05-04T09:18:39Z INFO [checkout] order 54008 placed
+2026-05-04T09:18:40Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:18:41Z INFO [checkout] order 76788 placed
+2026-05-04T09:18:42Z INFO [checkout] order 57555 placed
+2026-05-04T09:18:43Z INFO [checkout] order 77662 placed
+2026-05-04T09:18:44Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:18:45Z INFO [checkout] order 72743 placed
+2026-05-04T09:18:46Z INFO [checkout] order 80838 placed
+2026-05-04T09:18:47Z INFO [checkout] order 50178 placed
+2026-05-04T09:18:48Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:18:49Z INFO [checkout] order 95705 placed
+2026-05-04T09:18:50Z INFO [checkout] order 95808 placed
+2026-05-04T09:18:51Z INFO [checkout] order 22387 placed
+2026-05-04T09:18:52Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:18:53Z INFO [checkout] order 43096 placed
+2026-05-04T09:18:54Z INFO [checkout] order 75142 placed
+2026-05-04T09:18:55Z INFO [checkout] order 47816 placed
+2026-05-04T09:18:56Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:18:57Z INFO [checkout] order 92610 placed
+2026-05-04T09:18:58Z INFO [checkout] order 12749 placed
+2026-05-04T09:18:59Z INFO [checkout] order 60793 placed
+2026-05-04T09:19:00Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:19:01Z INFO [checkout] order 72440 placed
+2026-05-04T09:19:02Z INFO [checkout] order 81392 placed
+2026-05-04T09:19:03Z INFO [checkout] order 93589 placed
+2026-05-04T09:19:04Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:19:05Z INFO [checkout] order 45127 placed
+2026-05-04T09:19:06Z INFO [checkout] order 21401 placed
+2026-05-04T09:19:07Z ERROR [checkout] TimeoutError: acquiring db session timed out after 7452ms
+2026-05-04T09:19:08Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:19:09Z INFO [checkout] order 48846 placed
+2026-05-04T09:19:10Z INFO [checkout] order 99412 placed
+2026-05-04T09:19:11Z INFO [checkout] order 16712 placed
+2026-05-04T09:19:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:19:13Z INFO [checkout] order 46484 placed
+2026-05-04T09:19:14Z INFO [checkout] order 42005 placed
+2026-05-04T09:19:15Z INFO [checkout] order 74725 placed
+2026-05-04T09:19:16Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:19:17Z INFO [checkout] order 36631 placed
+2026-05-04T09:19:18Z INFO [checkout] order 53333 placed
+2026-05-04T09:19:19Z INFO [checkout] order 43859 placed
+2026-05-04T09:19:20Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:19:21Z INFO [checkout] order 60271 placed
+2026-05-04T09:19:22Z INFO [checkout] order 96519 placed
+2026-05-04T09:19:23Z INFO [checkout] order 68064 placed
+2026-05-04T09:19:24Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:19:25Z INFO [checkout] order 86752 placed
+2026-05-04T09:19:26Z INFO [checkout] order 80433 placed
+2026-05-04T09:19:27Z INFO [checkout] order 33289 placed
+2026-05-04T09:19:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:19:29Z INFO [checkout] order 30000 placed
+2026-05-04T09:19:30Z INFO [checkout] order 10783 placed
+2026-05-04T09:19:31Z INFO [checkout] order 91774 placed
+2026-05-04T09:19:32Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:19:33Z INFO [checkout] order 31691 placed
+2026-05-04T09:19:34Z INFO [checkout] order 31945 placed
+2026-05-04T09:19:35Z INFO [checkout] order 99633 placed
+2026-05-04T09:19:36Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:19:37Z INFO [checkout] order 90862 placed
+2026-05-04T09:19:38Z INFO [checkout] order 55923 placed
+2026-05-04T09:19:39Z INFO [checkout] order 40610 placed
+2026-05-04T09:19:40Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:19:41Z INFO [checkout] order 25358 placed
+2026-05-04T09:19:42Z INFO [checkout] order 70766 placed
+2026-05-04T09:19:43Z INFO [checkout] order 15652 placed
+2026-05-04T09:19:44Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:19:45Z INFO [checkout] order 93607 placed
+2026-05-04T09:19:46Z INFO [checkout] order 48881 placed
+2026-05-04T09:19:47Z INFO [checkout] order 56685 placed
+2026-05-04T09:19:48Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:19:49Z INFO [checkout] order 63407 placed
+2026-05-04T09:19:50Z INFO [checkout] order 58098 placed
+2026-05-04T09:19:51Z INFO [checkout] order 54361 placed
+2026-05-04T09:19:52Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:19:53Z INFO [checkout] order 28348 placed
+2026-05-04T09:19:54Z INFO [checkout] order 56636 placed
+2026-05-04T09:19:55Z INFO [checkout] order 74071 placed
+2026-05-04T09:19:56Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:19:57Z INFO [checkout] order 40637 placed
+2026-05-04T09:19:58Z INFO [checkout] order 78496 placed
+2026-05-04T09:19:59Z INFO [checkout] order 53304 placed
+2026-05-04T09:20:00Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:20:01Z INFO [checkout] order 76638 placed
+2026-05-04T09:20:02Z INFO [checkout] order 78353 placed
+2026-05-04T09:20:03Z INFO [checkout] order 37549 placed
+2026-05-04T09:20:04Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:20:05Z INFO [checkout] order 17370 placed
+2026-05-04T09:20:06Z INFO [checkout] order 88358 placed
+2026-05-04T09:20:07Z INFO [checkout] order 66596 placed
+2026-05-04T09:20:08Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:20:09Z INFO [checkout] order 67522 placed
+2026-05-04T09:20:10Z INFO [checkout] order 30549 placed
+2026-05-04T09:20:11Z INFO [checkout] order 83278 placed
+2026-05-04T09:20:12Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:20:13Z INFO [checkout] order 68433 placed
+2026-05-04T09:20:14Z INFO [checkout] order 37364 placed
+2026-05-04T09:20:15Z INFO [checkout] order 83780 placed
+2026-05-04T09:20:16Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:20:17Z INFO [checkout] order 38563 placed
+2026-05-04T09:20:18Z INFO [checkout] order 62115 placed
+2026-05-04T09:20:19Z INFO [checkout] order 51226 placed
+2026-05-04T09:20:20Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:20:21Z ERROR [checkout] TimeoutError: acquiring db session timed out after 5349ms
+2026-05-04T09:20:22Z INFO [checkout] order 24450 placed
+2026-05-04T09:20:23Z INFO [checkout] order 11198 placed
+2026-05-04T09:20:24Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:20:25Z INFO [checkout] order 36600 placed
+2026-05-04T09:20:26Z INFO [checkout] order 31127 placed
+2026-05-04T09:20:27Z INFO [checkout] order 38998 placed
+2026-05-04T09:20:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:20:29Z INFO [checkout] order 65677 placed
+2026-05-04T09:20:30Z INFO [checkout] order 45780 placed
+2026-05-04T09:20:31Z INFO [checkout] order 73685 placed
+2026-05-04T09:20:32Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:20:33Z INFO [checkout] order 14042 placed
+2026-05-04T09:20:34Z INFO [checkout] order 60647 placed
+2026-05-04T09:20:35Z INFO [checkout] order 11866 placed
+2026-05-04T09:20:36Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:20:37Z INFO [checkout] order 39726 placed
+2026-05-04T09:20:38Z INFO [checkout] order 77087 placed
+2026-05-04T09:20:39Z INFO [checkout] order 12668 placed
+2026-05-04T09:20:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:20:41Z INFO [checkout] order 34879 placed
+2026-05-04T09:20:42Z INFO [checkout] order 75927 placed
+2026-05-04T09:20:43Z INFO [checkout] order 67396 placed
+2026-05-04T09:20:44Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:20:45Z INFO [checkout] order 45264 placed
+2026-05-04T09:20:46Z INFO [checkout] order 13455 placed
+2026-05-04T09:20:47Z INFO [checkout] order 87023 placed
+2026-05-04T09:20:48Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:20:49Z INFO [checkout] order 60639 placed
+2026-05-04T09:20:50Z INFO [checkout] order 99716 placed
+2026-05-04T09:20:51Z INFO [checkout] order 87627 placed
+2026-05-04T09:20:52Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:20:53Z INFO [checkout] order 88306 placed
+2026-05-04T09:20:54Z INFO [checkout] order 37310 placed
+2026-05-04T09:20:55Z INFO [checkout] order 71613 placed
+2026-05-04T09:20:56Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:20:57Z INFO [checkout] order 65341 placed
+2026-05-04T09:20:58Z ERROR [checkout] TimeoutError: acquiring db session timed out after 2385ms
+2026-05-04T09:20:59Z INFO [checkout] order 57337 placed
+2026-05-04T09:21:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:21:01Z INFO [checkout] order 51768 placed
+2026-05-04T09:21:02Z INFO [checkout] order 60247 placed
+2026-05-04T09:21:03Z INFO [checkout] order 92659 placed
+2026-05-04T09:21:04Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:21:05Z INFO [checkout] order 54853 placed
+2026-05-04T09:21:06Z INFO [checkout] order 82572 placed
+2026-05-04T09:21:07Z INFO [checkout] order 68591 placed
+2026-05-04T09:21:08Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:21:09Z INFO [checkout] order 53938 placed
+2026-05-04T09:21:10Z INFO [checkout] order 77848 placed
+2026-05-04T09:21:11Z INFO [checkout] order 50975 placed
+2026-05-04T09:21:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:21:13Z INFO [checkout] order 82082 placed
+2026-05-04T09:21:14Z INFO [checkout] order 61036 placed
+2026-05-04T09:21:15Z INFO [checkout] order 88389 placed
+2026-05-04T09:21:16Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:21:17Z INFO [checkout] order 23304 placed
+2026-05-04T09:21:18Z INFO [checkout] order 98822 placed
+2026-05-04T09:21:19Z INFO [checkout] order 15415 placed
+2026-05-04T09:21:20Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:21:21Z INFO [checkout] order 61939 placed
+2026-05-04T09:21:22Z INFO [checkout] order 65829 placed
+2026-05-04T09:21:23Z INFO [checkout] order 45456 placed
+2026-05-04T09:21:24Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:21:25Z INFO [checkout] order 39999 placed
+2026-05-04T09:21:26Z INFO [checkout] order 42657 placed
+2026-05-04T09:21:27Z INFO [checkout] order 81978 placed
+2026-05-04T09:21:28Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:21:29Z INFO [checkout] order 18143 placed
+2026-05-04T09:21:30Z INFO [checkout] order 14410 placed
+2026-05-04T09:21:31Z INFO [checkout] order 23234 placed
+2026-05-04T09:21:32Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:21:33Z INFO [checkout] order 54618 placed
+2026-05-04T09:21:34Z INFO [checkout] order 18293 placed
+2026-05-04T09:21:35Z ERROR [checkout] TimeoutError: acquiring db session timed out after 7509ms
+2026-05-04T09:21:36Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:21:37Z INFO [checkout] order 85315 placed
+2026-05-04T09:21:38Z INFO [checkout] order 70162 placed
+2026-05-04T09:21:39Z INFO [checkout] order 76721 placed
+2026-05-04T09:21:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:21:41Z INFO [checkout] order 41321 placed
+2026-05-04T09:21:42Z INFO [checkout] order 35094 placed
+2026-05-04T09:21:43Z INFO [checkout] order 88249 placed
+2026-05-04T09:21:44Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:21:45Z INFO [checkout] order 19583 placed
+2026-05-04T09:21:46Z INFO [checkout] order 76775 placed
+2026-05-04T09:21:47Z INFO [checkout] order 44524 placed
+2026-05-04T09:21:48Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:21:49Z INFO [checkout] order 67686 placed
+2026-05-04T09:21:50Z INFO [checkout] order 68915 placed
+2026-05-04T09:21:51Z INFO [checkout] order 32585 placed
+2026-05-04T09:21:52Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:21:53Z INFO [checkout] order 96241 placed
+2026-05-04T09:21:54Z INFO [checkout] order 42696 placed
+2026-05-04T09:21:55Z INFO [checkout] order 91699 placed
+2026-05-04T09:21:56Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:21:57Z INFO [checkout] order 51246 placed
+2026-05-04T09:21:58Z INFO [checkout] order 71491 placed
+2026-05-04T09:21:59Z INFO [checkout] order 70846 placed
+2026-05-04T09:22:00Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:22:01Z INFO [checkout] order 59635 placed
+2026-05-04T09:22:02Z INFO [checkout] order 94180 placed
+2026-05-04T09:22:03Z INFO [checkout] order 27389 placed
+2026-05-04T09:22:04Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:22:05Z INFO [checkout] order 14583 placed
+2026-05-04T09:22:06Z INFO [checkout] order 52725 placed
+2026-05-04T09:22:07Z INFO [checkout] order 43615 placed
+2026-05-04T09:22:08Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:22:09Z INFO [checkout] order 34545 placed
+2026-05-04T09:22:10Z INFO [checkout] order 54425 placed
+2026-05-04T09:22:11Z INFO [checkout] order 51245 placed
+2026-05-04T09:22:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:22:13Z INFO [checkout] order 68241 placed
+2026-05-04T09:22:14Z INFO [checkout] order 15703 placed
+2026-05-04T09:22:15Z INFO [checkout] order 15917 placed
+2026-05-04T09:22:16Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:22:17Z INFO [checkout] order 88767 placed
+2026-05-04T09:22:18Z INFO [checkout] order 30547 placed
+2026-05-04T09:22:19Z INFO [checkout] order 61143 placed
+2026-05-04T09:22:20Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:22:21Z INFO [checkout] order 73216 placed
+2026-05-04T09:22:22Z INFO [checkout] order 17169 placed
+2026-05-04T09:22:23Z INFO [checkout] order 84703 placed
+2026-05-04T09:22:24Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:22:25Z INFO [checkout] order 79556 placed
+2026-05-04T09:22:26Z INFO [checkout] order 14439 placed
+2026-05-04T09:22:27Z INFO [checkout] order 70868 placed
+2026-05-04T09:22:28Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:22:29Z INFO [checkout] order 98141 placed
+2026-05-04T09:22:30Z INFO [checkout] order 34148 placed
+2026-05-04T09:22:31Z INFO [checkout] order 70036 placed
+2026-05-04T09:22:32Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:22:33Z INFO [checkout] order 17059 placed
+2026-05-04T09:22:34Z INFO [checkout] order 52719 placed
+2026-05-04T09:22:35Z INFO [checkout] order 85316 placed
+2026-05-04T09:22:36Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:22:37Z INFO [checkout] order 56308 placed
+2026-05-04T09:22:38Z INFO [checkout] order 57639 placed
+2026-05-04T09:22:39Z INFO [checkout] order 94011 placed
+2026-05-04T09:22:40Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:22:41Z INFO [checkout] order 53282 placed
+2026-05-04T09:22:42Z INFO [checkout] order 40213 placed
+2026-05-04T09:22:43Z INFO [checkout] order 74070 placed
+2026-05-04T09:22:44Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:22:45Z INFO [checkout] order 24804 placed
+2026-05-04T09:22:46Z INFO [checkout] order 46881 placed
+2026-05-04T09:22:47Z INFO [checkout] order 91874 placed
+2026-05-04T09:22:48Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:22:49Z ERROR [checkout] TimeoutError: acquiring db session timed out after 2917ms
+2026-05-04T09:22:50Z INFO [checkout] order 60823 placed
+2026-05-04T09:22:51Z INFO [checkout] order 48801 placed
+2026-05-04T09:22:52Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:22:53Z INFO [checkout] order 79683 placed
+2026-05-04T09:22:54Z INFO [checkout] order 48917 placed
+2026-05-04T09:22:55Z INFO [checkout] order 10592 placed
+2026-05-04T09:22:56Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:22:57Z INFO [checkout] order 14165 placed
+2026-05-04T09:22:58Z INFO [checkout] order 16033 placed
+2026-05-04T09:22:59Z INFO [checkout] order 51100 placed
+2026-05-04T09:23:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:23:01Z INFO [checkout] order 92259 placed
+2026-05-04T09:23:02Z INFO [checkout] order 89441 placed
+2026-05-04T09:23:03Z INFO [checkout] order 58400 placed
+2026-05-04T09:23:04Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:23:05Z INFO [checkout] order 42578 placed
+2026-05-04T09:23:06Z INFO [checkout] order 24136 placed
+2026-05-04T09:23:07Z INFO [checkout] order 86752 placed
+2026-05-04T09:23:08Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:23:09Z INFO [checkout] order 31410 placed
+2026-05-04T09:23:10Z INFO [checkout] order 71849 placed
+2026-05-04T09:23:11Z INFO [checkout] order 63710 placed
+2026-05-04T09:23:12Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:23:13Z INFO [checkout] order 16362 placed
+2026-05-04T09:23:14Z INFO [checkout] order 45485 placed
+2026-05-04T09:23:15Z INFO [checkout] order 40204 placed
+2026-05-04T09:23:16Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:23:17Z INFO [checkout] order 51314 placed
+2026-05-04T09:23:18Z INFO [checkout] order 95708 placed
+2026-05-04T09:23:19Z INFO [checkout] order 67877 placed
+2026-05-04T09:23:20Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:23:21Z INFO [checkout] order 35719 placed
+2026-05-04T09:23:22Z INFO [checkout] order 66947 placed
+2026-05-04T09:23:23Z INFO [checkout] order 48262 placed
+2026-05-04T09:23:24Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:23:25Z INFO [checkout] order 63056 placed
+2026-05-04T09:23:26Z ERROR [checkout] TimeoutError: acquiring db session timed out after 2001ms
+2026-05-04T09:23:27Z INFO [checkout] order 42676 placed
+2026-05-04T09:23:28Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:23:29Z INFO [checkout] order 16653 placed
+2026-05-04T09:23:30Z INFO [checkout] order 15330 placed
+2026-05-04T09:23:31Z INFO [checkout] order 88199 placed
+2026-05-04T09:23:32Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:23:33Z INFO [checkout] order 10097 placed
+2026-05-04T09:23:34Z INFO [checkout] order 96696 placed
+2026-05-04T09:23:35Z INFO [checkout] order 71439 placed
+2026-05-04T09:23:36Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:23:37Z INFO [checkout] order 64612 placed
+2026-05-04T09:23:38Z INFO [checkout] order 57460 placed
+2026-05-04T09:23:39Z INFO [checkout] order 26290 placed
+2026-05-04T09:23:40Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:23:41Z INFO [checkout] order 95890 placed
+2026-05-04T09:23:42Z INFO [checkout] order 70907 placed
+2026-05-04T09:23:43Z INFO [checkout] order 59508 placed
+2026-05-04T09:23:44Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:23:45Z INFO [checkout] order 95354 placed
+2026-05-04T09:23:46Z INFO [checkout] order 91821 placed
+2026-05-04T09:23:47Z INFO [checkout] order 58853 placed
+2026-05-04T09:23:48Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:23:49Z INFO [checkout] order 94366 placed
+2026-05-04T09:23:50Z INFO [checkout] order 39519 placed
+2026-05-04T09:23:51Z INFO [checkout] order 47555 placed
+2026-05-04T09:23:52Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:23:53Z INFO [checkout] order 14591 placed
+2026-05-04T09:23:54Z INFO [checkout] order 14575 placed
+2026-05-04T09:23:55Z INFO [checkout] order 98864 placed
+2026-05-04T09:23:56Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:23:57Z INFO [checkout] order 75203 placed
+2026-05-04T09:23:58Z INFO [checkout] order 61556 placed
+2026-05-04T09:23:59Z INFO [checkout] order 86470 placed
+2026-05-04T09:24:00Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:24:01Z INFO [checkout] order 14874 placed
+2026-05-04T09:24:02Z INFO [checkout] order 63503 placed
+2026-05-04T09:24:03Z ERROR [checkout] TimeoutError: acquiring db session timed out after 5763ms
+2026-05-04T09:24:04Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:24:05Z INFO [checkout] order 40784 placed
+2026-05-04T09:24:06Z INFO [checkout] order 31268 placed
+2026-05-04T09:24:07Z INFO [checkout] order 70489 placed
+2026-05-04T09:24:08Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:24:09Z INFO [checkout] order 27340 placed
+2026-05-04T09:24:10Z INFO [checkout] order 29057 placed
+2026-05-04T09:24:11Z INFO [checkout] order 57908 placed
+2026-05-04T09:24:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:24:13Z INFO [checkout] order 90403 placed
+2026-05-04T09:24:14Z INFO [checkout] order 89166 placed
+2026-05-04T09:24:15Z INFO [checkout] order 89942 placed
+2026-05-04T09:24:16Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:24:17Z INFO [checkout] order 74642 placed
+2026-05-04T09:24:18Z INFO [checkout] order 19219 placed
+2026-05-04T09:24:19Z INFO [checkout] order 22107 placed
+2026-05-04T09:24:20Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:24:21Z INFO [checkout] order 65463 placed
+2026-05-04T09:24:22Z INFO [checkout] order 63142 placed
+2026-05-04T09:24:23Z INFO [checkout] order 29211 placed
+2026-05-04T09:24:24Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:24:25Z INFO [checkout] order 62660 placed
+2026-05-04T09:24:26Z INFO [checkout] order 54406 placed
+2026-05-04T09:24:27Z INFO [checkout] order 59861 placed
+2026-05-04T09:24:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:24:29Z INFO [checkout] order 42730 placed
+2026-05-04T09:24:30Z INFO [checkout] order 57079 placed
+2026-05-04T09:24:31Z INFO [checkout] order 88140 placed
+2026-05-04T09:24:32Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:24:33Z INFO [checkout] order 73063 placed
+2026-05-04T09:24:34Z INFO [checkout] order 98490 placed
+2026-05-04T09:24:35Z INFO [checkout] order 23397 placed
+2026-05-04T09:24:36Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:24:37Z INFO [checkout] order 82653 placed
+2026-05-04T09:24:38Z INFO [checkout] order 69949 placed
+2026-05-04T09:24:39Z INFO [checkout] order 80916 placed
+2026-05-04T09:24:40Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:24:41Z INFO [checkout] order 62282 placed
+2026-05-04T09:24:42Z INFO [checkout] order 26517 placed
+2026-05-04T09:24:43Z INFO [checkout] order 41625 placed
+2026-05-04T09:24:44Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:24:45Z INFO [checkout] order 55347 placed
+2026-05-04T09:24:46Z INFO [checkout] order 84410 placed
+2026-05-04T09:24:47Z INFO [checkout] order 76635 placed
+2026-05-04T09:24:48Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:24:49Z INFO [checkout] order 27576 placed
+2026-05-04T09:24:50Z INFO [checkout] order 23715 placed
+2026-05-04T09:24:51Z INFO [checkout] order 68353 placed
+2026-05-04T09:24:52Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:24:53Z INFO [checkout] order 96728 placed
+2026-05-04T09:24:54Z INFO [checkout] order 56783 placed
+2026-05-04T09:24:55Z INFO [checkout] order 59672 placed
+2026-05-04T09:24:56Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:24:57Z INFO [checkout] order 93708 placed
+2026-05-04T09:24:58Z INFO [checkout] order 31558 placed
+2026-05-04T09:24:59Z INFO [checkout] order 74565 placed
+2026-05-04T09:25:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:25:01Z INFO [checkout] order 19161 placed
+2026-05-04T09:25:02Z INFO [checkout] order 39018 placed
+2026-05-04T09:25:03Z INFO [checkout] order 95554 placed
+2026-05-04T09:25:04Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:25:05Z INFO [checkout] order 47759 placed
+2026-05-04T09:25:06Z INFO [checkout] order 12797 placed
+2026-05-04T09:25:07Z INFO [checkout] order 59919 placed
+2026-05-04T09:25:08Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:25:09Z INFO [checkout] order 42379 placed
+2026-05-04T09:25:10Z INFO [checkout] order 51713 placed
+2026-05-04T09:25:11Z INFO [checkout] order 41690 placed
+2026-05-04T09:25:12Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:25:13Z INFO [checkout] order 96488 placed
+2026-05-04T09:25:14Z INFO [checkout] order 32863 placed
+2026-05-04T09:25:15Z INFO [checkout] order 27939 placed
+2026-05-04T09:25:16Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:25:17Z ERROR [checkout] TimeoutError: acquiring db session timed out after 6163ms
+2026-05-04T09:25:18Z INFO [checkout] order 66349 placed
+2026-05-04T09:25:19Z INFO [checkout] order 83489 placed
+2026-05-04T09:25:20Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:25:21Z INFO [checkout] order 41539 placed
+2026-05-04T09:25:22Z INFO [checkout] order 38860 placed
+2026-05-04T09:25:23Z INFO [checkout] order 86595 placed
+2026-05-04T09:25:24Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:25:25Z INFO [checkout] order 62791 placed
+2026-05-04T09:25:26Z INFO [checkout] order 29606 placed
+2026-05-04T09:25:27Z INFO [checkout] order 43149 placed
+2026-05-04T09:25:28Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:25:29Z INFO [checkout] order 57036 placed
+2026-05-04T09:25:30Z INFO [checkout] order 65098 placed
+2026-05-04T09:25:31Z INFO [checkout] order 70347 placed
+2026-05-04T09:25:32Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:25:33Z INFO [checkout] order 82006 placed
+2026-05-04T09:25:34Z INFO [checkout] order 90255 placed
+2026-05-04T09:25:35Z INFO [checkout] order 12227 placed
+2026-05-04T09:25:36Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:25:37Z INFO [checkout] order 75580 placed
+2026-05-04T09:25:38Z INFO [checkout] order 28790 placed
+2026-05-04T09:25:39Z INFO [checkout] order 23503 placed
+2026-05-04T09:25:40Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:25:41Z INFO [checkout] order 34530 placed
+2026-05-04T09:25:42Z INFO [checkout] order 41576 placed
+2026-05-04T09:25:43Z INFO [checkout] order 34106 placed
+2026-05-04T09:25:44Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:25:45Z INFO [checkout] order 19803 placed
+2026-05-04T09:25:46Z INFO [checkout] order 57988 placed
+2026-05-04T09:25:47Z INFO [checkout] order 89195 placed
+2026-05-04T09:25:48Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:25:49Z INFO [checkout] order 71859 placed
+2026-05-04T09:25:50Z INFO [checkout] order 47490 placed
+2026-05-04T09:25:51Z INFO [checkout] order 44573 placed
+2026-05-04T09:25:52Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:25:53Z INFO [checkout] order 39230 placed
+2026-05-04T09:25:54Z ERROR [checkout] TimeoutError: acquiring db session timed out after 7407ms
+2026-05-04T09:25:55Z INFO [checkout] order 46017 placed
+2026-05-04T09:25:56Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:25:57Z INFO [checkout] order 93896 placed
+2026-05-04T09:25:58Z INFO [checkout] order 48080 placed
+2026-05-04T09:25:59Z INFO [checkout] order 47599 placed
+2026-05-04T09:26:00Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:26:01Z INFO [checkout] order 84762 placed
+2026-05-04T09:26:02Z INFO [checkout] order 96053 placed
+2026-05-04T09:26:03Z INFO [checkout] order 27858 placed
+2026-05-04T09:26:04Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:26:05Z INFO [checkout] order 26622 placed
+2026-05-04T09:26:06Z INFO [checkout] order 93774 placed
+2026-05-04T09:26:07Z INFO [checkout] order 75187 placed
+2026-05-04T09:26:08Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:26:09Z INFO [checkout] order 49874 placed
+2026-05-04T09:26:10Z INFO [checkout] order 43132 placed
+2026-05-04T09:26:11Z INFO [checkout] order 31405 placed
+2026-05-04T09:26:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:26:13Z INFO [checkout] order 17790 placed
+2026-05-04T09:26:14Z INFO [checkout] order 22694 placed
+2026-05-04T09:26:15Z INFO [checkout] order 18525 placed
+2026-05-04T09:26:16Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:26:17Z INFO [checkout] order 63510 placed
+2026-05-04T09:26:18Z INFO [checkout] order 40027 placed
+2026-05-04T09:26:19Z INFO [checkout] order 11763 placed
+2026-05-04T09:26:20Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:26:21Z INFO [checkout] order 48504 placed
+2026-05-04T09:26:22Z INFO [checkout] order 55751 placed
+2026-05-04T09:26:23Z INFO [checkout] order 62950 placed
+2026-05-04T09:26:24Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:26:25Z INFO [checkout] order 81554 placed
+2026-05-04T09:26:26Z INFO [checkout] order 19880 placed
+2026-05-04T09:26:27Z INFO [checkout] order 22315 placed
+2026-05-04T09:26:28Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:26:29Z INFO [checkout] order 14213 placed
+2026-05-04T09:26:30Z INFO [checkout] order 57319 placed
+2026-05-04T09:26:31Z ERROR [checkout] TimeoutError: acquiring db session timed out after 3446ms
+2026-05-04T09:26:32Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:26:33Z INFO [checkout] order 63219 placed
+2026-05-04T09:26:34Z INFO [checkout] order 21499 placed
+2026-05-04T09:26:35Z INFO [checkout] order 88222 placed
+2026-05-04T09:26:36Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:26:37Z INFO [checkout] order 16287 placed
+2026-05-04T09:26:38Z INFO [checkout] order 36322 placed
+2026-05-04T09:26:39Z INFO [checkout] order 39132 placed
+2026-05-04T09:26:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:26:41Z INFO [checkout] order 94356 placed
+2026-05-04T09:26:42Z INFO [checkout] order 11761 placed
+2026-05-04T09:26:43Z INFO [checkout] order 27884 placed
+2026-05-04T09:26:44Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:26:45Z INFO [checkout] order 93314 placed
+2026-05-04T09:26:46Z INFO [checkout] order 82361 placed
+2026-05-04T09:26:47Z INFO [checkout] order 33720 placed
+2026-05-04T09:26:48Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:26:49Z INFO [checkout] order 21794 placed
+2026-05-04T09:26:50Z INFO [checkout] order 12874 placed
+2026-05-04T09:26:51Z INFO [checkout] order 92007 placed
+2026-05-04T09:26:52Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:26:53Z INFO [checkout] order 53699 placed
+2026-05-04T09:26:54Z INFO [checkout] order 63329 placed
+2026-05-04T09:26:55Z INFO [checkout] order 47270 placed
+2026-05-04T09:26:56Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:26:57Z INFO [checkout] order 98097 placed
+2026-05-04T09:26:58Z INFO [checkout] order 46317 placed
+2026-05-04T09:26:59Z INFO [checkout] order 90207 placed
+2026-05-04T09:27:00Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:27:01Z INFO [checkout] order 62042 placed
+2026-05-04T09:27:02Z INFO [checkout] order 48945 placed
+2026-05-04T09:27:03Z INFO [checkout] order 73058 placed
+2026-05-04T09:27:04Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:27:05Z INFO [checkout] order 28316 placed
+2026-05-04T09:27:06Z INFO [checkout] order 92653 placed
+2026-05-04T09:27:07Z INFO [checkout] order 73531 placed
+2026-05-04T09:27:08Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:27:09Z INFO [checkout] order 29643 placed
+2026-05-04T09:27:10Z INFO [checkout] order 81668 placed
+2026-05-04T09:27:11Z INFO [checkout] order 56130 placed
+2026-05-04T09:27:12Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:27:13Z INFO [checkout] order 84250 placed
+2026-05-04T09:27:14Z INFO [checkout] order 65840 placed
+2026-05-04T09:27:15Z INFO [checkout] order 83137 placed
+2026-05-04T09:27:16Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:27:17Z INFO [checkout] order 21101 placed
+2026-05-04T09:27:18Z INFO [checkout] order 57697 placed
+2026-05-04T09:27:19Z INFO [checkout] order 55666 placed
+2026-05-04T09:27:20Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:27:21Z INFO [checkout] order 96677 placed
+2026-05-04T09:27:22Z INFO [checkout] order 44588 placed
+2026-05-04T09:27:23Z INFO [checkout] order 79649 placed
+2026-05-04T09:27:24Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:27:25Z INFO [checkout] order 25047 placed
+2026-05-04T09:27:26Z INFO [checkout] order 36723 placed
+2026-05-04T09:27:27Z INFO [checkout] order 70662 placed
+2026-05-04T09:27:28Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:27:29Z INFO [checkout] order 79985 placed
+2026-05-04T09:27:30Z INFO [checkout] order 42826 placed
+2026-05-04T09:27:31Z INFO [checkout] order 78084 placed
+2026-05-04T09:27:32Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:27:33Z INFO [checkout] order 58196 placed
+2026-05-04T09:27:34Z INFO [checkout] order 14785 placed
+2026-05-04T09:27:35Z INFO [checkout] order 12082 placed
+2026-05-04T09:27:36Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:27:37Z INFO [checkout] order 48281 placed
+2026-05-04T09:27:38Z INFO [checkout] order 93790 placed
+2026-05-04T09:27:39Z INFO [checkout] order 67140 placed
+2026-05-04T09:27:40Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:27:41Z INFO [checkout] order 98497 placed
+2026-05-04T09:27:42Z INFO [checkout] order 45651 placed
+2026-05-04T09:27:43Z INFO [checkout] order 91222 placed
+2026-05-04T09:27:44Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:27:45Z ERROR [checkout] TimeoutError: acquiring db session timed out after 7149ms
+2026-05-04T09:27:46Z INFO [checkout] order 82944 placed
+2026-05-04T09:27:47Z INFO [checkout] order 33461 placed
+2026-05-04T09:27:48Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:27:49Z INFO [checkout] order 35843 placed
+2026-05-04T09:27:50Z INFO [checkout] order 93103 placed
+2026-05-04T09:27:51Z INFO [checkout] order 38773 placed
+2026-05-04T09:27:52Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:27:53Z INFO [checkout] order 47796 placed
+2026-05-04T09:27:54Z INFO [checkout] order 31841 placed
+2026-05-04T09:27:55Z INFO [checkout] order 87386 placed
+2026-05-04T09:27:56Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:27:57Z INFO [checkout] order 33387 placed
+2026-05-04T09:27:58Z INFO [checkout] order 41917 placed
+2026-05-04T09:27:59Z INFO [checkout] order 98498 placed
+2026-05-04T09:28:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:28:01Z INFO [checkout] order 83749 placed
+2026-05-04T09:28:02Z INFO [checkout] order 43490 placed
+2026-05-04T09:28:03Z INFO [checkout] order 18356 placed
+2026-05-04T09:28:04Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:28:05Z INFO [checkout] order 75796 placed
+2026-05-04T09:28:06Z INFO [checkout] order 22678 placed
+2026-05-04T09:28:07Z INFO [checkout] order 89931 placed
+2026-05-04T09:28:08Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:28:09Z INFO [checkout] order 41660 placed
+2026-05-04T09:28:10Z INFO [checkout] order 36839 placed
+2026-05-04T09:28:11Z INFO [checkout] order 60410 placed
+2026-05-04T09:28:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:28:13Z INFO [checkout] order 39906 placed
+2026-05-04T09:28:14Z INFO [checkout] order 93227 placed
+2026-05-04T09:28:15Z INFO [checkout] order 32933 placed
+2026-05-04T09:28:16Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:28:17Z INFO [checkout] order 95430 placed
+2026-05-04T09:28:18Z INFO [checkout] order 80145 placed
+2026-05-04T09:28:19Z INFO [checkout] order 70411 placed
+2026-05-04T09:28:20Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:28:21Z INFO [checkout] order 32162 placed
+2026-05-04T09:28:22Z ERROR [checkout] TimeoutError: acquiring db session timed out after 2322ms
+2026-05-04T09:28:23Z INFO [checkout] order 22504 placed
+2026-05-04T09:28:24Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:28:25Z INFO [checkout] order 47218 placed
+2026-05-04T09:28:26Z INFO [checkout] order 12314 placed
+2026-05-04T09:28:27Z INFO [checkout] order 26511 placed
+2026-05-04T09:28:28Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:28:29Z INFO [checkout] order 99402 placed
+2026-05-04T09:28:30Z INFO [checkout] order 83700 placed
+2026-05-04T09:28:31Z INFO [checkout] order 65996 placed
+2026-05-04T09:28:32Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:28:33Z INFO [checkout] order 42710 placed
+2026-05-04T09:28:34Z INFO [checkout] order 12883 placed
+2026-05-04T09:28:35Z INFO [checkout] order 91939 placed
+2026-05-04T09:28:36Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:28:37Z INFO [checkout] order 61615 placed
+2026-05-04T09:28:38Z INFO [checkout] order 85855 placed
+2026-05-04T09:28:39Z INFO [checkout] order 26388 placed
+2026-05-04T09:28:40Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:28:41Z INFO [checkout] order 66415 placed
+2026-05-04T09:28:42Z INFO [checkout] order 90737 placed
+2026-05-04T09:28:43Z INFO [checkout] order 88602 placed
+2026-05-04T09:28:44Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:28:45Z INFO [checkout] order 58887 placed
+2026-05-04T09:28:46Z INFO [checkout] order 96704 placed
+2026-05-04T09:28:47Z INFO [checkout] order 41978 placed
+2026-05-04T09:28:48Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:28:49Z INFO [checkout] order 99804 placed
+2026-05-04T09:28:50Z INFO [checkout] order 88116 placed
+2026-05-04T09:28:51Z INFO [checkout] order 41728 placed
+2026-05-04T09:28:52Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:28:53Z INFO [checkout] order 72964 placed
+2026-05-04T09:28:54Z INFO [checkout] order 17779 placed
+2026-05-04T09:28:55Z INFO [checkout] order 43582 placed
+2026-05-04T09:28:56Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:28:57Z INFO [checkout] order 52083 placed
+2026-05-04T09:28:58Z INFO [checkout] order 17824 placed
+2026-05-04T09:28:59Z ERROR [checkout] TimeoutError: acquiring db session timed out after 5824ms
+2026-05-04T09:29:00Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:29:01Z INFO [checkout] order 70279 placed
+2026-05-04T09:29:02Z INFO [checkout] order 90787 placed
+2026-05-04T09:29:03Z INFO [checkout] order 40575 placed
+2026-05-04T09:29:04Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:29:05Z INFO [checkout] order 87433 placed
+2026-05-04T09:29:06Z INFO [checkout] order 72737 placed
+2026-05-04T09:29:07Z INFO [checkout] order 62042 placed
+2026-05-04T09:29:08Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:29:09Z INFO [checkout] order 87790 placed
+2026-05-04T09:29:10Z INFO [checkout] order 90839 placed
+2026-05-04T09:29:11Z INFO [checkout] order 38838 placed
+2026-05-04T09:29:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:29:13Z INFO [checkout] order 12609 placed
+2026-05-04T09:29:14Z INFO [checkout] order 49966 placed
+2026-05-04T09:29:15Z INFO [checkout] order 75634 placed
+2026-05-04T09:29:16Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:29:17Z INFO [checkout] order 54770 placed
+2026-05-04T09:29:18Z INFO [checkout] order 50057 placed
+2026-05-04T09:29:19Z INFO [checkout] order 54858 placed
+2026-05-04T09:29:20Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:29:21Z INFO [checkout] order 43754 placed
+2026-05-04T09:29:22Z INFO [checkout] order 93896 placed
+2026-05-04T09:29:23Z INFO [checkout] order 81547 placed
+2026-05-04T09:29:24Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:29:25Z INFO [checkout] order 43756 placed
+2026-05-04T09:29:26Z INFO [checkout] order 18196 placed
+2026-05-04T09:29:27Z INFO [checkout] order 49268 placed
+2026-05-04T09:29:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:29:29Z INFO [checkout] order 72080 placed
+2026-05-04T09:29:30Z INFO [checkout] order 48890 placed
+2026-05-04T09:29:31Z INFO [checkout] order 70650 placed
+2026-05-04T09:29:32Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:29:33Z INFO [checkout] order 66941 placed
+2026-05-04T09:29:34Z INFO [checkout] order 48671 placed
+2026-05-04T09:29:35Z INFO [checkout] order 49142 placed
+2026-05-04T09:29:36Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:29:37Z INFO [checkout] order 53525 placed
+2026-05-04T09:29:38Z INFO [checkout] order 39901 placed
+2026-05-04T09:29:39Z INFO [checkout] order 27668 placed
+2026-05-04T09:29:40Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:29:41Z INFO [checkout] order 99713 placed
+2026-05-04T09:29:42Z INFO [checkout] order 35417 placed
+2026-05-04T09:29:43Z INFO [checkout] order 87361 placed
+2026-05-04T09:29:44Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:29:45Z INFO [checkout] order 67796 placed
+2026-05-04T09:29:46Z INFO [checkout] order 94000 placed
+2026-05-04T09:29:47Z INFO [checkout] order 47999 placed
+2026-05-04T09:29:48Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:29:49Z INFO [checkout] order 94528 placed
+2026-05-04T09:29:50Z INFO [checkout] order 71004 placed
+2026-05-04T09:29:51Z INFO [checkout] order 55724 placed
+2026-05-04T09:29:52Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:29:53Z INFO [checkout] order 89150 placed
+2026-05-04T09:29:54Z INFO [checkout] order 28703 placed
+2026-05-04T09:29:55Z INFO [checkout] order 82456 placed
+2026-05-04T09:29:56Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:29:57Z INFO [checkout] order 99825 placed
+2026-05-04T09:29:58Z INFO [checkout] order 87105 placed
+2026-05-04T09:29:59Z INFO [checkout] order 10472 placed
+2026-05-04T09:30:00Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:30:01Z INFO [checkout] order 38868 placed
+2026-05-04T09:30:02Z INFO [checkout] order 58688 placed
+2026-05-04T09:30:03Z INFO [checkout] order 44972 placed
+2026-05-04T09:30:04Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:30:05Z INFO [checkout] order 16084 placed
+2026-05-04T09:30:06Z INFO [checkout] order 44348 placed
+2026-05-04T09:30:07Z INFO [checkout] order 66743 placed
+2026-05-04T09:30:08Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:30:09Z INFO [checkout] order 40706 placed
+2026-05-04T09:30:10Z INFO [checkout] order 73644 placed
+2026-05-04T09:30:11Z INFO [checkout] order 96436 placed
+2026-05-04T09:30:12Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:30:13Z ERROR [checkout] TimeoutError: acquiring db session timed out after 4595ms
+2026-05-04T09:30:14Z INFO [checkout] order 33643 placed
+2026-05-04T09:30:15Z INFO [checkout] order 37243 placed
+2026-05-04T09:30:16Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:30:17Z INFO [checkout] order 82771 placed
+2026-05-04T09:30:18Z INFO [checkout] order 82313 placed
+2026-05-04T09:30:19Z INFO [checkout] order 46930 placed
+2026-05-04T09:30:20Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:30:21Z INFO [checkout] order 87954 placed
+2026-05-04T09:30:22Z INFO [checkout] order 30356 placed
+2026-05-04T09:30:23Z INFO [checkout] order 50541 placed
+2026-05-04T09:30:24Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:30:25Z INFO [checkout] order 14148 placed
+2026-05-04T09:30:26Z INFO [checkout] order 59513 placed
+2026-05-04T09:30:27Z INFO [checkout] order 85104 placed
+2026-05-04T09:30:28Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:30:29Z INFO [checkout] order 49181 placed
+2026-05-04T09:30:30Z INFO [checkout] order 66917 placed
+2026-05-04T09:30:31Z INFO [checkout] order 77033 placed
+2026-05-04T09:30:32Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:30:33Z INFO [checkout] order 88669 placed
+2026-05-04T09:30:34Z INFO [checkout] order 17109 placed
+2026-05-04T09:30:35Z INFO [checkout] order 88748 placed
+2026-05-04T09:30:36Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:30:37Z INFO [checkout] order 39082 placed
+2026-05-04T09:30:38Z INFO [checkout] order 80425 placed
+2026-05-04T09:30:39Z INFO [checkout] order 19452 placed
+2026-05-04T09:30:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:30:41Z INFO [checkout] order 82515 placed
+2026-05-04T09:30:42Z INFO [checkout] order 57817 placed
+2026-05-04T09:30:43Z INFO [checkout] order 51842 placed
+2026-05-04T09:30:44Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:30:45Z INFO [checkout] order 67781 placed
+2026-05-04T09:30:46Z INFO [checkout] order 54116 placed
+2026-05-04T09:30:47Z INFO [checkout] order 59771 placed
+2026-05-04T09:30:48Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:30:49Z INFO [checkout] order 60061 placed
+2026-05-04T09:30:50Z ERROR [checkout] TimeoutError: acquiring db session timed out after 5988ms
+2026-05-04T09:30:51Z INFO [checkout] order 53795 placed
+2026-05-04T09:30:52Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:30:53Z INFO [checkout] order 70870 placed
+2026-05-04T09:30:54Z INFO [checkout] order 38066 placed
+2026-05-04T09:30:55Z INFO [checkout] order 17260 placed
+2026-05-04T09:30:56Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:30:57Z INFO [checkout] order 35867 placed
+2026-05-04T09:30:58Z INFO [checkout] order 81521 placed
+2026-05-04T09:30:59Z INFO [checkout] order 10492 placed
+2026-05-04T09:31:00Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:31:01Z INFO [checkout] order 48097 placed
+2026-05-04T09:31:02Z INFO [checkout] order 57445 placed
+2026-05-04T09:31:03Z INFO [checkout] order 25280 placed
+2026-05-04T09:31:04Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:31:05Z INFO [checkout] order 28109 placed
+2026-05-04T09:31:06Z INFO [checkout] order 90327 placed
+2026-05-04T09:31:07Z INFO [checkout] order 84721 placed
+2026-05-04T09:31:08Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:31:09Z INFO [checkout] order 97486 placed
+2026-05-04T09:31:10Z INFO [checkout] order 64000 placed
+2026-05-04T09:31:11Z INFO [checkout] order 24860 placed
+2026-05-04T09:31:12Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:31:13Z INFO [checkout] order 50609 placed
+2026-05-04T09:31:14Z INFO [checkout] order 42102 placed
+2026-05-04T09:31:15Z INFO [checkout] order 27120 placed
+2026-05-04T09:31:16Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:31:17Z INFO [checkout] order 53567 placed
+2026-05-04T09:31:18Z INFO [checkout] order 68070 placed
+2026-05-04T09:31:19Z INFO [checkout] order 48766 placed
+2026-05-04T09:31:20Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:31:21Z INFO [checkout] order 51420 placed
+2026-05-04T09:31:22Z INFO [checkout] order 77444 placed
+2026-05-04T09:31:23Z INFO [checkout] order 65664 placed
+2026-05-04T09:31:24Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:31:25Z INFO [checkout] order 21242 placed
+2026-05-04T09:31:26Z INFO [checkout] order 57664 placed
+2026-05-04T09:31:27Z ERROR [checkout] TimeoutError: acquiring db session timed out after 5367ms
+2026-05-04T09:31:28Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:31:29Z INFO [checkout] order 67402 placed
+2026-05-04T09:31:30Z INFO [checkout] order 33501 placed
+2026-05-04T09:31:31Z INFO [checkout] order 13700 placed
+2026-05-04T09:31:32Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:31:33Z INFO [checkout] order 92924 placed
+2026-05-04T09:31:34Z INFO [checkout] order 21115 placed
+2026-05-04T09:31:35Z INFO [checkout] order 61219 placed
+2026-05-04T09:31:36Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:31:37Z INFO [checkout] order 28801 placed
+2026-05-04T09:31:38Z INFO [checkout] order 59770 placed
+2026-05-04T09:31:39Z INFO [checkout] order 18001 placed
+2026-05-04T09:31:40Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:31:41Z INFO [checkout] order 34654 placed
+2026-05-04T09:31:42Z INFO [checkout] order 21488 placed
+2026-05-04T09:31:43Z INFO [checkout] order 40384 placed
+2026-05-04T09:31:44Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:31:45Z INFO [checkout] order 62760 placed
+2026-05-04T09:31:46Z INFO [checkout] order 58012 placed
+2026-05-04T09:31:47Z INFO [checkout] order 45687 placed
+2026-05-04T09:31:48Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:31:49Z INFO [checkout] order 87297 placed
+2026-05-04T09:31:50Z INFO [checkout] order 47690 placed
+2026-05-04T09:31:51Z INFO [checkout] order 34807 placed
+2026-05-04T09:31:52Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:31:53Z INFO [checkout] order 21939 placed
+2026-05-04T09:31:54Z INFO [checkout] order 16450 placed
+2026-05-04T09:31:55Z INFO [checkout] order 47422 placed
+2026-05-04T09:31:56Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:31:57Z INFO [checkout] order 52749 placed
+2026-05-04T09:31:58Z INFO [checkout] order 24832 placed
+2026-05-04T09:31:59Z INFO [checkout] order 40532 placed
+2026-05-04T09:32:00Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:32:01Z INFO [checkout] order 17254 placed
+2026-05-04T09:32:02Z INFO [checkout] order 17996 placed
+2026-05-04T09:32:03Z INFO [checkout] order 41259 placed
+2026-05-04T09:32:04Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:32:05Z INFO [checkout] order 96658 placed
+2026-05-04T09:32:06Z INFO [checkout] order 31196 placed
+2026-05-04T09:32:07Z INFO [checkout] order 29146 placed
+2026-05-04T09:32:08Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:32:09Z INFO [checkout] order 29628 placed
+2026-05-04T09:32:10Z INFO [checkout] order 89904 placed
+2026-05-04T09:32:11Z INFO [checkout] order 80059 placed
+2026-05-04T09:32:12Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:32:13Z INFO [checkout] order 71499 placed
+2026-05-04T09:32:14Z INFO [checkout] order 23992 placed
+2026-05-04T09:32:15Z INFO [checkout] order 87278 placed
+2026-05-04T09:32:16Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:32:17Z INFO [checkout] order 94109 placed
+2026-05-04T09:32:18Z INFO [checkout] order 40417 placed
+2026-05-04T09:32:19Z INFO [checkout] order 70418 placed
+2026-05-04T09:32:20Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:32:21Z INFO [checkout] order 97127 placed
+2026-05-04T09:32:22Z INFO [checkout] order 78191 placed
+2026-05-04T09:32:23Z INFO [checkout] order 68117 placed
+2026-05-04T09:32:24Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:32:25Z INFO [checkout] order 27166 placed
+2026-05-04T09:32:26Z INFO [checkout] order 91475 placed
+2026-05-04T09:32:27Z INFO [checkout] order 85644 placed
+2026-05-04T09:32:28Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:32:29Z INFO [checkout] order 59354 placed
+2026-05-04T09:32:30Z INFO [checkout] order 21810 placed
+2026-05-04T09:32:31Z INFO [checkout] order 95705 placed
+2026-05-04T09:32:32Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:32:33Z INFO [checkout] order 12139 placed
+2026-05-04T09:32:34Z INFO [checkout] order 80459 placed
+2026-05-04T09:32:35Z INFO [checkout] order 67467 placed
+2026-05-04T09:32:36Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:32:37Z INFO [checkout] order 90827 placed
+2026-05-04T09:32:38Z INFO [checkout] order 70917 placed
+2026-05-04T09:32:39Z INFO [checkout] order 35957 placed
+2026-05-04T09:32:40Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:32:41Z ERROR [checkout] TimeoutError: acquiring db session timed out after 5930ms
+2026-05-04T09:32:42Z INFO [checkout] order 94797 placed
+2026-05-04T09:32:43Z INFO [checkout] order 42059 placed
+2026-05-04T09:32:44Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:32:45Z INFO [checkout] order 51473 placed
+2026-05-04T09:32:46Z INFO [checkout] order 31707 placed
+2026-05-04T09:32:47Z INFO [checkout] order 13657 placed
+2026-05-04T09:32:48Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:32:49Z INFO [checkout] order 88649 placed
+2026-05-04T09:32:50Z INFO [checkout] order 97356 placed
+2026-05-04T09:32:51Z INFO [checkout] order 23104 placed
+2026-05-04T09:32:52Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:32:53Z INFO [checkout] order 83451 placed
+2026-05-04T09:32:54Z INFO [checkout] order 52521 placed
+2026-05-04T09:32:55Z INFO [checkout] order 62320 placed
+2026-05-04T09:32:56Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:32:57Z INFO [checkout] order 81574 placed
+2026-05-04T09:32:58Z INFO [checkout] order 39219 placed
+2026-05-04T09:32:59Z INFO [checkout] order 13080 placed
+2026-05-04T09:33:00Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:33:01Z INFO [checkout] order 12037 placed
+2026-05-04T09:33:02Z INFO [checkout] order 74896 placed
+2026-05-04T09:33:03Z INFO [checkout] order 44410 placed
+2026-05-04T09:33:04Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:33:05Z INFO [checkout] order 29865 placed
+2026-05-04T09:33:06Z INFO [checkout] order 76639 placed
+2026-05-04T09:33:07Z INFO [checkout] order 68194 placed
+2026-05-04T09:33:08Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:33:09Z INFO [checkout] order 81446 placed
+2026-05-04T09:33:10Z INFO [checkout] order 69180 placed
+2026-05-04T09:33:11Z INFO [checkout] order 43392 placed
+2026-05-04T09:33:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:33:13Z INFO [checkout] order 57295 placed
+2026-05-04T09:33:14Z INFO [checkout] order 47922 placed
+2026-05-04T09:33:15Z INFO [checkout] order 73362 placed
+2026-05-04T09:33:16Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:33:17Z INFO [checkout] order 35880 placed
+2026-05-04T09:33:18Z ERROR [checkout] TimeoutError: acquiring db session timed out after 6024ms
+2026-05-04T09:33:19Z INFO [checkout] order 20553 placed
+2026-05-04T09:33:20Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:33:21Z INFO [checkout] order 44630 placed
+2026-05-04T09:33:22Z INFO [checkout] order 17518 placed
+2026-05-04T09:33:23Z INFO [checkout] order 44793 placed
+2026-05-04T09:33:24Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:33:25Z INFO [checkout] order 96095 placed
+2026-05-04T09:33:26Z INFO [checkout] order 87568 placed
+2026-05-04T09:33:27Z INFO [checkout] order 17613 placed
+2026-05-04T09:33:28Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:33:29Z INFO [checkout] order 81614 placed
+2026-05-04T09:33:30Z INFO [checkout] order 33065 placed
+2026-05-04T09:33:31Z INFO [checkout] order 46499 placed
+2026-05-04T09:33:32Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:33:33Z INFO [checkout] order 29741 placed
+2026-05-04T09:33:34Z INFO [checkout] order 57347 placed
+2026-05-04T09:33:35Z INFO [checkout] order 45688 placed
+2026-05-04T09:33:36Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:33:37Z INFO [checkout] order 18121 placed
+2026-05-04T09:33:38Z INFO [checkout] order 13353 placed
+2026-05-04T09:33:39Z INFO [checkout] order 48603 placed
+2026-05-04T09:33:40Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:33:41Z INFO [checkout] order 97243 placed
+2026-05-04T09:33:42Z INFO [checkout] order 24317 placed
+2026-05-04T09:33:43Z INFO [checkout] order 39744 placed
+2026-05-04T09:33:44Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:33:45Z INFO [checkout] order 44979 placed
+2026-05-04T09:33:46Z INFO [checkout] order 63011 placed
+2026-05-04T09:33:47Z INFO [checkout] order 86685 placed
+2026-05-04T09:33:48Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:33:49Z INFO [checkout] order 63011 placed
+2026-05-04T09:33:50Z INFO [checkout] order 43034 placed
+2026-05-04T09:33:51Z INFO [checkout] order 98468 placed
+2026-05-04T09:33:52Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:33:53Z INFO [checkout] order 14236 placed
+2026-05-04T09:33:54Z INFO [checkout] order 27227 placed
+2026-05-04T09:33:55Z ERROR [checkout] TimeoutError: acquiring db session timed out after 6965ms
+2026-05-04T09:33:56Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:33:57Z INFO [checkout] order 49770 placed
+2026-05-04T09:33:58Z INFO [checkout] order 11377 placed
+2026-05-04T09:33:59Z INFO [checkout] order 83843 placed
+2026-05-04T09:34:00Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:34:01Z INFO [checkout] order 84843 placed
+2026-05-04T09:34:02Z INFO [checkout] order 48743 placed
+2026-05-04T09:34:03Z INFO [checkout] order 15958 placed
+2026-05-04T09:34:04Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:34:05Z INFO [checkout] order 21239 placed
+2026-05-04T09:34:06Z INFO [checkout] order 40296 placed
+2026-05-04T09:34:07Z INFO [checkout] order 90052 placed
+2026-05-04T09:34:08Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:34:09Z INFO [checkout] order 39853 placed
+2026-05-04T09:34:10Z INFO [checkout] order 80106 placed
+2026-05-04T09:34:11Z INFO [checkout] order 82853 placed
+2026-05-04T09:34:12Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:34:13Z INFO [checkout] order 91941 placed
+2026-05-04T09:34:14Z INFO [checkout] order 45677 placed
+2026-05-04T09:34:15Z INFO [checkout] order 35293 placed
+2026-05-04T09:34:16Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:34:17Z INFO [checkout] order 58643 placed
+2026-05-04T09:34:18Z INFO [checkout] order 80549 placed
+2026-05-04T09:34:19Z INFO [checkout] order 44292 placed
+2026-05-04T09:34:20Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:34:21Z INFO [checkout] order 58152 placed
+2026-05-04T09:34:22Z INFO [checkout] order 73652 placed
+2026-05-04T09:34:23Z INFO [checkout] order 28364 placed
+2026-05-04T09:34:24Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:34:25Z INFO [checkout] order 76756 placed
+2026-05-04T09:34:26Z INFO [checkout] order 81880 placed
+2026-05-04T09:34:27Z INFO [checkout] order 44751 placed
+2026-05-04T09:34:28Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:34:29Z INFO [checkout] order 82616 placed
+2026-05-04T09:34:30Z INFO [checkout] order 91421 placed
+2026-05-04T09:34:31Z INFO [checkout] order 27094 placed
+2026-05-04T09:34:32Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:34:33Z INFO [checkout] order 83776 placed
+2026-05-04T09:34:34Z INFO [checkout] order 93176 placed
+2026-05-04T09:34:35Z INFO [checkout] order 42575 placed
+2026-05-04T09:34:36Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:34:37Z INFO [checkout] order 24939 placed
+2026-05-04T09:34:38Z INFO [checkout] order 48413 placed
+2026-05-04T09:34:39Z INFO [checkout] order 49062 placed
+2026-05-04T09:34:40Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:34:41Z INFO [checkout] order 22720 placed
+2026-05-04T09:34:42Z INFO [checkout] order 10352 placed
+2026-05-04T09:34:43Z INFO [checkout] order 25958 placed
+2026-05-04T09:34:44Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:34:45Z INFO [checkout] order 77186 placed
+2026-05-04T09:34:46Z INFO [checkout] order 64025 placed
+2026-05-04T09:34:47Z INFO [checkout] order 56519 placed
+2026-05-04T09:34:48Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:34:49Z INFO [checkout] order 50618 placed
+2026-05-04T09:34:50Z INFO [checkout] order 40829 placed
+2026-05-04T09:34:51Z INFO [checkout] order 99052 placed
+2026-05-04T09:34:52Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:34:53Z INFO [checkout] order 56201 placed
+2026-05-04T09:34:54Z INFO [checkout] order 93754 placed
+2026-05-04T09:34:55Z INFO [checkout] order 87284 placed
+2026-05-04T09:34:56Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:34:57Z INFO [checkout] order 50024 placed
+2026-05-04T09:34:58Z INFO [checkout] order 69991 placed
+2026-05-04T09:34:59Z INFO [checkout] order 84507 placed
+2026-05-04T09:35:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:35:01Z INFO [checkout] order 57032 placed
+2026-05-04T09:35:02Z INFO [checkout] order 99097 placed
+2026-05-04T09:35:03Z INFO [checkout] order 31611 placed
+2026-05-04T09:35:04Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:35:05Z INFO [checkout] order 84883 placed
+2026-05-04T09:35:06Z INFO [checkout] order 45437 placed
+2026-05-04T09:35:07Z INFO [checkout] order 32428 placed
+2026-05-04T09:35:08Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:35:09Z ERROR [checkout] TimeoutError: acquiring db session timed out after 3797ms
+2026-05-04T09:35:10Z INFO [checkout] order 41437 placed
+2026-05-04T09:35:11Z INFO [checkout] order 20697 placed
+2026-05-04T09:35:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:35:13Z INFO [checkout] order 54656 placed
+2026-05-04T09:35:14Z INFO [checkout] order 92385 placed
+2026-05-04T09:35:15Z INFO [checkout] order 64606 placed
+2026-05-04T09:35:16Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:35:17Z INFO [checkout] order 13673 placed
+2026-05-04T09:35:18Z INFO [checkout] order 67451 placed
+2026-05-04T09:35:19Z INFO [checkout] order 25604 placed
+2026-05-04T09:35:20Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:35:21Z INFO [checkout] order 54536 placed
+2026-05-04T09:35:22Z INFO [checkout] order 87263 placed
+2026-05-04T09:35:23Z INFO [checkout] order 39604 placed
+2026-05-04T09:35:24Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:35:25Z INFO [checkout] order 38345 placed
+2026-05-04T09:35:26Z INFO [checkout] order 62563 placed
+2026-05-04T09:35:27Z INFO [checkout] order 75578 placed
+2026-05-04T09:35:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:35:29Z INFO [checkout] order 95448 placed
+2026-05-04T09:35:30Z INFO [checkout] order 58581 placed
+2026-05-04T09:35:31Z INFO [checkout] order 15322 placed
+2026-05-04T09:35:32Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:35:33Z INFO [checkout] order 74491 placed
+2026-05-04T09:35:34Z INFO [checkout] order 71535 placed
+2026-05-04T09:35:35Z INFO [checkout] order 55641 placed
+2026-05-04T09:35:36Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:35:37Z INFO [checkout] order 89906 placed
+2026-05-04T09:35:38Z INFO [checkout] order 25445 placed
+2026-05-04T09:35:39Z INFO [checkout] order 84815 placed
+2026-05-04T09:35:40Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:35:41Z INFO [checkout] order 97633 placed
+2026-05-04T09:35:42Z INFO [checkout] order 60857 placed
+2026-05-04T09:35:43Z INFO [checkout] order 34830 placed
+2026-05-04T09:35:44Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:35:45Z INFO [checkout] order 70511 placed
+2026-05-04T09:35:46Z ERROR [checkout] TimeoutError: acquiring db session timed out after 4379ms
+2026-05-04T09:35:47Z INFO [checkout] order 55823 placed
+2026-05-04T09:35:48Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:35:49Z INFO [checkout] order 35879 placed
+2026-05-04T09:35:50Z INFO [checkout] order 91383 placed
+2026-05-04T09:35:51Z INFO [checkout] order 55026 placed
+2026-05-04T09:35:52Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:35:53Z INFO [checkout] order 39817 placed
+2026-05-04T09:35:54Z INFO [checkout] order 98007 placed
+2026-05-04T09:35:55Z INFO [checkout] order 54876 placed
+2026-05-04T09:35:56Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:35:57Z INFO [checkout] order 44401 placed
+2026-05-04T09:35:58Z INFO [checkout] order 38096 placed
+2026-05-04T09:35:59Z INFO [checkout] order 55190 placed
+2026-05-04T09:36:00Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:36:01Z INFO [checkout] order 60091 placed
+2026-05-04T09:36:02Z INFO [checkout] order 24924 placed
+2026-05-04T09:36:03Z INFO [checkout] order 10863 placed
+2026-05-04T09:36:04Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:36:05Z INFO [checkout] order 31168 placed
+2026-05-04T09:36:06Z INFO [checkout] order 24928 placed
+2026-05-04T09:36:07Z INFO [checkout] order 91430 placed
+2026-05-04T09:36:08Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:36:09Z INFO [checkout] order 96651 placed
+2026-05-04T09:36:10Z INFO [checkout] order 29517 placed
+2026-05-04T09:36:11Z INFO [checkout] order 48632 placed
+2026-05-04T09:36:12Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:36:13Z INFO [checkout] order 20490 placed
+2026-05-04T09:36:14Z INFO [checkout] order 43601 placed
+2026-05-04T09:36:15Z INFO [checkout] order 22534 placed
+2026-05-04T09:36:16Z ERROR [checkout] OperationalError: connection pool exhausted, 3/4 in use
+2026-05-04T09:36:17Z INFO [checkout] order 92708 placed
+2026-05-04T09:36:18Z INFO [checkout] order 36108 placed
+2026-05-04T09:36:19Z INFO [checkout] order 41696 placed
+2026-05-04T09:36:20Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:36:21Z INFO [checkout] order 35334 placed
+2026-05-04T09:36:22Z INFO [checkout] order 71923 placed
+2026-05-04T09:36:23Z ERROR [checkout] TimeoutError: acquiring db session timed out after 5278ms
+2026-05-04T09:36:24Z ERROR [checkout] OperationalError: connection pool exhausted, 2/4 in use
+2026-05-04T09:36:25Z INFO [checkout] order 79570 placed
+2026-05-04T09:36:26Z INFO [checkout] order 49666 placed
+2026-05-04T09:36:27Z INFO [checkout] order 96220 placed
+2026-05-04T09:36:28Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:36:29Z INFO [checkout] order 83202 placed
+2026-05-04T09:36:30Z INFO [checkout] order 39310 placed
+2026-05-04T09:36:31Z INFO [checkout] order 59698 placed
+2026-05-04T09:36:32Z ERROR [checkout] OperationalError: connection pool exhausted, 4/4 in use
+2026-05-04T09:36:33Z INFO [checkout] order 49547 placed
+2026-05-04T09:36:34Z INFO [checkout] order 25836 placed
+2026-05-04T09:36:35Z INFO [checkout] order 27366 placed
+2026-05-04T09:36:36Z ERROR [checkout] OperationalError: connection pool exhausted, 1/4 in use
+2026-05-04T09:36:37Z INFO [checkout] order 20462 placed
+2026-05-04T09:36:38Z INFO [checkout] order 56427 placed
+2026-05-04T09:36:39Z INFO [checkout] order 33376 placed

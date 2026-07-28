@@ -1,0 +1,16 @@
+{
+  "alerts": [
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "CheckoutErrorRate",
+        "service": "checkout",
+        "severity": "page"
+      },
+      "annotations": {
+        "summary": "checkout 5xx rate above 8% for 3m"
+      },
+      "startsAt": "2026-05-04T09:04:40Z"
+    }
+  ]
+}

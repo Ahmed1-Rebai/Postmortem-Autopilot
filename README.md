@@ -33,14 +33,21 @@ incident window ──► collect evidence ──► temporal knowledge graph
 
 ## Status
 
-**Phase 1 runs end to end.** Collectors → graph → candidate links → ranked
-hypotheses → drafted postmortem → mechanical validation, with a bounded repair
-loop. On golden incident 0001 the current numbers are 100% citation coverage
-and **zero hallucinated citations**, with the correct root cause ranked first.
+**Phase 1 is complete and its gate has passed.** Collectors → graph →
+candidate links → ranked hypotheses → drafted postmortem → mechanical
+validation, with a bounded repair loop.
 
-Still open: the remaining golden incidents and the eval harness that turns one
-run into a measured corpus (Phase 3), then k3s (Phase 2). See
-[TODO.md](TODO.md) for the build order.
+| Golden incident | Root cause | Leading confidence | Runner-up | Coverage | Hallucinated |
+|---|---|---|---|---|---|
+| `inc-0001-missing-env-var` | correct | 1.00 likely | 0.09 tentative | 100% | **0** |
+| `inc-0004-two-deploys` | correct | 1.00 likely | 0.37 tentative | 100% | **0** |
+
+Both cases are seeded with a plausible decoy; neither decoy appears in the
+leading hypothesis. 0004 is the hard one — both changes touch the *same*
+service, so only the module the failure actually names separates them.
+
+Two cases is a gate, not a measurement. The eval harness that turns this into
+a corpus with numbers is Phase 3; k3s is Phase 2. See [TODO.md](TODO.md).
 
 ## Docs
 

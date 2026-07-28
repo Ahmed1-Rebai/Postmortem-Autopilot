@@ -12,13 +12,22 @@ prompt's instructions unnecessary:
 from __future__ import annotations
 
 import json
+from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import pytest
 
-from agent.config import ConfidenceConfig
-from agent.llm import LLMError, MockProvider, extract_json
+from agent.config import ConfidenceConfig, LLMConfig
+from agent.llm import (
+    LLMError,
+    LLMResponse,
+    MockProvider,
+    RetryingProvider,
+    TransientLLMError,
+    build_provider,
+    extract_json,
+)
 from agent.nodes.analyst import analyze
 from agent.nodes.writer import write_draft
 from agent.prompts import PromptError
@@ -147,6 +156,90 @@ def test_extract_json_tolerates_wrappers(text: str):
 def test_extract_json_fails_loudly_on_prose():
     with pytest.raises(LLMError, match="no parseable JSON"):
         extract_json("I cannot help with that request.")
+
+
+# ---------------------------------------------------------------------------
+# retry with backoff — the docs/01 failure table
+# ---------------------------------------------------------------------------
+@dataclass
+class FlakyProvider:
+    """Fails transiently `fail_times`, then succeeds."""
+
+    fail_times: int
+    name: str = "flaky"
+    calls: int = 0
+
+    def complete(self, **_: object) -> LLMResponse:
+        self.calls += 1
+        if self.calls <= self.fail_times:
+            raise TransientLLMError("rate limited by upstream")
+        return LLMResponse(text="ok", model="flaky")
+
+
+@dataclass
+class BrokenProvider:
+    """Fails in a way retrying cannot fix."""
+
+    name: str = "broken"
+    calls: int = 0
+
+    def complete(self, **_: object) -> LLMResponse:
+        self.calls += 1
+        raise LLMError("response hit max_tokens and is truncated")
+
+
+def call(provider: object) -> LLMResponse:
+    return provider.complete(  # type: ignore[attr-defined]
+        system="s", user="u", model="m", max_tokens=100
+    )
+
+
+def test_a_transient_failure_is_retried():
+    inner = FlakyProvider(fail_times=2)
+    provider = RetryingProvider(inner, sleep=lambda _: None)
+    assert call(provider).text == "ok"
+    assert inner.calls == 3
+
+
+def test_retries_are_bounded_at_three_attempts():
+    inner = FlakyProvider(fail_times=99)
+    provider = RetryingProvider(inner, sleep=lambda _: None)
+    with pytest.raises(LLMError, match="after 3 attempts"):
+        call(provider)
+    assert inner.calls == 3
+
+
+def test_backoff_is_exponential():
+    delays: list[float] = []
+    provider = RetryingProvider(
+        FlakyProvider(fail_times=99), base_delay_seconds=2.0, sleep=delays.append
+    )
+    with pytest.raises(LLMError):
+        call(provider)
+    assert delays == [2.0, 4.0], "one sleep between attempts, doubling"
+
+
+def test_a_non_transient_failure_is_not_retried():
+    """Truncation and malformed JSON fail identically on the next attempt, so
+    retrying burns the budget and delays the real diagnosis."""
+    inner = BrokenProvider()
+    provider = RetryingProvider(inner, sleep=lambda _: None)
+    with pytest.raises(LLMError, match="truncated"):
+        call(provider)
+    assert inner.calls == 1
+
+
+def test_the_wrapper_keeps_the_inner_providers_name():
+    assert RetryingProvider(FlakyProvider(fail_times=0)).name == "flaky"
+
+
+def test_the_mock_provider_is_not_wrapped():
+    """No network, so there is nothing to back off from — and a test that
+    accidentally slept would be a slow test for no reason."""
+    config = LLMConfig(
+        provider="mock", analyst_model="m", writer_model="m", api_key=None
+    )
+    assert isinstance(build_provider(config), MockProvider)
 
 
 # ---------------------------------------------------------------------------

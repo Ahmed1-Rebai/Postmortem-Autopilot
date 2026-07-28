@@ -1,0 +1,15 @@
+# THE LABEL. See docs/07-evaluation.md.
+root_cause_event_id: "commit:reduce checkout db connection pool size"
+root_cause_summary: "Pool size reduced to 4; connections exhausted under normal load"
+acceptable_alternates: []
+must_cite_events:
+  - "log:sig:operationalerror: connection pool exhausted"
+  - "alert:CheckoutErrorRate"
+# The decoy landed FIRST and touches the same service, so temporal proximity
+# and service overlap both favour it. A run that blames it has failed the case.
+must_not_conclude:
+  - "receipt"
+  - "email"
+  - "template"
+  - "mailer"
+min_confidence: 0.70

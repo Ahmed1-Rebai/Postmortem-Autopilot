@@ -1,0 +1,15 @@
+# Golden incident 0004 — the discrimination case.
+id: INC-0004
+title: checkout errors after two same-service changes
+start: 2026-05-04T09:00:00Z
+end: 2026-05-04T10:00:00Z
+severity: sev2
+status: closed
+services:
+  - checkout
+description: >
+  Two changes landed 40 seconds apart, both to the checkout service. The first
+  restyled receipt emails; the second reduced the database connection pool
+  size. The pool exhausted under normal load. Because both changes touch the
+  same service, service overlap and the path-segment half of change-path
+  overlap fire for both — only the module the failure names separates them.

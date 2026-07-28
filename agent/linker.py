@@ -171,10 +171,15 @@ class CandidateLinker:
     ) -> tuple[str, ...]:
         fired = ["temporal_proximity"]
 
-        if cause.service and effect.service and cause.service == effect.service:
+        service_overlap = bool(
+            cause.service and effect.service and cause.service == effect.service
+        )
+        if service_overlap:
             fired.append("service_overlap")
 
-        if self._change_path_overlaps(effect, touched_services, module_tokens):
+        if self._change_path_overlaps(
+            effect, touched_services, module_tokens, service_overlap
+        ):
             fired.append("change_path_overlap")
 
         return tuple(fired)
@@ -184,21 +189,38 @@ class CandidateLinker:
         effect: Event,
         touched_services: frozenset[str],
         module_tokens: frozenset[str],
+        service_overlap_fired: bool,
     ) -> bool:
         """Did the change touch the code that failed?
 
-        Two ways to be convinced, both requiring the *change* to name something
-        the *failure* also names:
+        Two ways to be convinced, and they are not equally strong:
 
-        1. a path segment canonicalizes to the failing service, or
-        2. a changed file's stem appears as a token in the failure's signature
-           — the case that catches `app/pool.py` against "pool exhausted".
+        1. **A changed file's stem appears in the failure text** — `app/pool.py`
+           against "connection pool exhausted". This is the evidence the signal
+           exists for, and it always counts.
+        2. **A path segment maps to the failing service** — but *only* when
+           service overlap has not already established that.
+
+        The second condition is the subtle one. In a repo laid out by service,
+        every commit to `checkout/` has `checkout` as a path segment, so this
+        branch fires for every in-window change and the 0.30-weight signal
+        stops discriminating. Golden incident 0004 measures precisely that: two
+        commits, both under `checkout/`, forty seconds apart — and before this
+        rule the decoy and the real cause both scored 0.78, a confidence
+        separation of exactly zero against a target of 0.20.
+
+        Suppressing it when `service_overlap` already fired is de-duplication,
+        not a weakening: the same fact is being counted once instead of twice.
+        A commit spanning two services has no single service, so `service_overlap`
+        cannot fire and this branch still does its job.
         """
         if not touched_services and not module_tokens:
             return False
-        if effect.service and effect.service in touched_services:
+        if module_tokens & _tokens_of(effect):
             return True
-        return bool(module_tokens & _tokens_of(effect))
+        if service_overlap_fired:
+            return False
+        return bool(effect.service and effect.service in touched_services)
 
     # -- extraction ----------------------------------------------------------
     def _services_touched(self, event: Event) -> frozenset[str]:
