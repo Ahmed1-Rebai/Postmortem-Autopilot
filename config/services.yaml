@@ -1,0 +1,32 @@
+# Service name canonicalization — see docs/01, "Normalizer".
+#
+# `checkout-svc`, `checkout_service` and `checkout` are the same service. If
+# they stay distinct, the service-overlap heuristic never fires and every
+# hypothesis ends up scored on temporal proximity alone — which is the symptom
+# described in docs/06 as "every hypothesis scores identically".
+#
+# Suffix stripping handles the mechanical cases. The alias map is for the ones
+# no rule can derive: a service whose logs and its deploys simply call it
+# different things.
+
+# Stripped from the end of a name before matching. Longest match wins.
+strip_suffixes:
+  - "-svc"
+  - "-service"
+  - "-srv"
+  - "-api"
+  - "-app"
+
+# canonical name -> the aliases that mean it. Aliases are matched after
+# lowercasing and separator normalization, so list them in their natural form.
+aliases:
+  checkout:
+    - checkout-frontend
+    - co
+  payment-gateway:
+    - payment-gw
+    - paymentgw
+    - payments
+  inventory:
+    - stock
+    - inventory-manager

@@ -270,6 +270,47 @@ class ConfidenceConfig:
 
 
 @dataclass(frozen=True, slots=True)
+class ServicesConfig:
+    """Service-name canonicalization rules (`config/services.yaml`).
+
+    Config rather than code because which names mean the same service is a fact
+    about someone's infrastructure, not about this program.
+    """
+
+    aliases: dict[str, list[str]]
+    strip_suffixes: list[str]
+
+    @classmethod
+    def from_yaml(cls, path: Path) -> ServicesConfig:
+        if not path.is_file():
+            # Canonicalization degrades to suffix-free identity rather than
+            # failing the run: an absent alias map is a weaker signal, not a
+            # broken pipeline.
+            return cls(aliases={}, strip_suffixes=[])
+        try:
+            loaded = yaml.safe_load(path.read_text(encoding="utf-8"))
+        except yaml.YAMLError as exc:
+            raise ConfigError(f"{path} is not valid YAML: {exc}") from exc
+        root = _as_mapping(loaded or {}, str(path))
+
+        raw_aliases = _as_mapping(root.get("aliases") or {}, f"{path}:aliases")
+        aliases: dict[str, list[str]] = {}
+        for canonical, listed in raw_aliases.items():
+            if not isinstance(listed, list):
+                raise ConfigError(
+                    f"{path}:aliases.{canonical} must be a list, "
+                    f"got {type(listed).__name__}"
+                )
+            aliases[canonical] = [str(alias) for alias in listed]
+
+        suffixes = root.get("strip_suffixes") or []
+        if not isinstance(suffixes, list):
+            raise ConfigError(f"{path}:strip_suffixes must be a list")
+
+        return cls(aliases=aliases, strip_suffixes=[str(s) for s in suffixes])
+
+
+@dataclass(frozen=True, slots=True)
 class Config:
     llm: LLMConfig
     neo4j: Neo4jConfig
@@ -277,6 +318,7 @@ class Config:
     pipeline: PipelineConfig
     sources: SourcesConfig
     confidence: ConfidenceConfig
+    services: ServicesConfig
     output_dir: Path
 
 
@@ -326,6 +368,9 @@ def load_config(env_file: Path | None = None) -> Config:
         ),
         confidence=ConfidenceConfig.from_yaml(
             _env_path("CONFIDENCE_CONFIG_PATH", "./config/confidence.yaml")
+        ),
+        services=ServicesConfig.from_yaml(
+            _env_path("SERVICES_CONFIG_PATH", "./config/services.yaml")
         ),
         output_dir=_env_path("OUTPUT_DIR", "./out"),
     )

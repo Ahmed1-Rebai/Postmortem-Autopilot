@@ -47,17 +47,21 @@ out.** Nothing else matters until that works.
       *(mutation-checked: `MERGE`→`CREATE` fails the test)*
 
 ### 1.2 Collection & normalization
-- [ ] `collectors/base.py` — the `Collector` protocol
-- [ ] `collectors/logs.py` — plain + JSON-lines log files
-- [ ] `collectors/git.py` — local repo via `git log`, capture `files_changed`
-- [ ] `collectors/alerts.py` — Alertmanager-shaped JSON fixture
-- [ ] `normalize/signatures.py` ⭐ — strip UUIDs/hex/numbers/quoted
+- [x] `collectors/base.py` — the `Collector` protocol
+- [x] `collectors/logs.py` — plain + JSON-lines log files
+- [x] `collectors/git.py` — local repo via `git log`, capture `files_changed`
+- [x] `collectors/alerts.py` — Alertmanager-shaped JSON fixture
+- [x] `normalize/signatures.py` ⭐ — strip UUIDs/hex/numbers/quoted
       strings/paths → error fingerprint
-- [ ] `normalize/services.py` — canonical names + alias map
-- [ ] `normalize/events.py` — `RawRecord` → `Event`, content-derived IDs
-- [ ] Unit tests for signatures: table of ~30 real-looking log lines →
+- [x] `normalize/services.py` — canonical names + alias map
+      *(`config/services.yaml`, loaded via `config.py`)*
+- [x] `normalize/events.py` — `RawRecord` → `Event`, content-derived IDs
+      *(also collapses log errors by `(service, signature)`; measured 150×
+      on a 3k-line fixture)*
+- [x] Unit tests for signatures: table of ~30 real-looking log lines →
       expected fingerprints. Do this thoroughly; everything downstream
       depends on it
+      *(30-row table + collapse groups + discrimination pairs, 52 tests)*
 
 ### 1.3 Graph construction
 - [ ] `GraphWriter` — `MERGE` events, `:PART_OF`, `:AFFECTS`
