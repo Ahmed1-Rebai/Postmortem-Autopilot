@@ -64,15 +64,21 @@ out.** Nothing else matters until that works.
       *(30-row table + collapse groups + discrimination pairs, 52 tests)*
 
 ### 1.3 Graph construction
-- [ ] `GraphWriter` — `MERGE` events, `:PART_OF`, `:AFFECTS`
-- [ ] `link_temporal()` — `PRECEDES` chain (consecutive only, not transitive
+- [x] `GraphWriter` — `MERGE` events, `:PART_OF`, `:AFFECTS`
+      *(`memory.write_events`; invariant 6 keeps the Cypher there rather than
+      in a separate writer class)*
+- [x] `link_temporal()` — `PRECEDES` chain (consecutive only, not transitive
       closure — that explodes)
-- [ ] `agent/linker.py` ⭐ — the three heuristics:
-  - [ ] temporal proximity (configurable window)
-  - [ ] service overlap (uses canonicalized names)
-  - [ ] change-path overlap (commit files → service/module map)
-- [ ] Record *which* heuristics fired on each `POSSIBLY_CAUSED` edge
-- [ ] Unit test: fixture event list → assert the exact candidate edge set
+      *(`memory.link_temporal`, done in 1.1)*
+- [x] `agent/linker.py` ⭐ — the three heuristics:
+  - [x] temporal proximity (configurable window)
+  - [x] service overlap (uses canonicalized names)
+  - [x] change-path overlap (commit files → service/module map)
+        *(matches a path segment against the failing service, **or** a
+        distinctive file stem against the failure's signature — the
+        `app/pool.py` ↔ "pool exhausted" case)*
+- [x] Record *which* heuristics fired on each `POSSIBLY_CAUSED` edge
+- [x] Unit test: fixture event list → assert the exact candidate edge set
 
 ### 1.4 Confidence
 - [ ] `agent/confidence.py` ⭐ — the model from
