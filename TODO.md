@@ -81,15 +81,22 @@ out.** Nothing else matters until that works.
 - [x] Unit test: fixture event list → assert the exact candidate edge set
 
 ### 1.4 Confidence
-- [ ] `agent/confidence.py` ⭐ — the model from
+- [x] `agent/confidence.py` ⭐ — the model from
       [docs/03-confidence-model.md](docs/03-confidence-model.md), pure functions
-- [ ] Availability-aware denominator (unavailable source ⇒ excluded, not
+- [x] Availability-aware denominator (unavailable source ⇒ excluded, not
       penalized)
-- [ ] Contradiction penalty, capped at 0.4
-- [ ] Bands: likely / plausible / tentative
-- [ ] `config/confidence.yaml` — weights as config
-- [ ] Unit tests: table of scenarios → expected scores, including both worked
-      examples from the doc
+- [x] Contradiction penalty, capped at 0.4
+- [x] Bands: likely / plausible / tentative
+- [x] `config/confidence.yaml` — weights as config *(landed in Phase 0)*
+- [x] Unit tests: table of scenarios → expected scores, including both worked
+      examples from the doc *(53 tests; H1 → 1.00 likely, H2 → 0.29 tentative)*
+
+> **Open question for 1.5+:** on the demo incident the decoy chain scores 0.72
+> against the real cause's 0.78, because `change_path_overlap` fires whenever a
+> commit's path segment matches the failing service — which is nearly every
+> commit in a repo laid out by service. The strong half of that signal (file
+> stem ↔ failure text) carries no extra weight. Splitting it would change the
+> signal set in [docs/03](docs/03-confidence-model.md), so it needs an ADR.
 
 ### 1.5 Reasoning plane
 - [ ] `nodes/analyst.py` — rank hypotheses, ≥2 when ≥2 chains exist

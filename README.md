@@ -51,7 +51,6 @@ k3s work starts.
 | [docs/07-evaluation.md](docs/07-evaluation.md) | Golden incidents, metrics, CI gates |
 | [docs/adr/](docs/adr/) | Architecture decision records (the "why not X" answers) |
 | [TODO.md](TODO.md) | Phased task list — the build order |
-| [CLAUDE.md](CLAUDE.md) | Working agreement for AI agents on this repo |
 
 ## Quickstart (once Phase 1 exists)
 
