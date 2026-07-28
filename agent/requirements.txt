@@ -10,6 +10,9 @@ anthropic>=0.40,<1.0
 neo4j>=5.20,<6.0
 redis>=5.0,<7.0            # Valkey speaks the Redis protocol
 
+# --- HTTP (OpenAI-compatible gateways) ---
+httpx>=0.27,<1.0
+
 # --- I/O boundaries & config ---
 pydantic>=2.7,<3.0
 python-dotenv>=1.0,<2.0

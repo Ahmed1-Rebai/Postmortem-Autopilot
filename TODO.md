@@ -99,16 +99,28 @@ out.** Nothing else matters until that works.
 > signal set in [docs/03](docs/03-confidence-model.md), so it needs an ADR.
 
 ### 1.5 Reasoning plane
-- [ ] `nodes/analyst.py` — rank hypotheses, ≥2 when ≥2 chains exist
-- [ ] Disconfirming evidence is a **required** output field
-- [ ] `prompts/analyst.md` — structured JSON output, node IDs only
-- [ ] `render/timeline.py` — timeline rendered **by code**, not the LLM
-- [ ] `nodes/writer.py` — Summary, Impact, Hypotheses, Contributing Factors,
+- [x] `nodes/analyst.py` — rank hypotheses, ≥2 when ≥2 chains exist
+      *(also re-ranks by computed confidence: the model proposes an order,
+      the number decides it)*
+- [x] Disconfirming evidence is a **required** output field
+- [x] `prompts/analyst.md` — structured JSON output, node IDs only
+- [x] `render/timeline.py` — timeline rendered **by code**, not the LLM
+- [x] `nodes/writer.py` — Summary, Impact, Hypotheses, Contributing Factors,
       Corrective Actions, Open Questions
-- [ ] `prompts/writer.md` — `[src:<id>, <ts>]` on every factual sentence
-- [ ] `render/document.py` — assemble code-rendered + LLM-written sections
-- [ ] Mock LLM provider (`LLM_PROVIDER=mock`) — must land here, not later; CI
+- [x] `prompts/writer.md` — `[src:<id>]` on every factual sentence
+- [x] `render/document.py` — assemble code-rendered + LLM-written sections
+- [x] Mock LLM provider (`LLM_PROVIDER=mock`) — must land here, not later; CI
       and the retry-loop tests depend on it
+- [x] `agent/llm.py` — provider protocol; mock / anthropic / openrouter
+      *(not in the original list, but the nodes need something to call)*
+
+> **Finding from the first real run (2026-07-28):** the model reads
+> `contradicting_event_ids` as "everything unrelated", listing the decoy commit
+> and other services' events as disconfirming. Three "contradictions" cost the
+> full 0.40 penalty, so the *correct* root cause landed at 0.60 plausible
+> instead of likely. Unrelated ≠ contradicting. Fix is a sharper prompt
+> definition, and possibly a code filter requiring a contradicting event to
+> share the hypothesis's service or signature.
 
 ### 1.6 Verification plane ⭐ 🔴
 This is the project. Give it real attention.
