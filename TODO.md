@@ -31,14 +31,20 @@ The whole point of this phase: **one incident in, one validated postmortem
 out.** Nothing else matters until that works.
 
 ### 1.1 Data model & memory
-- [ ] `agent/state.py` — `Event`, `Incident`, `Hypothesis`, `CandidateLink`,
+- [x] `agent/state.py` — `Event`, `Incident`, `Hypothesis`, `CandidateLink`,
       `ValidationReport`, `RunReport`, `PipelineState`
-- [ ] `agent/memory.py` — full interface from
+      *(plus `Window`, `Chain`, `CitationCheck`, `SimilarIncident`,
+      `Complaint` — the supporting types the listed ones need to be
+      well-formed)*
+- [x] `agent/memory.py` — full interface from
       [docs/02-knowledge-graph.md](docs/02-knowledge-graph.md)
-- [ ] `ensure_schema()` — constraints + indexes, idempotent
-- [ ] Integration test: write 50 events twice → assert exactly 50 nodes
+      *(a `Neo4jMemory` class rather than module-level functions, so the
+      driver is injected instead of global — see the module docstring)*
+- [x] `ensure_schema()` — constraints + indexes, idempotent
+- [x] Integration test: write 50 events twice → assert exactly 50 nodes
       (idempotency is load-bearing; a duplicate silently inflates every
       confidence score)
+      *(mutation-checked: `MERGE`→`CREATE` fails the test)*
 
 ### 1.2 Collection & normalization
 - [ ] `collectors/base.py` — the `Collector` protocol
