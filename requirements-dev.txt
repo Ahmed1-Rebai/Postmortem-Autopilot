@@ -1,0 +1,8 @@
+# Test + lint tooling. Installed in CI and locally, never in the runtime image.
+-r agent/requirements.txt
+
+pytest>=8.0,<9.0
+testcontainers[neo4j]>=4.5,<5.0
+ruff>=0.6,<1.0
+mypy>=1.11,<2.0
+types-PyYAML>=6.0

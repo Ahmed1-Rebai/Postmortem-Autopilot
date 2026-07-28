@@ -1,0 +1,24 @@
+# --- secrets & local config ---
+.env
+
+# --- run artifacts ---
+out/
+evals/results/
+
+# --- python ---
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+
+CLAUDE.md

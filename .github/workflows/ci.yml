@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Phase 0 scope: ruff + mypy + unit tests. Phase 3.3 extends this with the
+# integration job (Neo4j service container), the mock eval suite, and the image
+# build/push. Lint and types are here from day one so they never accumulate a
+# backlog to "fix later".
+
+jobs:
+  lint-and-types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: ruff (lint)
+        run: ruff check .
+
+      - name: ruff (format)
+        run: ruff format --check .
+
+      - name: mypy
+        run: mypy agent
+
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      # No API key, no containers — everything here must run under
+      # LLM_PROVIDER=mock. See CLAUDE.md, "Testing expectations".
+      - name: pytest tests/unit
+        env:
+          LLM_PROVIDER: mock
+          NEO4J_PASSWORD: ci-not-a-real-password
+        run: pytest tests/unit -q

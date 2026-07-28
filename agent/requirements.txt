@@ -1,0 +1,22 @@
+# Runtime dependencies only — this file is what the Phase 2 Dockerfile installs.
+# Test/lint tooling lives in requirements-dev.txt so the image stays ~180 MB.
+
+# --- orchestration & LLM ---
+langgraph>=0.2,<0.7
+langchain-core>=0.3,<0.4
+anthropic>=0.40,<1.0
+
+# --- memory ---
+neo4j>=5.20,<6.0
+redis>=5.0,<7.0            # Valkey speaks the Redis protocol
+
+# --- I/O boundaries & config ---
+pydantic>=2.7,<3.0
+python-dotenv>=1.0,<2.0
+pyyaml>=6.0,<7.0
+
+# --- collectors (Phase 4 live sources; pinned now so the interface is stable) ---
+PyGithub>=2.3,<3.0
+
+# --- observability ---
+prometheus-client>=0.20,<1.0

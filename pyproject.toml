@@ -1,0 +1,79 @@
+[project]
+name = "postmortem-autopilot"
+version = "0.1.0"
+description = "Evidence-grounded incident postmortems with mechanically validated citations"
+requires-python = ">=3.12"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["agent", "evals"]
+
+# ---------------------------------------------------------------------------
+# ruff
+# ---------------------------------------------------------------------------
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+src = ["."]
+# The docs contain illustrative Python in fenced blocks. They are design
+# documents, not code — `ruff format` must not rewrite them.
+extend-exclude = ["docs", "evals/fixtures", "evals/incidents"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W",   # pycodestyle
+    "F",        # pyflakes
+    "I",        # isort
+    "UP",       # pyupgrade
+    "B",        # bugbear
+    "SIM",      # simplify
+    "ANN",      # missing annotations — CLAUDE.md requires full type hints
+    "RUF",
+    "DTZ",      # naive datetimes are a bug (CLAUDE.md: all timestamps tz-aware)
+    "TID",
+]
+ignore = [
+    "ANN401",   # allow `Any` at I/O boundaries where the payload is genuinely untyped
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN"]
+"evals/**" = ["ANN"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.format]
+quote-style = "double"
+
+# ---------------------------------------------------------------------------
+# mypy
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+disallow_any_generics = true
+# Dataclasses everywhere, driver types confined to memory.py — strict is
+# affordable here and catches the class of bug this project cares about.
+
+[[tool.mypy.overrides]]
+module = ["langgraph.*", "testcontainers.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["tests.*", "evals.*"]
+disallow_untyped_defs = false
+
+# ---------------------------------------------------------------------------
+# pytest
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers"
+markers = [
+    "integration: requires a real Neo4j via testcontainers",
+]

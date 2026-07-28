@@ -1,0 +1,38 @@
+# Confidence model parameters — see docs/03-confidence-model.md.
+#
+# These are config, not constants, so the eval suite can report scores under
+# alternative weightings (`evals.runner --sweep-weights`) and the choice can be
+# justified with numbers rather than taste.
+#
+# The model:
+#     raw_support = Σ(wᵢ·sᵢ for available signals that fired)
+#                   ─────────────────────────────────────────
+#                   Σ(wᵢ    for signals AVAILABLE this run)
+#     confidence  = clamp(raw_support − contradiction_penalty, 0.0, 1.0)
+#
+# The denominator is availability-aware on purpose: an unwired source leaves the
+# denominator entirely rather than acting as a permanent penalty.
+
+weights:
+  # files in the commit map to the failing service/module — the signal that
+  # separates "a deploy happened" from "*this* deploy"
+  change_path_overlap: 0.30
+  # an error signature appears after the cause and not before it in baseline
+  log_signature_match: 0.25
+  # a Prometheus alert for the same service fires inside the window
+  metric_correlation: 0.20
+  # cause precedes effect within the configured window — weak on its own
+  temporal_proximity: 0.15
+  # a chat message names the cause or the fix
+  human_confirmation: 0.10
+
+contradiction:
+  # penalty = min(cap, per_event × n_contradicting_events)
+  per_event: 0.15
+  # capped so contradicting evidence can demote a hypothesis but never zero it
+  cap: 0.40
+
+bands:
+  # lower bound, inclusive; anything below `plausible` is `tentative`
+  likely: 0.75
+  plausible: 0.40

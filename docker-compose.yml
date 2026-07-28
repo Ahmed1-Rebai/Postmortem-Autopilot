@@ -1,0 +1,33 @@
+# Phase 1 local stack. Neo4j + Valkey and nothing else — Phase 1 collectors read
+# fixtures from disk, so Prometheus/Loki/Grafana/NATS would be overhead with no
+# payoff. They arrive in Phase 2 as k3s workloads. See docs/06-local-dev.md.
+
+services:
+  neo4j:
+    image: neo4j:5-community
+    container_name: pm-neo4j
+    ports: ["7474:7474", "7687:7687"]
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD}
+      NEO4J_server_memory_heap_max__size: 512m
+      NEO4J_server_memory_pagecache_size: 256m
+    volumes: ["neo4j_data:/data"]
+    healthcheck:
+      test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "${NEO4J_PASSWORD}", "RETURN 1"]
+      interval: 10s
+      retries: 10
+
+  valkey:
+    image: valkey/valkey:8-alpine
+    container_name: pm-valkey
+    ports: ["6379:6379"]
+    # Persistence off on purpose: this is a cache, and restarting it must be a
+    # non-event. If losing Valkey breaks a run, that's a pipeline bug.
+    command: ["valkey-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 10s
+      retries: 5
+
+volumes:
+  neo4j_data:
