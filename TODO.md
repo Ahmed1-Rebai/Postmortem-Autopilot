@@ -192,8 +192,9 @@ This is the project. Give it real attention.
 > the real cause both scored 0.78, a confidence separation of **exactly zero**
 > on the case built to measure discrimination. See the linker fix below.
 
-- [ ] Screenshot: postmortem + Neo4j graph side by side → README
-      *(needs a human at a browser — the data is in Neo4j after a run)*
+- [x] Screenshot: postmortem + Neo4j graph side by side → README
+      *(`docs/images/postmortem-graph.png`; follow `52fd7fa8ac6b0fcb` across
+      the citation, the timeline row, and the node's raw_json)*
 
 ## Phase 2 — k3s
 
@@ -272,7 +273,7 @@ interest, not by CV keyword count.
 
 - [ ] README: architecture diagram (the three planes), eval metrics table,
       demo GIF of a run
-- [ ] The side-by-side screenshot: postmortem citations ↔ Neo4j nodes
+- [x] The side-by-side screenshot: postmortem citations ↔ Neo4j nodes
 - [ ] Public repo, clean history, real commit messages
 - [ ] 2–3 CV bullets, past tense, quantified from **real eval numbers** —
       never invented ones

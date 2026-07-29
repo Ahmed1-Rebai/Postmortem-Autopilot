@@ -49,6 +49,22 @@ service, so only the module the failure actually names separates them.
 Two cases is a gate, not a measurement. The eval harness that turns this into
 a corpus with numbers is Phase 3; k3s is Phase 2. See [TODO.md](TODO.md).
 
+## What "traceable" actually means
+
+![A generated postmortem beside the graph it was built from](docs/images/postmortem-graph.png)
+
+Left: the generated postmortem. Right: the graph, queried live.
+
+Follow one ID. `52fd7fa8ac6b0fcb` appears as a `[src:...]` tag in the Impact
+paragraph, as a row in the code-rendered Timeline, and as a node whose stored
+properties include the raw log line it came from — `count: 776`, because
+signature collapsing folded 776 log lines into one failure mode.
+
+Nothing in the left pane shipped without the right pane confirming it. The
+validator resolves every tag against Neo4j and rejects the document if a single
+one fails to resolve, if a cited timestamp disagrees with the node's, or if
+coverage falls below 95%.
+
 ## Docs
 
 | Doc | What's in it |
