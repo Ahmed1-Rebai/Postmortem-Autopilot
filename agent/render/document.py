@@ -13,12 +13,14 @@ from collections.abc import Sequence
 from datetime import datetime
 from typing import Final
 
+from agent.render.recurrence import render_similar_incidents
 from agent.render.timeline import render_timeline
-from agent.state import Event, Hypothesis, Incident, RunReport
+from agent.state import Event, Hypothesis, Incident, RunReport, SimilarIncident
 
-#: Where the code-rendered Timeline is spliced in. After Impact, before
-#: Hypotheses — the reader wants the sequence of events before the argument
-#: about what caused them.
+#: Where the code-rendered Timeline and Similar Past Incidents sections are
+#: spliced in. After Impact, before Hypotheses — the reader wants the sequence
+#: of events and any recurrence context before the argument about what caused
+#: them.
 _TIMELINE_ANCHOR: Final[str] = "## Hypotheses"
 
 _HEADING: Final[re.Pattern[str]] = re.compile(r"^##\s+", re.MULTILINE)
@@ -32,6 +34,7 @@ def render_document(
     hypotheses: Sequence[Hypothesis],
     sources_used: Sequence[str],
     sources_failed: Sequence[str] = (),
+    similar_incidents: Sequence[SimilarIncident] = (),
     generated_at: datetime | None = None,
 ) -> str:
     """Splice the code-rendered sections into the model's draft."""
@@ -43,24 +46,37 @@ def render_document(
             sources_failed=sources_failed,
             generated_at=generated_at,
         ),
-        _with_timeline(draft_md, events),
+        _with_generated_sections(draft_md, events, similar_incidents),
     ]
     return "\n\n".join(part.strip() for part in parts if part.strip()) + "\n"
 
 
-def _with_timeline(draft_md: str, events: Sequence[Event]) -> str:
-    """Insert the timeline, replacing any the model wrote anyway.
+def _with_generated_sections(
+    draft_md: str, events: Sequence[Event], similar_incidents: Sequence[SimilarIncident]
+) -> str:
+    """Insert the Timeline and Similar Past Incidents sections, replacing any
+    Timeline the model wrote anyway.
 
-    The prompt forbids writing one; this makes the prompt unnecessary. A
+    The prompt forbids writing a timeline; this makes the prompt unnecessary. A
     model-written timeline is a table of unchecked timestamps, which is exactly
-    the surface this project removes.
+    the surface this project removes. Similar Past Incidents is never in the
+    model's draft to begin with — the Writer is never given the data, because
+    whether a past fix is still open is a structural fact invariant 1 reserves
+    for code.
     """
     stripped = _strip_model_timeline(draft_md)
-    timeline = render_timeline(events)
+    generated = "\n".join(
+        part
+        for part in (
+            render_timeline(events),
+            render_similar_incidents(similar_incidents),
+        )
+        if part
+    )
     index = stripped.find(_TIMELINE_ANCHOR)
     if index == -1:
-        return f"{stripped.rstrip()}\n\n{timeline}"
-    return f"{stripped[:index].rstrip()}\n\n{timeline}\n{stripped[index:]}"
+        return f"{stripped.rstrip()}\n\n{generated}"
+    return f"{stripped[:index].rstrip()}\n\n{generated}\n{stripped[index:]}"
 
 
 def _strip_model_timeline(draft_md: str) -> str:

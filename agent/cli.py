@@ -34,6 +34,7 @@ from agent.graph import PipelineDeps, build_pipeline, initial_state
 from agent.linker import CandidateLinker, LinkerConfig
 from agent.llm import LLMError, build_provider
 from agent.memory import GraphStateError, Neo4jMemory
+from agent.nodes.recurrence import persist_corrective_actions
 from agent.nodes.validator import validate as run_validator
 from agent.normalize.services import ServiceCanonicalizer
 from agent.observability.metrics import observe_run, write_metrics
@@ -172,6 +173,11 @@ def cmd_run(config: Config, incident_dir: Path, metrics_path: str | None) -> int
                 now=finished_at,
             )
             memory.link_similar_incidents(spec.incident.id)
+            # Only a published document's Corrective Actions bullets become
+            # graph facts — a rejected draft's proposals were never checked.
+            persist_corrective_actions(
+                memory, spec.incident.id, final.get("document_md", "")
+            )
 
     validation = report.validation
     observe_run(

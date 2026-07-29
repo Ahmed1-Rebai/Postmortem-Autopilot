@@ -1,0 +1,14 @@
+# THE LABEL. See docs/07-evaluation.md.
+root_cause_event_id: "commit:simplify checkout pool configuration"
+root_cause_summary: "Pool size bound removed again; pool exhausted under load"
+acceptable_alternates: []
+must_cite_events:
+  - "log:sig:connectionerror: pool exhausted (<num>/<num>)"
+  - "alert:HighErrorRate"
+must_not_conclude: []
+min_confidence: 0.70
+# Extension beyond the documented schema, specific to this case: the
+# recurrence section is a code-rendered fact, not a hypothesis the model
+# proposes, so it's checked separately from precision@1 — by
+# tests/integration/test_pipeline_recurrence.py, not by the eval harness.
+must_show_recurrence_of: INC-0001

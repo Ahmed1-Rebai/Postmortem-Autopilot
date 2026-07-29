@@ -117,6 +117,18 @@ def make_hypothesis_id(incident_id: str, statement: str) -> str:
     return f"hyp:{digest.hexdigest()[:16]}"
 
 
+def make_corrective_action_id(incident_id: str, description: str) -> str:
+    """Content-derived and namespaced by incident.
+
+    Re-extracting the same bullet from a re-run `MERGE`s onto the same node
+    instead of accumulating duplicates — the same idempotency story as events
+    and hypotheses (invariant 5), applied to the one fact a later incident's
+    recurrence section depends on being singular: *is this fix still open*.
+    """
+    digest = hashlib.sha256(f"{incident_id}:{description}".encode())
+    return f"ca:{digest.hexdigest()[:16]}"
+
+
 # ---------------------------------------------------------------------------
 # evidence
 # ---------------------------------------------------------------------------

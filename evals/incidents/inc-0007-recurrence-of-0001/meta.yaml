@@ -1,0 +1,28 @@
+# Golden incident 0007 — recurrence of #01, six weeks later (docs/07, case 07).
+#
+# The causal shape is deliberately the same as INC-0001's: a commit removes
+# the connection-pool guard on checkout, the pool exhausts, the same
+# HighErrorRate alert fires. That is what makes this a *recurrence* rather
+# than a coincidence — the fingerprint components (cause_type|effect_type|
+# service|signature) match INC-0001's on the nose.
+#
+# Recurrence is a property of graph state that spans runs, so this fixture
+# alone doesn't prove the feature — it needs INC-0001 to already be in the
+# graph. See tests/integration/test_pipeline_recurrence.py for the
+# deterministic (mock-provider) end-to-end proof. To see it for real:
+#   run --incident inc-0001-missing-env-var   (first, same Neo4j)
+#   run --incident inc-0007-recurrence-of-0001
+id: INC-0007
+title: checkout pool exhaustion, second occurrence
+start: 2026-04-23T10:00:00Z
+end: 2026-04-23T11:00:00Z
+severity: sev3
+status: closed
+services:
+  - checkout
+description: >
+  Six weeks after INC-0001, a different commit removes the same connection
+  pool bound on checkout and the service exhausts its pool again. The
+  interesting question isn't "what caused this" — it's whether the system
+  volunteers that this happened before, and names whichever corrective
+  action from INC-0001 never actually landed.

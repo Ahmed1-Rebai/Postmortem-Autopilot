@@ -557,6 +557,51 @@ class Neo4jMemory:
                 incidentId=incident_id,
             )
 
+    def add_corrective_action(
+        self,
+        incident_id: str,
+        action_id: str,
+        description: str,
+        status: str = "open",
+        owner: str | None = None,
+        due: datetime | None = None,
+    ) -> str:
+        """`MERGE` a `CorrectiveAction` and its `REMEDIATED_BY` edge.
+
+        `action_id` is content-derived (`make_corrective_action_id`) and passed
+        in rather than computed here, for the same reason `write_events` takes
+        pre-built rows: this file owns the Cypher, not the hashing scheme.
+
+        `status` is only ever set `ON CREATE`. A later run must not silently
+        flip a human-tracked action back to "open" by re-extracting the same
+        bullet from a fresh draft — completion is marked separately, outside
+        this pipeline, by whoever actually did the work.
+        """
+        self._require_incident(incident_id)
+        query = """
+        MATCH (i:Incident {id: $incidentId})
+        MERGE (ca:CorrectiveAction {id: $actionId})
+        ON CREATE SET ca.description = $description,
+                       ca.status = $status,
+                       ca.owner = $owner,
+                       ca.due = $due
+        MERGE (i)-[:REMEDIATED_BY]->(ca)
+        RETURN ca.id AS id
+        """
+        with self._driver.session(database=self._database) as session:
+            record = session.run(
+                query,
+                incidentId=incident_id,
+                actionId=action_id,
+                description=description,
+                status=status,
+                owner=owner,
+                due=due,
+            ).single()
+        if record is None:
+            raise GraphStateError(f"failed to write corrective action {action_id}")
+        return str(record["id"])
+
     def compute_fingerprint(self, incident_id: str) -> list[str]:
         """Fingerprint the incident's causal pattern and store it on the node.
 

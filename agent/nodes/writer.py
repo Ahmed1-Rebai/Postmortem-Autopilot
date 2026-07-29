@@ -4,8 +4,13 @@ The Writer never sees the graph. It sees the events it may cite, the
 hypotheses with their computed confidence bands, and — on a retry — the
 validator's specific complaints. Everything it produces is checked afterwards.
 
-The Timeline is deliberately withheld from it and inserted by code, so the
+The Timeline and the Similar Past Incidents section are both deliberately
+withheld from it and inserted by code. The Timeline is withheld so the
 document's one section full of timestamps contains no model-generated ones.
+Similar Past Incidents is withheld for a related but sharper reason: whether a
+past fix is still open is a structural fact read straight off the graph, and
+asking the Writer to phrase it would be asking it to source a fact — the thing
+invariant 1 forbids. See `render/recurrence.py`.
 """
 
 from __future__ import annotations
@@ -16,7 +21,7 @@ from dataclasses import dataclass
 from agent.llm import DEFAULT_MAX_TOKENS, LLMProvider
 from agent.prompts import load as load_prompt
 from agent.render.timeline import render_evidence_for_model
-from agent.state import Complaint, Event, Hypothesis, SimilarIncident, ValidationReport
+from agent.state import Complaint, Event, Hypothesis, ValidationReport
 
 
 @dataclass(frozen=True, slots=True)
@@ -31,7 +36,6 @@ def write_draft(
     incident_title: str,
     events: Sequence[Event],
     hypotheses: Sequence[Hypothesis],
-    similar_incidents: Sequence[SimilarIncident] = (),
     previous_draft: str | None = None,
     validation: ValidationReport | None = None,
     provider: LLMProvider,
@@ -55,14 +59,6 @@ def write_draft(
         "",
         _render_hypotheses(hypotheses, events),
     ]
-
-    if similar_incidents:
-        sections += [
-            "",
-            "## Similar past incidents",
-            "",
-            _render_similar(similar_incidents),
-        ]
 
     if repairing:
         assert validation is not None and previous_draft is not None
@@ -118,25 +114,6 @@ def _render_hypotheses(
             f"  Disconfirming evidence:\n{against}"
         )
     return "\n\n".join(blocks)
-
-
-def _render_similar(similar: Sequence[SimilarIncident]) -> str:
-    lines = []
-    for incident in similar:
-        open_actions = [
-            action for action in incident.corrective_actions if action.is_open
-        ]
-        detail = (
-            f" Corrective actions still open: "
-            f"{'; '.join(action.description for action in open_actions)}."
-            if open_actions
-            else ""
-        )
-        lines.append(
-            f"- {incident.incident_id} ({incident.title}), "
-            f"overlap {incident.overlap:.2f}.{detail}"
-        )
-    return "\n".join(lines)
 
 
 def _render_complaints(validation: ValidationReport) -> str:

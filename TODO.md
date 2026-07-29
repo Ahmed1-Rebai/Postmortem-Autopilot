@@ -226,14 +226,47 @@ This is the project. Give it real attention.
 The phase that makes this more than a demo.
 
 ### 3.1 Recurrence memory
-- [ ] `compute_fingerprint()` — `(cause_type, effect_type, service, signature)`
-- [ ] `find_similar_incidents()` — the Cypher in the graph doc
-- [ ] `CorrectiveAction` nodes + `REMEDIATED_BY`
-- [ ] `nodes/recurrence.py` — inject `## Similar Past Incidents`
-- [ ] Surface **open** corrective actions from past matching incidents — this
+- [x] `compute_fingerprint()` — `(cause_type, effect_type, service, signature)`
+      *(landed in Phase 1.1 — `memory.compute_fingerprint`)*
+- [x] `find_similar_incidents()` — the Cypher in the graph doc
+      *(also landed in 1.1; this phase is what finally exercises it)*
+- [x] `CorrectiveAction` nodes + `REMEDIATED_BY`
+      *(`memory.add_corrective_action` — new. Status is only ever set
+      `ON CREATE`: re-extracting the same bullet from a later run must not
+      silently reopen an action a human has since marked done)*
+- [x] `nodes/recurrence.py` — inject `## Similar Past Incidents`
+      *(code-rendered as a markdown table in `render/recurrence.py`, spliced
+      into the document the same way the Timeline is — never handed to the
+      Writer. Whether a past fix is still open is a structural fact,
+      and asking a model to phrase it would be asking it to source a fact,
+      which invariant 1 forbids. `nodes/recurrence.py` is the write half:
+      it extracts the Writer's own "Corrective Actions" bullets from a
+      *published* document and persists them as open actions, reusing the
+      validator's section-exemption logic rather than a second parser)*
+- [x] Surface **open** corrective actions from past matching incidents — this
       is the money feature ("third time; the March fix is still open")
-- [ ] `SIMILAR_TO` edges persisted post-run
-- [ ] Golden incident #07 (recurrence of #01) passes
+- [x] `SIMILAR_TO` edges persisted post-run *(`memory.link_similar_incidents`,
+      called from `cli.cmd_run` alongside the new
+      `persist_corrective_actions` call — both only after a document passes,
+      so a rejected draft's proposals never become graph facts)*
+- [x] Golden incident #07 (recurrence of #01) passes
+
+> **Verified two ways (2026-07-29).** Deterministic:
+> `tests/integration/test_pipeline_recurrence.py` runs the actual DAG twice
+> against the mock provider and asserts INC-0007's document names INC-0001.
+> Real model, same fixtures: INC-0001 produced 4 open corrective actions;
+> INC-0007's document opened its recurrence section with
+> `**4 open corrective actions from a past matching incident**`, 100% overlap,
+> all four named verbatim, root cause (the new commit) ranked #1 likely.
+>
+> Design note: incident 0007's fixture originally had **no** commit — the
+> idea being "same symptom, no new code change." That produced a fingerprint
+> component `log_error|alert_fired|...`, which cannot match INC-0001's
+> `commit|log_error|...` components: `cause_type` is part of the match key, and
+> a symptom-only incident has no commit to be a cause. Recurrence needs the
+> *shape* to repeat, not just the symptom — so 0007 was rebuilt with its own
+> commit reintroducing the same class of bug, which is also a more honest
+> story ("the fix from six weeks ago never landed").
 
 ### 3.2 Eval harness
 - [ ] `evals/runner.py` + `evals/metrics.py`

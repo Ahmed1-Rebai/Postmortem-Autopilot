@@ -225,7 +225,6 @@ def _write_node(deps: PipelineDeps) -> Any:
             incident_title=_incident_of(state).title,
             events=list(state.get("events") or []),
             hypotheses=list(state.get("hypotheses") or []),
-            similar_incidents=list(state.get("similar_incidents") or []),
             previous_draft=previous if repairing else None,
             validation=report if repairing else None,
             provider=deps.provider,
@@ -252,6 +251,7 @@ def _validate_node(deps: PipelineDeps) -> Any:
             hypotheses=list(state.get("hypotheses") or []),
             sources_used=list(state.get("sources_used") or []),
             sources_failed=[f.source for f in state.get("sources_failed") or []],
+            similar_incidents=list(state.get("similar_incidents") or []),
             generated_at=deps.now(),
         )
         # The assembled document is what gets checked, so nothing ships that
