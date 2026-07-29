@@ -1,0 +1,24 @@
+# Local k3d overrides: tiny limits, mock LLM (docs/05). The image is
+# k3d-imported, not pulled from a registry, so pullPolicy must not try to
+# reach one.
+#
+#   helm install postmortem k3s/helm/postmortem-autopilot \
+#     -f k3s/helm/postmortem-autopilot/values-dev.yaml
+
+pipeline:
+  image:
+    pullPolicy: Never
+  resources:
+    requests: {cpu: 100m, memory: 192Mi}
+    limits: {cpu: 500m, memory: 512Mi}
+
+neo4j:
+  # Smaller heap/pagecache to match, not just a smaller resource limit — the
+  # default 512m+256m alone would equal the whole limit below and leave no
+  # headroom for JVM overhead (metaspace, thread stacks, native memory).
+  heapSize: 256m
+  pagecacheSize: 128m
+  resources:
+    requests: {cpu: 100m, memory: 640Mi}
+    limits: {cpu: 500m, memory: 768Mi}
+  storage: 2Gi

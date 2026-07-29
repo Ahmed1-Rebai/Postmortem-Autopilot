@@ -16,6 +16,7 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 
 from agent.confidence import (
@@ -49,12 +50,13 @@ def analyze(
     confidence_config: ConfidenceConfig,
     sources_used: Sequence[str],
     max_tokens: int = DEFAULT_MAX_TOKENS,
+    prompts_dir: Path | None = None,
 ) -> AnalystResult:
     """Rank hypotheses over the candidate subgraph."""
     if not events:
         return AnalystResult((), (), 0, 0)
 
-    system = load_prompt("analyst")
+    system = load_prompt("analyst", prompts_dir)
     user = _build_prompt(events, chains)
     response = provider.complete(
         system=system, user=user, model=model, max_tokens=max_tokens

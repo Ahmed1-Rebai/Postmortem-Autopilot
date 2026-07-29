@@ -1,0 +1,50 @@
+# Persistence off on purpose (mirrors docker-compose.yml): it's a cache, and
+# restarting it must be a non-event.
+apiVersion: v1
+kind: Service
+metadata:
+  name: valkey
+  namespace: {{ .Values.namespace.data }}
+spec:
+  selector: {app: valkey}
+  ports:
+    - {port: 6379, targetPort: 6379}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: valkey
+  namespace: {{ .Values.namespace.data }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: valkey}
+  template:
+    metadata:
+      labels: {app: valkey}
+    spec:
+      # No runAsNonRoot — same finding as neo4j-statefulset.yaml: the
+      # official image starts as uid 0 with no documented non-root mode.
+      # allowPrivilegeEscalation/readOnlyRootFilesystem/dropped capabilities
+      # are kept, since none of those depend on the image's own uid.
+      securityContext:
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: valkey
+          image: {{ .Values.valkey.image | quote }}
+          command: ["valkey-server", "--save", "", "--appendonly", "no"]
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: ["ALL"]}
+          ports:
+            - {containerPort: 6379}
+          resources: {{- toYaml .Values.valkey.resources | nindent 12 }}
+          readinessProbe:
+            exec: {command: ["valkey-cli", "ping"]}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            exec: {command: ["valkey-cli", "ping"]}
+            initialDelaySeconds: 10
+            periodSeconds: 15

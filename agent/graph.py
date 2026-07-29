@@ -204,6 +204,7 @@ def _analyze_node(deps: PipelineDeps) -> Any:
             model=deps.config.llm.analyst_model,
             confidence_config=deps.config.confidence,
             sources_used=list(state.get("sources_used") or []),
+            prompts_dir=deps.config.prompts_dir,
         )
         return {
             "hypotheses": result.hypotheses,
@@ -229,6 +230,7 @@ def _write_node(deps: PipelineDeps) -> Any:
             validation=report if repairing else None,
             provider=deps.provider,
             model=deps.config.llm.writer_model,
+            prompts_dir=deps.config.prompts_dir,
         )
         return {
             "draft_md": result.draft_md,

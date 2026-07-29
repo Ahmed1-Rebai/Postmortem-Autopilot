@@ -1,0 +1,16 @@
+# Separate from the StatefulSet's volumeClaimTemplate on purpose: a
+# hand-declared PVC survives `helm uninstall` by default (StatefulSet-owned
+# claims do too, but making the PVC an explicit top-level object is what lets
+# it be referenced — e.g. by the future backup CronJob's restore path —
+# without knowing the StatefulSet's generated claim name.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: neo4j-data
+  namespace: {{ .Values.namespace.data }}
+spec:
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: {{ .Values.neo4j.storage }}

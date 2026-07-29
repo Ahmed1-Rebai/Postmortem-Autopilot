@@ -1,0 +1,24 @@
+# Reduces build-context size/upload time. The Dockerfile only COPYs
+# agent/, config/, and two named incident fixtures — this list is mostly
+# defensive (large/irrelevant directories) rather than load-bearing, except
+# for the evals/incidents/* rule at the bottom, which is load-bearing: only
+# the two gate-passing goldens belong in the image.
+
+.venv/
+.git/
+.github/
+out/
+evals/results/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+**/__pycache__/
+.env
+tests/
+docs/
+k3s/
+receiver/
+
+evals/incidents/*
+!evals/incidents/inc-0001-missing-env-var
+!evals/incidents/inc-0004-two-deploys

@@ -17,6 +17,7 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from dataclasses import dataclass
+from pathlib import Path
 
 from agent.llm import DEFAULT_MAX_TOKENS, LLMProvider
 from agent.prompts import load as load_prompt
@@ -41,10 +42,11 @@ def write_draft(
     provider: LLMProvider,
     model: str,
     max_tokens: int = DEFAULT_MAX_TOKENS,
+    prompts_dir: Path | None = None,
 ) -> WriterResult:
     """Write, or rewrite in response to validator complaints."""
     repairing = previous_draft is not None and validation is not None
-    system = load_prompt("repair" if repairing else "writer")
+    system = load_prompt("repair" if repairing else "writer", prompts_dir)
 
     sections = [
         f"# Incident: {incident_title}",

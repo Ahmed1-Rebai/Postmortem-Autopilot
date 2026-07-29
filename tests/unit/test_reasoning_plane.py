@@ -136,6 +136,47 @@ def test_writer_prompt_forbids_writing_a_timeline():
     assert "Do **not** write a Timeline section" in load_prompt("writer")
 
 
+def test_analyze_respects_prompts_dir_override(
+    tmp_path: Path,
+    events: list[Event],
+    chains: list[Chain],
+    confidence_config: ConfidenceConfig,
+):
+    """The k3s ConfigMap-mount story, exercised end to end: a prompt edited on
+    disk must reach the model without touching analyst.py."""
+    (tmp_path / "analyst.md").write_text("OVERRIDDEN ANALYST PROMPT " * 20)
+    provider = MockProvider()
+
+    analyze(
+        incident_id="INC-0001",
+        events=events,
+        chains=chains,
+        provider=provider,
+        model="mock",
+        confidence_config=confidence_config,
+        sources_used=SOURCES,
+        prompts_dir=tmp_path,
+    )
+    system, _ = provider.calls[0]
+    assert system.startswith("OVERRIDDEN ANALYST PROMPT")
+
+
+def test_write_draft_respects_prompts_dir_override(tmp_path: Path, events: list[Event]):
+    (tmp_path / "writer.md").write_text("OVERRIDDEN WRITER PROMPT " * 20)
+    provider = MockProvider()
+
+    write_draft(
+        incident_title="checkout 500s",
+        events=events,
+        hypotheses=[],
+        provider=provider,
+        model="mock",
+        prompts_dir=tmp_path,
+    )
+    system, _ = provider.calls[0]
+    assert system.startswith("OVERRIDDEN WRITER PROMPT")
+
+
 # ---------------------------------------------------------------------------
 # JSON extraction — models wrap their output in all sorts of things
 # ---------------------------------------------------------------------------

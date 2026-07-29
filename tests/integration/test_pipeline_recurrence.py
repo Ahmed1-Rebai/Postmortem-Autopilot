@@ -73,6 +73,7 @@ def a_config() -> Config:
         ),
         services=ServicesConfig(aliases={}, strip_suffixes=["-svc", "-service"]),
         output_dir=FIXTURES,
+        prompts_dir=None,
     )
 
 

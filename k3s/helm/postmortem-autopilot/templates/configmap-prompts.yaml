@@ -1,0 +1,24 @@
+# Prompts live in a ConfigMap on purpose: iterating on a prompt shouldn't
+# require a rebuild-and-push cycle, and a prompt change becomes visible in
+# `helm diff` (docs/05). Content comes from --set-file at install time — see
+# values.yaml's pipeline.prompts comment for why, not from `.Files.Get`.
+#
+# If a value is empty (no --set-file given), the key is omitted rather than
+# written as an empty file — an empty analyst.md would make load_prompt()
+# raise "prompt is empty" the moment PROMPTS_DIR points here, which is a
+# worse failure mode than "the ConfigMap just doesn't override anything yet".
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postmortem-prompts
+  namespace: {{ .Values.namespace.app }}
+data:
+  {{- if .Values.pipeline.prompts.analyst }}
+  analyst.md: {{ .Values.pipeline.prompts.analyst | quote }}
+  {{- end }}
+  {{- if .Values.pipeline.prompts.writer }}
+  writer.md: {{ .Values.pipeline.prompts.writer | quote }}
+  {{- end }}
+  {{- if .Values.pipeline.prompts.repair }}
+  repair.md: {{ .Values.pipeline.prompts.repair | quote }}
+  {{- end }}

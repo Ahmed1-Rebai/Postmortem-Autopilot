@@ -198,26 +198,100 @@ This is the project. Give it real attention.
 
 ## Phase 2 — k3s
 
-- [ ] `Dockerfile` — multi-stage, `python:3.12-slim`, non-root, ~180 MB
-- [ ] Install k3s per [docs/05-k3s-deployment.md](docs/05-k3s-deployment.md)
-- [ ] Helm chart skeleton + `values.yaml` / `values-dev.yaml`
-- [ ] Neo4j StatefulSet + PVC (tuned heap/pagecache)
-- [ ] Valkey Deployment
-- [ ] Pipeline `Job` template (`backoffLimit: 2`, `ttlSecondsAfterFinished`)
-- [ ] `kubectl create job --from=cronjob/...` runs end-to-end in-cluster
+Split into checkpoints, same discipline as Phase 1's 1.1–1.8: build, verify
+for real against a live cluster, commit, report, continue. Checkpoint 1
+(below) is the load-bearing claim — "this runs in k8s, not just
+docker-compose" — everything else is follow-on.
+
+### Checkpoint 1 — core loop 🔴
+- [x] `Dockerfile` — multi-stage, non-root, ~180 MB
+      *(143 MB, under target. **Alpine, not slim-Debian** — measured, not
+      assumed: Debian's `git` package pulled perl+libcurl+gnutls+krb5 as hard
+      Depends, 99 MB on its own, more than half the image. Alpine's git has
+      no such chain, and every dependency in `agent/requirements.txt` ships
+      musllinux wheels — confirmed via the pip install log, not assumed)*
+- [x] Install k3s per [docs/05-k3s-deployment.md](docs/05-k3s-deployment.md)
+      *(**k3d, not bare k3s** — `sudo` needs an interactive password this
+      session can't supply, so the `curl\|sh` root installer isn't viable.
+      docs/05 names this exact fallback itself. `k3d`/`helm` installed to
+      `~/.local/bin`, no root anywhere)*
+- [x] Helm chart skeleton + `values.yaml` / `values-dev.yaml`
+- [x] Neo4j StatefulSet + PVC (tuned heap/pagecache)
+- [x] Valkey Deployment
+- [x] Pipeline `Job` template (`backoffLimit: 2`, `ttlSecondsAfterFinished`)
+      *(a suspended CronJob, `postmortem-manual` — `kubectl create job
+      --from=cronjob/...` is k8s's own mechanism for stamping a Job from it)*
+- [x] `kubectl create job --from=cronjob/...` runs end-to-end in-cluster
+
+> **Checkpoint 1 result (2026-07-29):** `kubectl logs` on the real Job:
+> `INC-0001: PASS · 6 events · 14 candidates · 2 hypotheses · coverage
+> 100.0% · hallucinated 0 · retries 0 · 24.8s · 1836 tokens` — the identical
+> summary format proven locally and in plain Docker, now reproduced from a
+> real Kubernetes Job, non-root uid 10001, `readOnlyRootFilesystem: true`,
+> all capabilities dropped, in-cluster Neo4j reached over Service DNS, `git`
+> evidence from the baked-in fixture repo, prompts served live from a
+> `--set-file`-populated ConfigMap (confirmed via the Job's own rendered
+> spec: `PROMPTS_DIR=/config/prompts`, mounted).
+>
+> **Two real capability findings, not guessed at:** Neo4j's and Valkey's
+> official images both start as uid 0 with no documented non-root mode
+> (confirmed by running each image directly and checking `id`) — enforcing
+> `runAsNonRoot` from outside makes k8s refuse to start them at all. For
+> Neo4j specifically, `capabilities: {drop: [ALL], add: [CHOWN, FOWNER]}`
+> gets past its chown-the-volume step but then fails traversing the same
+> tree (`find: /var/lib/neo4j: Permission denied` — CAP_DAC_OVERRIDE
+> territory: "root" without it still respects ordinary permission bits).
+> Chasing the exact minimal capability set for an undocumented upstream
+> entrypoint is Checkpoint 4 hardening work, not this one's — the pipeline
+> container itself (fully under our control) runs the complete hardened
+> profile; Neo4j and Valkey get a stated, investigated exception, not a
+> silent one. `config/prompts` are also not baked as a second copy: `helm`'s
+> `--set-file` reads `agent/prompts/*.md` directly at install time, so
+> there's exactly one copy of each prompt on disk, and the ConfigMap is
+> genuinely live-editable via `helm upgrade` with no rebuild.
+
+### Checkpoint 2 — webhook receiver
 - [ ] Webhook receiver (FastAPI): `/hooks/alertmanager`, `/healthz`, `/readyz`
+      *(new top-level `receiver/` package, its own Dockerfile — kept out of
+      the pipeline image, different failure-isolation story)*
 - [ ] Receiver creates Jobs; narrow RBAC (`jobs` create/get/list only)
+      *(plus `configmaps: create, patch` — the receiver synthesizes each
+      incident's `meta.yaml`/`alerts.json` as a ConfigMap owner-referenced to
+      its Job, so `ttlSecondsAfterFinished` garbage-collects both together)*
 - [ ] Dedup on `(fingerprint, startsAt)` in Valkey, 6h TTL
+      *(Alertmanager's own per-alert `fingerprint`, not `Incident.fingerprint`
+      in `agent/state.py` — same word, unrelated concepts, different layers)*
 - [ ] Shared-secret header on the webhook
 - [ ] Traefik Ingress
+
+### Checkpoint 3 — observability
 - [ ] Nightly sweep CronJob (incidents closed <24h with no postmortem)
+      *(needs real code first: a `sweep` subcommand +
+      `memory.find_incidents_needing_postmortem()` — otherwise this is a
+      schedule with nothing correct to run, TODO's own trap #1)*
 - [ ] Prometheus + Alertmanager + Grafana in `observability`
+      *(a second, small chart — deviates from docs/04's "one chart" line,
+      because the pipeline chart gets `helm upgrade`d constantly while
+      iterating on prompts/weights and this one almost never; bundling them
+      makes every prompt-edit `helm diff` noisier with unrelated scrape-config
+      churn, undercutting the reason prompts are a ConfigMap at all)*
 - [ ] Alertmanager → receiver wired, tested with a real firing alert
 - [ ] Grafana dashboard: the 8 metrics from the deployment doc
 - [ ] The two self-alerts (`ValidationFailing`, `HallucinatedCitations`)
+      *(needs a genuine fix, not just infra: per-Job textfiles/naive
+      Pushgateway pushes don't give `increase()` semantics for single-shot
+      ephemeral processes — each Job's counters start at 0. Add Pushgateway,
+      push per-incident-labeled snapshots, rewrite both alerts from
+      `increase(...)` to `count()`/`sum()` over the nightly-swept retained set)*
+- [ ] ~~Loki~~ — cut from Phase 2 entirely; nothing in Phases 1–3 produces log
+      volume for it to ingest. Deferred to Phase 4 with live collectors.
+
+### Checkpoint 4 — hardening & backup
 - [ ] Neo4j backup CronJob (`neo4j-admin dump`, 7-day rotation)
 - [ ] 🔴 **Test the restore once.** An untested restore is not a backup
 - [ ] Pod security: non-root, read-only rootfs, caps dropped, seccomp
+      *(the pipeline Job already has this — this item is finishing the job
+      for Neo4j/Valkey, see checkpoint 1's capability finding above)*
 - [ ] NetworkPolicy for `postmortem-data`
 - [ ] k3s `HelmChart` CRD bootstrap manifest
 

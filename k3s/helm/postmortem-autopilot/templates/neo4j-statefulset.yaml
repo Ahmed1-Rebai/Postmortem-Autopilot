@@ -1,0 +1,85 @@
+# Mirrors docker-compose.yml's image and heap/pagecache tuning exactly —
+# the numbers already proven locally, not reinvented for k3s.
+apiVersion: v1
+kind: Service
+metadata:
+  name: neo4j
+  namespace: {{ .Values.namespace.data }}
+spec:
+  clusterIP: None
+  selector: {app: neo4j}
+  ports:
+    - {name: http, port: 7474}
+    - {name: bolt, port: 7687}
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: neo4j
+  namespace: {{ .Values.namespace.data }}
+spec:
+  serviceName: neo4j
+  replicas: 1
+  selector:
+    matchLabels: {app: neo4j}
+  template:
+    metadata:
+      labels: {app: neo4j}
+    spec:
+      # No runAsNonRoot: confirmed by running the image directly (`docker run
+      # --entrypoint id neo4j:5-community`) that it starts as uid 0 with no
+      # documented alternative — its entrypoint owns the chown-then-drop
+      # dance for the mounted volume itself. Enforcing non-root from outside
+      # breaks that: k8s refuses to start the container at all ("container
+      # has runAsNonRoot and image will run as root"), which is a worse
+      # outcome than the image's own default. Properly non-root (an
+      # initContainer pre-chowning the PVC to a pinned uid, or finding
+      # documented non-root guidance for this image) is Checkpoint 4 work.
+      securityContext:
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: neo4j
+          image: {{ .Values.neo4j.image | quote }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            # No capability drop, stated as a deliberate, investigated
+            # tradeoff, not an oversight. The entrypoint runs as uid 0 to
+            # chown-then-drop-privileges for the mounted volume, and that
+            # needs more than CAP_CHOWN alone: `drop: [ALL], add: [CHOWN,
+            # FOWNER]` got past the chown step but then failed traversing
+            # the same tree ("find: /var/lib/neo4j: Permission denied"),
+            # which is CAP_DAC_OVERRIDE/CAP_DAC_READ_SEARCH territory — "root"
+            # without those still respects ordinary permission bits. Chasing
+            # the exact minimal set for an undocumented upstream entrypoint
+            # is Checkpoint 4 hardening work, not this checkpoint's; the two
+            # capabilities actually confirmed necessary by testing are noted
+            # here so that work starts from a fact, not a guess.
+            # Not readOnlyRootFilesystem either, for the same underlying
+            # reason: the entrypoint writes logs, run state and plugin
+            # metadata under /var/lib/neo4j at startup.
+          ports:
+            - {name: http, containerPort: 7474}
+            - {name: bolt, containerPort: 7687}
+          env:
+            - name: NEO4J_AUTH
+              valueFrom:
+                secretKeyRef: {name: postmortem-secrets, key: neo4j-auth}
+            - name: NEO4J_server_memory_heap_max__size
+              value: {{ .Values.neo4j.heapSize | quote }}
+            - name: NEO4J_server_memory_pagecache_size
+              value: {{ .Values.neo4j.pagecacheSize | quote }}
+          volumeMounts:
+            - {name: data, mountPath: /data}
+          resources: {{- toYaml .Values.neo4j.resources | nindent 12 }}
+          readinessProbe:
+            tcpSocket: {port: bolt}
+            initialDelaySeconds: 15
+            periodSeconds: 5
+            failureThreshold: 12
+          livenessProbe:
+            tcpSocket: {port: bolt}
+            initialDelaySeconds: 30
+            periodSeconds: 15
+      volumes:
+        - name: data
+          persistentVolumeClaim: {claimName: neo4j-data}

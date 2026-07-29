@@ -236,3 +236,33 @@ def test_absolute_source_paths_are_left_alone(monkeypatch: pytest.MonkeyPatch):
 
     cfg = load_config(env_file=Path("/nonexistent.env"))
     assert cfg.sources.alerts_fixture == Path("/var/data/alerts.json")
+
+
+# --- PROMPTS_DIR: unset means "use the image's baked-in prompts" ----------
+def test_prompts_dir_defaults_to_none(monkeypatch: pytest.MonkeyPatch):
+    """Unset must mean "no override", not a project-relative guess — the
+    baked-in prompts are the fallback, and there is nothing to resolve
+    against PROJECT_ROOT when nothing was configured."""
+    monkeypatch.setenv("LLM_PROVIDER", "mock")
+    monkeypatch.setenv("NEO4J_PASSWORD", "test")
+    monkeypatch.delenv("PROMPTS_DIR", raising=False)
+
+    cfg = load_config(env_file=Path("/nonexistent.env"))
+    assert cfg.prompts_dir is None
+
+
+def test_prompts_dir_set_resolves_absolute(monkeypatch: pytest.MonkeyPatch):
+    """A k3s ConfigMap mounts to an absolute path; a relative one still must
+    not depend on the process's CWD (k3s starts it in /app)."""
+    from agent.config import PROJECT_ROOT
+
+    monkeypatch.setenv("LLM_PROVIDER", "mock")
+    monkeypatch.setenv("NEO4J_PASSWORD", "test")
+    monkeypatch.setenv("PROMPTS_DIR", "/config/prompts")
+
+    cfg = load_config(env_file=Path("/nonexistent.env"))
+    assert cfg.prompts_dir == Path("/config/prompts")
+
+    monkeypatch.setenv("PROMPTS_DIR", "./local-prompts")
+    cfg2 = load_config(env_file=Path("/nonexistent.env"))
+    assert cfg2.prompts_dir == PROJECT_ROOT / "local-prompts"

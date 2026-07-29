@@ -1,0 +1,66 @@
+# Single-node defaults (docs/05-k3s-deployment.md). Mirrors docker-compose.yml's
+# image choices and Neo4j heap/pagecache tuning rather than diverging from the
+# numbers already proven locally.
+
+namespace:
+  app: postmortem
+  data: postmortem-data
+
+neo4j:
+  image: neo4j:5-community
+  # Real deployments set this via `--set neo4j.password=...` or a sealed
+  # secret, never a committed default. This one only works because it's
+  # identical to docker-compose.yml's local-only placeholder.
+  password: changeme-local-only
+  heapSize: 512m
+  pagecacheSize: 256m
+  storage: 10Gi
+  resources:
+    requests: {cpu: 250m, memory: 1024Mi}
+    limits: {cpu: "1", memory: 1280Mi}
+
+valkey:
+  image: valkey/valkey:8-alpine
+  resources:
+    requests: {cpu: 50m, memory: 32Mi}
+    limits: {cpu: 200m, memory: 64Mi}
+
+pipeline:
+  image:
+    repository: postmortem-autopilot
+    tag: dev
+    pullPolicy: IfNotPresent
+  llm:
+    provider: mock
+    analystModel: mock
+    writerModel: mock
+  # Real API keys go through secrets.anthropicApiKey / secrets.openrouterApiKey
+  # (--set, never committed) — absent entirely under the mock provider.
+  citationCoverageThreshold: 0.95
+  maxValidationRetries: 2
+  causalWindowMinutes: 15
+  # The CronJob this renders is suspended (docs/05's "1. Manual" trigger
+  # path) and runs whichever golden incident is baked into the image, since
+  # per-incident parameterization is the receiver's job (Phase 2 checkpoint
+  # 2), not a static template's.
+  manualIncident: evals/incidents/inc-0001-missing-env-var
+  # Populated at install/upgrade time with --set-file, e.g.:
+  #   --set-file pipeline.prompts.analyst=agent/prompts/analyst.md
+  # Not `.Files.Get` from inside the chart: that would mean a second, driftable
+  # copy of agent/prompts/*.md living under k3s/. --set-file keeps one file,
+  # one source of truth, and still makes the ConfigMap live-editable
+  # (`helm upgrade` after editing the .md — no image rebuild) which is the
+  # whole point of prompts being a ConfigMap (docs/05).
+  prompts:
+    analyst: ""
+    writer: ""
+    repair: ""
+  resources:
+    requests: {cpu: 250m, memory: 384Mi}
+    limits: {cpu: "1", memory: 768Mi}
+  backoffLimit: 2
+  ttlSecondsAfterFinished: 3600
+
+secrets:
+  anthropicApiKey: ""
+  openrouterApiKey: ""

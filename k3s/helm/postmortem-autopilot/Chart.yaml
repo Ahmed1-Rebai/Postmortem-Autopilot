@@ -1,0 +1,10 @@
+apiVersion: v2
+name: postmortem-autopilot
+description: >-
+  Evidence-grounded incident postmortems. The pipeline chart: neo4j, valkey,
+  and the manual/scheduled Job path. The webhook receiver and the
+  observability stack are separate deployables — see docs/05-k3s-deployment.md
+  for why they're not folded into this one chart.
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

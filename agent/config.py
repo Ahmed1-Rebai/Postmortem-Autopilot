@@ -113,6 +113,20 @@ def _env_path(name: str, default: str) -> Path:
     return path if path.is_absolute() else (PROJECT_ROOT / path).resolve()
 
 
+def _env_optional_path(name: str) -> Path | None:
+    """Like `_env_path`, but unset means "no override" rather than a default.
+
+    `PROMPTS_DIR` is the one caller: unset, the reasoning nodes read the
+    prompts baked into the image; set (a k3s ConfigMap mount), they read that
+    instead. A required default would make "use the built-in copy" inexpressible.
+    """
+    raw = os.environ.get(name)
+    if not raw:
+        return None
+    path = Path(raw).expanduser()
+    return path if path.is_absolute() else (PROJECT_ROOT / path).resolve()
+
+
 # ---------------------------------------------------------------------------
 # YAML helpers
 # ---------------------------------------------------------------------------
@@ -320,6 +334,10 @@ class Config:
     confidence: ConfidenceConfig
     services: ServicesConfig
     output_dir: Path
+    #: `None` means "read the prompts baked into the image". Set (a k3s
+    #: ConfigMap mount) means a prompt edit is visible without a rebuild —
+    #: the whole reason prompts are `.md` files and not inline strings.
+    prompts_dir: Path | None
 
 
 # ---------------------------------------------------------------------------
@@ -373,6 +391,7 @@ def load_config(env_file: Path | None = None) -> Config:
             _env_path("SERVICES_CONFIG_PATH", "./config/services.yaml")
         ),
         output_dir=_env_path("OUTPUT_DIR", "./out"),
+        prompts_dir=_env_optional_path("PROMPTS_DIR"),
     )
 
 
