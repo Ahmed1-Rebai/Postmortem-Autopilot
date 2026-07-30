@@ -46,6 +46,7 @@ from agent.normalize.events import normalize_records
 from agent.normalize.services import ServiceCanonicalizer
 from agent.render.document import render_document
 from agent.state import (
+    Event,
     Incident,
     PipelineState,
     SourceFailure,
@@ -303,12 +304,21 @@ def _add_tokens(state: PipelineState, **added: int) -> dict[str, int]:
     return usage
 
 
-def initial_state(incident: Incident) -> PipelineState:
+def initial_state(
+    incident: Incident,
+    *,
+    events: Sequence[Event] = (),
+    sources_used: Sequence[str] = (),
+) -> PipelineState:
+    """`events`/`sources_used` are for the sweep's recovery pipeline: events
+    already sit in the graph from a prior run that reached `build_graph` but
+    never finished, so there's nothing to re-collect. Every other caller
+    leaves them at their empty default and gets exactly the old behavior."""
     return PipelineState(
         incident_id=incident.id,
         incident=incident,
         window=(incident.start_time, incident.end_time),
-        events=[],
+        events=list(events),
         graph_ready=False,
         candidates=[],
         hypotheses=[],
@@ -318,6 +328,42 @@ def initial_state(incident: Incident) -> PipelineState:
         validation=None,
         retry_count=0,
         token_usage={},
-        sources_used=[],
+        sources_used=list(sources_used),
         sources_failed=[],
     )
+
+
+def build_recovery_pipeline(deps: PipelineDeps) -> Any:
+    """The same DAG as `build_pipeline`, minus `collect` — for the nightly
+    sweep, resuming a run whose events are already in the graph (a prior
+    attempt reached `build_graph` and then crashed, was OOM-killed, or
+    exhausted validation retries).
+
+    Reuses the same node closures unchanged: `build_graph`/`link_candidates`
+    re-running on events already written is a no-op by construction (every
+    graph write is `MERGE`, invariant 5), and `analyze` only ever reads
+    `state["events"]`, never re-collects. No new node logic exists here.
+    """
+    graph: StateGraph[PipelineState, Any, Any, Any] = StateGraph(PipelineState)
+
+    graph.add_node("build_graph", _build_graph_node(deps))
+    graph.add_node("link_candidates", _link_candidates_node(deps))
+    graph.add_node("recall_similar", _recall_similar_node(deps))
+    graph.add_node("analyze", _analyze_node(deps))
+    graph.add_node("write", _write_node(deps))
+    graph.add_node("validate", _validate_node(deps))
+    graph.add_node("publish", _publish_node())
+
+    graph.add_edge(START, "build_graph")
+    graph.add_edge("build_graph", "link_candidates")
+    graph.add_edge("link_candidates", "recall_similar")
+    graph.add_edge("recall_similar", "analyze")
+    graph.add_edge("analyze", "write")
+    graph.add_edge("write", "validate")
+    graph.add_conditional_edges(
+        "validate",
+        _after_validation(deps.config.pipeline.max_validation_retries),
+        {"retry": "write", "publish": "publish", "fail": END},
+    )
+    graph.add_edge("publish", END)
+    return graph.compile()

@@ -1,0 +1,47 @@
+# Single-node, single-replica, short-retention defaults — this stack watches
+# a demo cluster, not production traffic (docs/04's resource budget table).
+
+namespace: observability
+
+prometheus:
+  image: prom/prometheus:v2.55.1
+  retention: 6h
+  resources:
+    requests: {cpu: 50m, memory: 256Mi}
+    limits: {cpu: 250m, memory: 512Mi}
+
+pushgateway:
+  image: prom/pushgateway:v1.10.0
+  resources:
+    requests: {cpu: 10m, memory: 16Mi}
+    limits: {cpu: 50m, memory: 32Mi}
+
+alertmanager:
+  image: prom/alertmanager:v0.27.0
+  # How long an alert with no refreshing occurrence is held before being
+  # marked resolved. Short here so the "real firing alert" verification
+  # (docs/05) doesn't need to wait the Prometheus-standard 5m default.
+  resolveTimeout: 1m
+  # Where Alertmanager routes the `postmortem-autopilot` receiver's alerts.
+  # Cross-chart, cross-namespace: the receiver Deployment lives in
+  # postmortem-autopilot's `namespace.app` (default `postmortem`).
+  webhookReceiverUrl: http://webhook-receiver.postmortem.svc.cluster.local:8000/hooks/alertmanager
+  # Same value as postmortem-autopilot's secrets.webhookSecret — two charts,
+  # not a shared Secret object, since they're independently installed and
+  # upgraded (see Chart.yaml). Real deployments set both via --set/sealed
+  # secrets to the same value; this default only matches because it's the
+  # same local-only placeholder both charts already use.
+  webhookSecret: changeme-local-only
+  resources:
+    requests: {cpu: 20m, memory: 32Mi}
+    limits: {cpu: 100m, memory: 64Mi}
+
+grafana:
+  image: grafana/grafana:11.3.1
+  # Real deployments set this via --set; this default is the same
+  # local-only-only convention as every other committed placeholder secret
+  # in this project (neo4j.password, secrets.webhookSecret, ...).
+  adminPassword: changeme-local-only
+  resources:
+    requests: {cpu: 30m, memory: 96Mi}
+    limits: {cpu: 150m, memory: 192Mi}

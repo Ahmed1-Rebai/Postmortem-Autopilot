@@ -1,26 +1,22 @@
-# The "1. Manual" trigger path (docs/05): a suspended CronJob whose
-# jobTemplate is the canonical pod spec.
-#   kubectl create job --from=cronjob/postmortem-manual inc-check -n postmortem
-# is k8s's own mechanism for stamping a real Job from it — no custom code.
+# The "2. CronJob" trigger path (docs/05): unlike job-template.yaml's
+# suspended CronJob, this one actually runs on its schedule. It finishes
+# postmortems for incidents that started a run (wrote events to the graph)
+# but never reached one — see `Neo4jMemory.find_incidents_needing_postmortem`
+# for exactly what that catches and what it doesn't (an incident whose
+# webhook was missed outright never gets an Incident node in the first
+# place, so this sweep can't find it — a stated, not hidden, limitation).
 #
-# This is deliberately NOT what the webhook receiver (Phase 2 checkpoint 2)
-# uses at request time: nothing running in a pod can re-render Helm templates
-# from a chart it has no access to. The receiver builds a Job object directly
-# via the Kubernetes API, sharing only the image/resource *values* with this
-# template as a convention, not a mechanism (see docs/05-k3s-deployment.md
-# and the TODO.md Phase 2 note on this).
+# Same pod spec shape as job-template.yaml's Job (same image, security
+# context, Neo4j/Valkey connectivity) — `sweep` needs no incident directory
+# or ConfigMap mount, since it resumes from graph state alone.
 {{- $usePromptsConfigMap := or .Values.pipeline.prompts.analyst .Values.pipeline.prompts.writer .Values.pipeline.prompts.repair }}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: postmortem-manual
+  name: postmortem-sweep
   namespace: {{ .Values.namespace.app }}
 spec:
-  schedule: "0 3 * * *"
-  suspend: true
-  # A miscounted retry is bounded a second way: the pipeline's own retry loop
-  # is capped at maxValidationRetries, and this caps the Job's own restart
-  # attempts on top of that.
+  schedule: {{ .Values.pipeline.sweep.schedule | quote }}
   jobTemplate:
     spec:
       backoffLimit: {{ .Values.pipeline.backoffLimit }}
@@ -34,10 +30,10 @@ spec:
             runAsGroup: 10001
             seccompProfile: {type: RuntimeDefault}
           containers:
-            - name: pipeline
+            - name: sweep
               image: "{{ .Values.pipeline.image.repository }}:{{ .Values.pipeline.image.tag }}"
               imagePullPolicy: {{ .Values.pipeline.image.pullPolicy }}
-              args: ["run", "--incident", {{ .Values.pipeline.manualIncident | quote }}]
+              args: ["sweep", "--hours", {{ .Values.pipeline.sweep.hours | quote }}]
               securityContext:
                 allowPrivilegeEscalation: false
                 readOnlyRootFilesystem: true
@@ -68,9 +64,6 @@ spec:
                 {{- if .Values.pipeline.pushgatewayUrl }}
                 - {name: PUSHGATEWAY_URL, value: {{ .Values.pipeline.pushgatewayUrl | quote }}}
                 {{- end }}
-                # HOME and OUTPUT_DIR both land on the scratch volume: readOnlyRootFilesystem
-                # means / is not writable, and git (GitCollector) plus the
-                # report/document writers both need somewhere to write.
                 - {name: HOME, value: "/scratch"}
                 - {name: OUTPUT_DIR, value: "/scratch/out"}
                 {{- if $usePromptsConfigMap }}

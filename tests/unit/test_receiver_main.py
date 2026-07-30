@@ -41,6 +41,7 @@ def a_config(**overrides: Any) -> ReceiverConfig:
         "causal_window_minutes": 15,
         "anthropic_api_key_configured": False,
         "openrouter_api_key_configured": False,
+        "pushgateway_url": None,
     }
     defaults.update(overrides)
     return ReceiverConfig(**defaults)
@@ -150,6 +151,32 @@ def test_hooks_401_with_wrong_secret(client: TestClient):
         "/hooks/alertmanager",
         json=RESOLVED_ALERT_BODY,
         headers={"X-Webhook-Secret": "wrong"},
+    )
+    assert response.status_code == 401
+
+
+def test_hooks_accepts_bearer_token_auth(client: TestClient):
+    """The mechanism Alertmanager's own http_config.bearer_token actually
+    sends — it can't send an arbitrary custom header name."""
+    config = a_config()
+    app.dependency_overrides[get_config] = lambda: config
+    app.dependency_overrides[get_dedup] = lambda: FakeDedup()
+    app.dependency_overrides[get_job_creator] = lambda: FakeJobCreator()
+
+    response = client.post(
+        "/hooks/alertmanager",
+        json=RESOLVED_ALERT_BODY,
+        headers={"Authorization": f"Bearer {config.webhook_secret}"},
+    )
+    assert response.status_code == 202
+
+
+def test_hooks_401_with_wrong_bearer_token(client: TestClient):
+    app.dependency_overrides[get_config] = lambda: a_config()
+    response = client.post(
+        "/hooks/alertmanager",
+        json=RESOLVED_ALERT_BODY,
+        headers={"Authorization": "Bearer wrong"},
     )
     assert response.status_code == 401
 

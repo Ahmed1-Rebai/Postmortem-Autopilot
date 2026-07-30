@@ -1,0 +1,12 @@
+apiVersion: v2
+name: postmortem-observability
+description: >-
+  Prometheus, Pushgateway, Alertmanager, and Grafana for the pipeline's own
+  self-observability. A separate chart from postmortem-autopilot on purpose:
+  the pipeline chart gets `helm upgrade`d constantly while iterating on
+  prompts/linker/confidence weights, this one almost never — bundling them
+  would make every prompt-edit diff noisier with unrelated scrape-config
+  churn (see docs/05-k3s-deployment.md).
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

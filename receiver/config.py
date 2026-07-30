@@ -85,6 +85,9 @@ class ReceiverConfig:
     causal_window_minutes: int
     anthropic_api_key_configured: bool
     openrouter_api_key_configured: bool
+    #: `None` means don't push (matches `agent.config.Config.pushgateway_url`)
+    #: — set once the observability chart is installed.
+    pushgateway_url: str | None
 
     def __post_init__(self) -> None:
         if self.window_pad_minutes <= 0:
@@ -120,4 +123,5 @@ def load_config() -> ReceiverConfig:
         openrouter_api_key_configured=bool(
             os.environ.get("OPENROUTER_API_KEY_CONFIGURED")
         ),
+        pushgateway_url=os.environ.get("PUSHGATEWAY_URL") or None,
     )

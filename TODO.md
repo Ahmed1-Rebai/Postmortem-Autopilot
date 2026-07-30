@@ -317,26 +317,85 @@ docker-compose" — everything else is follow-on.
 > project this size, not a silent one.
 
 ### Checkpoint 3 — observability
-- [ ] Nightly sweep CronJob (incidents closed <24h with no postmortem)
-      *(needs real code first: a `sweep` subcommand +
-      `memory.find_incidents_needing_postmortem()` — otherwise this is a
-      schedule with nothing correct to run, TODO's own trap #1)*
-- [ ] Prometheus + Alertmanager + Grafana in `observability`
+- [x] Nightly sweep CronJob (incidents closed <24h with no postmortem)
+      *(real code behind it: `agent.cli sweep` +
+      `Neo4jMemory.find_incidents_needing_postmortem()`, plus
+      `graph.build_recovery_pipeline()` — reuses the pipeline's own
+      `build_graph`/`link_candidates`/`analyze`/`write`/`validate`/`publish`
+      node closures unchanged, resuming from graph state alone (no incident
+      directory, no re-collection) since every graph write is idempotent
+      `MERGE`, invariant 5. Precise, stated scope: this catches a run that
+      wrote events but never reached `persist_hypotheses` — not an incident
+      whose webhook was missed outright, since no `Incident` node would
+      exist for that case at all)*
+- [x] Prometheus + Alertmanager + Grafana in `observability`
       *(a second, small chart — deviates from docs/04's "one chart" line,
       because the pipeline chart gets `helm upgrade`d constantly while
       iterating on prompts/weights and this one almost never; bundling them
       makes every prompt-edit `helm diff` noisier with unrelated scrape-config
       churn, undercutting the reason prompts are a ConfigMap at all)*
-- [ ] Alertmanager → receiver wired, tested with a real firing alert
-- [ ] Grafana dashboard: the 8 metrics from the deployment doc
-- [ ] The two self-alerts (`ValidationFailing`, `HallucinatedCitations`)
-      *(needs a genuine fix, not just infra: per-Job textfiles/naive
-      Pushgateway pushes don't give `increase()` semantics for single-shot
-      ephemeral processes — each Job's counters start at 0. Add Pushgateway,
-      push per-incident-labeled snapshots, rewrite both alerts from
-      `increase(...)` to `count()`/`sum()` over the nightly-swept retained set)*
-- [ ] ~~Loki~~ — cut from Phase 2 entirely; nothing in Phases 1–3 produces log
+- [x] Alertmanager → receiver wired, tested with a real firing alert
+      *(POSTed directly to Alertmanager's own `/api/v2/alerts` — not the
+      receiver, not a curl of its endpoint — and let Alertmanager's real
+      `webhook_configs` route it. Found along the way: Alertmanager's
+      `http_config` can send a bearer token or basic auth, but not an
+      arbitrary custom header, so the receiver now accepts `Authorization:
+      Bearer <secret>` alongside the original `X-Webhook-Secret` header)*
+- [x] Grafana dashboard: the 8 metrics from the deployment doc
+      *(one gap stated on the dashboard itself, not hidden:
+      `pm_stage_duration_seconds{stage}` is listed in docs/05 but not yet
+      emitted anywhere in `agent/observability/metrics.py`)*
+- [x] The two self-alerts (`ValidationFailing`, `HallucinatedCitations`)
+      *(the genuine fix: Pushgateway, per-incident-labeled snapshots via
+      `push_metrics()`, both alerts rewritten from `increase(...)` to
+      `count()`/`sum()` over the retained set. No automatic pruning of that
+      set — a stated, not hidden, limitation at this project's scale, not
+      worth an introspect-and-delete HTTP subsystem for a cluster that gets
+      torn down long before it matters)*
+- [x] ~~Loki~~ — cut from Phase 2 entirely; nothing in Phases 1–3 produces log
       volume for it to ingest. Deferred to Phase 4 with live collectors.
+
+> **Checkpoint 3 result (2026-07-30):** deployed `postmortem-observability`
+> alongside the existing k3d cluster (`helm install`), then `helm upgrade`d
+> `postmortem-autopilot` with `pipeline.pushgatewayUrl` pointed at it — same
+> cluster, same Neo4j/Valkey, nothing torn down since checkpoint 1. Four
+> findings, all real:
+>
+> 1. The k3d node has no outbound DNS — `prom/*`/`grafana/*` images had to
+>    be `docker pull`ed on the host and `k3d image import`ed, the same
+>    workaround already used for the two project-built images.
+> 2. Prometheus scraping Pushgateway **needs `honor_labels: true`** — without
+>    it, Prometheus overwrites each pushed sample's own `job`/`incident_id`
+>    labels with the scrape target's, and every incident's snapshot
+>    collapses into one indistinguishable series. Confirmed both ways: with
+>    it, `pm_runs_total{job="postmortem_pipeline", incident_id="INC-0001",
+>    status="success"}` — the receiver's own job label, not Prometheus's.
+> 3. A manual `kubectl create job --from=cronjob/postmortem-manual` produced
+>    `INC-0001: PASS · coverage 100.0% · hallucinated 0`, and its metrics
+>    landed in Pushgateway and were visible in Prometheus's own expression
+>    browser within one scrape interval — `pm_runs_total`,
+>    `pm_hallucinated_citations_total`, correctly labeled.
+> 4. Sweep verified for real: deleted the just-published run's `Hypothesis`
+>    nodes directly in Neo4j (recreating exactly the precondition
+>    `find_incidents_needing_postmortem` checks for — an `Incident` with
+>    events and no hypotheses), triggered `postmortem-sweep`'s Job manually,
+>    and it found the incident, resumed from graph state alone, and
+>    republished it: `INC-0001: PASS · 6 events · 14 candidates · 2
+>    hypotheses · coverage 100.0% · hallucinated 0`. Confirmed the
+>    `Hypothesis` nodes were back afterward.
+> 5. The live Alertmanager test: POSTed a synthetic alert with no `endsAt`
+>    to Alertmanager's `/api/v2/alerts`, waited for Alertmanager's own
+>    `resolve_timeout` (1m in dev values) to mark it resolved, and watched
+>    it flow through Alertmanager's real routing config over
+>    `bearer_token_file` auth into the receiver (`POST
+>    /hooks/alertmanager 202` in the receiver's own logs) and create a real
+>    Job — `INC-ALERT-...: PASS · coverage 100.0% · hallucinated 0`. Not a
+>    curl of the receiver — the actual `webhook_configs` block, end to end.
+>
+> Grafana's dashboard confirmed rendering real data through the provisioned
+> Prometheus datasource (`sum by (status) (pm_runs_total)` returning
+> `{status="success"}: 1` via Grafana's own datasource-proxy API), not just
+> provisioned-and-untested.
 
 ### Checkpoint 4 — hardening & backup
 - [ ] Neo4j backup CronJob (`neo4j-admin dump`, 7-day rotation)

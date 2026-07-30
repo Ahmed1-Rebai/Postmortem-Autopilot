@@ -1,0 +1,38 @@
+# Scrapes Pushgateway only — nothing in this project's manifests exposes a
+# scrapable /metrics endpoint on a long-lived pod (the pipeline only ever
+# runs as an ephemeral Job, which is exactly the problem Pushgateway solves).
+# No Operator, no ServiceMonitor CRD (docs/04's explicit stance): this is a
+# plain static scrape config, the whole thing this project needs.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: {{ .Values.namespace }}
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
+
+    rule_files:
+      - /etc/prometheus/rules/*.yml
+
+    alerting:
+      alertmanagers:
+        - static_configs:
+            - targets: ["alertmanager.{{ .Values.namespace }}.svc.cluster.local:9093"]
+
+    scrape_configs:
+      - job_name: prometheus
+        static_configs:
+          - targets: ["localhost:9090"]
+
+      - job_name: pushgateway
+        # Load-bearing: without this, Prometheus overwrites each pushed
+        # sample's own `job`/`incident_id` labels with this scrape config's
+        # target labels, and every incident's snapshot collapses into one
+        # indistinguishable series. This is *the* well-known Pushgateway
+        # scrape gotcha, not a stylistic choice.
+        honor_labels: true
+        static_configs:
+          - targets: ["pushgateway.{{ .Values.namespace }}.svc.cluster.local:9091"]

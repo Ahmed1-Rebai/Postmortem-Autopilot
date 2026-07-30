@@ -60,6 +60,9 @@ spec:
             - {name: CITATION_COVERAGE_THRESHOLD, value: {{ .Values.pipeline.citationCoverageThreshold | quote }}}
             - {name: MAX_VALIDATION_RETRIES, value: {{ .Values.pipeline.maxValidationRetries | quote }}}
             - {name: CAUSAL_WINDOW_MINUTES, value: {{ .Values.pipeline.causalWindowMinutes | quote }}}
+            {{- if .Values.pipeline.pushgatewayUrl }}
+            - {name: PUSHGATEWAY_URL, value: {{ .Values.pipeline.pushgatewayUrl | quote }}}
+            {{- end }}
             {{- if .Values.secrets.anthropicApiKey }}
             - {name: ANTHROPIC_API_KEY_CONFIGURED, value: "true"}
             {{- end }}

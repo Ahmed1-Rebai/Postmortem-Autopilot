@@ -1,0 +1,134 @@
+# File-based provisioning (no Grafana Operator, docs/04's plain-Deployment
+# stance): the provider config and the dashboard JSON both live under
+# /etc/grafana/provisioning/dashboards, which is how Grafana's file provider
+# expects to find them — one directory, scanned on the interval below.
+#
+# Histogram metrics (pm_run_duration_seconds, pm_citation_coverage,
+# pm_validation_retries, pm_events_collected) are shown as sum/count
+# averages rather than rate()/histogram_quantile() — each Pushgateway sample
+# is a one-shot snapshot from an ephemeral Job, not a continuously-scraped
+# series, so there's no rate to take (the same reason the two alert rules
+# use count()/sum() instead of increase()).
+#
+# `pm_stage_duration_seconds{stage}` (docs/05's metrics table) is not yet
+# emitted anywhere in agent/observability/metrics.py — that panel is a
+# stated gap, not a silently broken query.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboards
+  namespace: {{ .Values.namespace }}
+data:
+  provider.yaml: |
+    apiVersion: 1
+    providers:
+      - name: postmortem-autopilot
+        type: file
+        updateIntervalSeconds: 30
+        options:
+          path: /etc/grafana/provisioning/dashboards
+
+  postmortem-dashboard.json: |
+    {
+      "title": "Postmortem Autopilot",
+      "uid": "postmortem-autopilot",
+      "schemaVersion": 39,
+      "version": 1,
+      "editable": true,
+      "time": {"from": "now-24h", "to": "now"},
+      "refresh": "30s",
+      "panels": [
+        {
+          "id": 1,
+          "title": "Runs by outcome",
+          "type": "stat",
+          "gridPos": {"x": 0, "y": 0, "w": 6, "h": 6},
+          "datasource": {"type": "prometheus", "uid": "Prometheus"},
+          "targets": [
+            {"expr": "sum by (status) (pm_runs_total)", "legendFormat": "{{ "{{status}}" }}"}
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Citation coverage (avg)",
+          "type": "stat",
+          "gridPos": {"x": 6, "y": 0, "w": 6, "h": 6},
+          "datasource": {"type": "prometheus", "uid": "Prometheus"},
+          "fieldConfig": {"defaults": {"unit": "percentunit", "min": 0, "max": 1}},
+          "targets": [
+            {"expr": "sum(pm_citation_coverage_sum) / sum(pm_citation_coverage_count)"}
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Hallucinated citations (must stay 0)",
+          "type": "stat",
+          "gridPos": {"x": 12, "y": 0, "w": 6, "h": 6},
+          "datasource": {"type": "prometheus", "uid": "Prometheus"},
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {"color": "green", "value": null},
+                  {"color": "red", "value": 1}
+                ]
+              }
+            }
+          },
+          "targets": [
+            {"expr": "sum(pm_hallucinated_citations_total)"}
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Validation retries (avg)",
+          "type": "stat",
+          "gridPos": {"x": 18, "y": 0, "w": 6, "h": 6},
+          "datasource": {"type": "prometheus", "uid": "Prometheus"},
+          "targets": [
+            {"expr": "sum(pm_validation_retries_sum) / sum(pm_validation_retries_count)"}
+          ]
+        },
+        {
+          "id": 5,
+          "title": "Run duration, seconds (avg)",
+          "type": "bargauge",
+          "gridPos": {"x": 0, "y": 6, "w": 12, "h": 8},
+          "datasource": {"type": "prometheus", "uid": "Prometheus"},
+          "targets": [
+            {"expr": "sum(pm_run_duration_seconds_sum) / sum(pm_run_duration_seconds_count)"}
+          ]
+        },
+        {
+          "id": 6,
+          "title": "LLM tokens by node",
+          "type": "bargauge",
+          "gridPos": {"x": 12, "y": 6, "w": 12, "h": 8},
+          "datasource": {"type": "prometheus", "uid": "Prometheus"},
+          "targets": [
+            {"expr": "sum by (node) (pm_llm_tokens_total)", "legendFormat": "{{ "{{node}}" }}"}
+          ]
+        },
+        {
+          "id": 7,
+          "title": "Events collected (avg per run)",
+          "type": "stat",
+          "gridPos": {"x": 0, "y": 14, "w": 12, "h": 6},
+          "datasource": {"type": "prometheus", "uid": "Prometheus"},
+          "targets": [
+            {"expr": "sum(pm_events_collected_sum) / sum(pm_events_collected_count)"}
+          ]
+        },
+        {
+          "id": 8,
+          "title": "Stage duration by stage — not yet emitted",
+          "type": "text",
+          "gridPos": {"x": 12, "y": 14, "w": 12, "h": 6},
+          "options": {
+            "mode": "markdown",
+            "content": "`pm_stage_duration_seconds{stage}` is listed in docs/05 but not yet emitted by `agent/observability/metrics.py` — a stated gap, not a broken query."
+          }
+        }
+      ]
+    }

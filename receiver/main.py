@@ -69,6 +69,7 @@ def get_job_creator() -> IncidentJobCreator:
 
 def verify_webhook_secret(
     x_webhook_secret: str = Header(default=""),
+    authorization: str = Header(default=""),
     config: ReceiverConfig = Depends(get_config),
 ) -> None:
     """Reachable from the cluster network — this is not decoration
@@ -76,8 +77,18 @@ def verify_webhook_secret(
     rather than a constant-time comparator: the secret is a shared,
     infrequently-rotated cluster value, not a per-user credential, and the
     threat model here is "keep this off the open internet", not "resist a
-    timing side-channel from another pod on the same cluster network"."""
-    if not x_webhook_secret or x_webhook_secret != config.webhook_secret:
+    timing side-channel from another pod on the same cluster network".
+
+    Two accepted forms of the same secret: `X-Webhook-Secret` (direct
+    curl/manual testing) and `Authorization: Bearer <secret>` — the latter
+    because Alertmanager's `webhook_configs.http_config` can send a bearer
+    token or basic auth, but not an arbitrary custom header name. Confirmed
+    against Alertmanager's own http_config docs, not assumed."""
+    bearer = ""
+    if authorization.lower().startswith("bearer "):
+        bearer = authorization[len("bearer ") :].strip()
+    presented = x_webhook_secret or bearer
+    if not presented or presented != config.webhook_secret:
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "invalid webhook secret")
 
 

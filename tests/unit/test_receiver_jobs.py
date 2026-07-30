@@ -38,6 +38,7 @@ def a_config(**overrides: Any) -> ReceiverConfig:
         "causal_window_minutes": 15,
         "anthropic_api_key_configured": False,
         "openrouter_api_key_configured": False,
+        "pushgateway_url": None,
     }
     defaults.update(overrides)
     return ReceiverConfig(**defaults)
@@ -135,6 +136,24 @@ def test_job_env_omits_api_key_vars_when_not_configured():
     names = {e["name"] for e in job["spec"]["template"]["spec"]["containers"][0]["env"]}
     assert "ANTHROPIC_API_KEY" not in names
     assert "OPENROUTER_API_KEY" not in names
+
+
+def test_job_env_omits_pushgateway_url_when_not_configured():
+    config = a_config(pushgateway_url=None)
+    job = build_job(an_incident(), configmap_name="pm-x", config=config)
+    names = {e["name"] for e in job["spec"]["template"]["spec"]["containers"][0]["env"]}
+    assert "PUSHGATEWAY_URL" not in names
+
+
+def test_job_env_includes_pushgateway_url_when_configured():
+    config = a_config(pushgateway_url="http://pushgateway.observability.svc:9091")
+    job = build_job(an_incident(), configmap_name="pm-x", config=config)
+    env = {
+        e["name"]: e["value"]
+        for e in job["spec"]["template"]["spec"]["containers"][0]["env"]
+        if "value" in e
+    }
+    assert env["PUSHGATEWAY_URL"] == "http://pushgateway.observability.svc:9091"
 
 
 def test_job_env_includes_anthropic_key_ref_when_configured():

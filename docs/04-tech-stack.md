@@ -12,7 +12,7 @@ project you never demo.
 | Long-term memory | **Neo4j 5 Community** | Native traversal + subgraph matching for causal chains and recurrence. Heaviest component; tuned to ~1 GB (see below) |
 | Short-term memory | **Valkey** | Redis-compatible, BSD-licensed fork, ~10 MB idle. Working state + LLM response cache |
 | Streaming ingestion | **NATS JetStream** *(Phase 4)* | ~15 MB single binary vs. Kafka's JVM + broker + controller. Same "durable stream with consumer groups" story for a fraction of the footprint — [ADR-004](adr/ADR-004-nats-over-kafka.md) |
-| Metrics & alerts | **Prometheus + Alertmanager** | Source of truth for "what fired and when"; Alertmanager webhook is the production trigger. Single replica, 6h retention, no HA |
+| Metrics & alerts | **Prometheus + Alertmanager + Pushgateway** | Source of truth for "what fired and when"; Alertmanager webhook is the production trigger. Pushgateway exists because the pipeline only ever runs as an ephemeral Job — there's nothing long-lived to scrape, so each run pushes its own snapshot instead. Single replica, 6h retention, no HA |
 | Logs | **Loki** (single-binary, filesystem) | Log source for the collector; monolithic mode avoids the whole read/write/backend split |
 | Dashboards | **Grafana** | One dashboard for the pipeline itself: run count, success rate, citation coverage, tokens, latency |
 | Containers | **Docker** + multi-stage builds | Final image is `python:3.12-slim`, no build toolchain, ~180 MB |
@@ -37,6 +37,7 @@ project you never demo.
 | Valkey | 32 Mi | 64 Mi |
 | Prometheus (6h retention) | 320 Mi | 512 Mi |
 | Alertmanager | 32 Mi | 64 Mi |
+| Pushgateway | 16 Mi | 32 Mi |
 | Loki (single-binary) | 192 Mi | 384 Mi |
 | Grafana | 96 Mi | 192 Mi |
 | Webhook receiver (FastAPI) | 64 Mi | 128 Mi |

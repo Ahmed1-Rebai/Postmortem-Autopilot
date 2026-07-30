@@ -187,6 +187,8 @@ def _job_env(config: ReceiverConfig) -> list[dict[str, Any]]:
         {"name": "HOME", "value": "/scratch"},
         {"name": "OUTPUT_DIR", "value": "/scratch/out"},
     ]
+    if config.pushgateway_url:
+        env.append({"name": "PUSHGATEWAY_URL", "value": config.pushgateway_url})
     if config.anthropic_api_key_configured:
         env.append(
             {

@@ -70,6 +70,7 @@ def a_config(tmp_path: Path, *, max_retries: int = 2) -> Config:
         services=ServicesConfig(aliases={}, strip_suffixes=["-svc", "-service"]),
         output_dir=tmp_path / "out",
         prompts_dir=None,
+        pushgateway_url=None,
     )
 
 

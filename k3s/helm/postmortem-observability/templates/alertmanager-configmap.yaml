@@ -1,0 +1,29 @@
+# Routes to the receiver over `bearer_token_file` — the mechanism
+# Alertmanager's own http_config actually supports. It cannot send an
+# arbitrary custom header, which is why receiver/main.py's
+# verify_webhook_secret accepts `Authorization: Bearer <secret>` alongside
+# the `X-Webhook-Secret` header used for direct curl/manual testing.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-config
+  namespace: {{ .Values.namespace }}
+data:
+  alertmanager.yml: |
+    global:
+      resolve_timeout: {{ .Values.alertmanager.resolveTimeout }}
+
+    route:
+      receiver: postmortem-autopilot
+      group_by: ["alertname"]
+      group_wait: 10s
+      group_interval: 10s
+      repeat_interval: 1h
+
+    receivers:
+      - name: postmortem-autopilot
+        webhook_configs:
+          - url: {{ .Values.alertmanager.webhookReceiverUrl | quote }}
+            send_resolved: true
+            http_config:
+              bearer_token_file: /etc/alertmanager/secrets/webhook-secret

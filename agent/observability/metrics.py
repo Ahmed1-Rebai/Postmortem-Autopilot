@@ -16,6 +16,7 @@ from prometheus_client import (
     CollectorRegistry,
     Counter,
     Histogram,
+    push_to_gateway,
     write_to_textfile,
 )
 
@@ -120,3 +121,25 @@ def write_metrics(path: str) -> None:
     node_exporter textfile collector picks up. Phase 2 mounts the directory.
     """
     write_to_textfile(path, REGISTRY)
+
+
+def push_metrics(gateway_url: str, incident_id: str) -> None:
+    """Push this run's snapshot to Pushgateway, grouped by `incident_id`.
+
+    The grouping key is load-bearing, not cosmetic: Pushgateway overwrites
+    whatever was last pushed under a given job/grouping-key pair, and every
+    Job's own counters start at 0 and never change again after the process
+    exits. Without a per-incident key, each run would just clobber the last
+    one's snapshot, and `increase()`/`rate()` — which need the *same* series
+    to change over a time window — would never see a change to measure.
+    Grouping by `incident_id` instead makes each run a permanently distinct
+    series; Prometheus alerts read `count()`/`sum()` over the currently
+    retained set instead. That retained set has no automatic pruning at this
+    project's scale — a stated, not hidden, limitation (docs/05).
+    """
+    push_to_gateway(
+        gateway_url,
+        job="postmortem_pipeline",
+        registry=REGISTRY,
+        grouping_key={"incident_id": incident_id},
+    )

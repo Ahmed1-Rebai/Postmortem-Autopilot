@@ -1,0 +1,28 @@
+# The two self-alerts (docs/05), rewritten from `increase(...)` to
+# `count()`/`sum()` over the currently-retained Pushgateway set. `increase()`
+# needs the *same* series to change across a time window — a one-shot push
+# from an ephemeral Job never does that, its counters start at 0 and never
+# update again after the process exits. `count()`/`sum()` reads what's
+# currently pushed instead. That retained set has no automatic pruning at
+# this project's scale (a stated, not hidden, limitation — see
+# agent/observability/metrics.py's `push_metrics` docstring).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-rules
+  namespace: {{ .Values.namespace }}
+data:
+  postmortem.yml: |
+    groups:
+      - name: postmortem-autopilot
+        rules:
+          - alert: PostmortemValidationFailing
+            expr: count(pm_runs_total{status="failure"}) > 2
+            annotations:
+              summary: "Writer output failing citation validation repeatedly"
+          - alert: PostmortemHallucinatedCitations
+            expr: count(pm_hallucinated_citations_total > 0) > 0
+            labels:
+              severity: critical
+            annotations:
+              summary: "Model cited a node ID that does not exist — grounding broken"

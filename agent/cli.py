@@ -19,7 +19,7 @@ import argparse
 import sys
 from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -30,14 +30,19 @@ from agent.collectors.base import Collector
 from agent.collectors.git import GitCollector
 from agent.collectors.logs import LogCollector
 from agent.config import Config, ConfigError, load_config
-from agent.graph import PipelineDeps, build_pipeline, initial_state
+from agent.graph import (
+    PipelineDeps,
+    build_pipeline,
+    build_recovery_pipeline,
+    initial_state,
+)
 from agent.linker import CandidateLinker, LinkerConfig
 from agent.llm import LLMError, build_provider
 from agent.memory import GraphStateError, Neo4jMemory
 from agent.nodes.recurrence import persist_corrective_actions
 from agent.nodes.validator import validate as run_validator
 from agent.normalize.services import ServiceCanonicalizer
-from agent.observability.metrics import observe_run, write_metrics
+from agent.observability.metrics import observe_run, push_metrics, write_metrics
 from agent.observability.report import (
     build_run_report,
     write_document,
@@ -130,6 +135,26 @@ def build_deps(config: Config, spec: IncidentSpec, memory: Neo4jMemory) -> Pipel
     )
 
 
+def build_recovery_deps(config: Config, memory: Neo4jMemory) -> PipelineDeps:
+    """Like `build_deps`, without an `IncidentSpec` — the sweep's recovery
+    pipeline never collects, so there's no directory to build collectors
+    from. `collectors=()` is safe: `build_recovery_pipeline` never adds a
+    `collect` node, so nothing ever iterates them."""
+    canonicalizer = ServiceCanonicalizer.from_config(
+        config.services.aliases, config.services.strip_suffixes
+    )
+    return PipelineDeps(
+        config=config,
+        memory=memory,
+        provider=build_provider(config.llm),
+        collectors=(),
+        canonicalizer=canonicalizer,
+        linker=CandidateLinker(
+            LinkerConfig.from_pipeline_config(config.pipeline), canonicalizer
+        ),
+    )
+
+
 # ---------------------------------------------------------------------------
 # commands
 # ---------------------------------------------------------------------------
@@ -193,6 +218,8 @@ def cmd_run(config: Config, incident_dir: Path, metrics_path: str | None) -> int
     )
     if metrics_path:
         write_metrics(metrics_path)
+    if config.pushgateway_url:
+        push_metrics(config.pushgateway_url, report.incident_id)
 
     print(render_run_report_summary(report))
     print(f"  document: {document_path}")
@@ -215,6 +242,99 @@ def cmd_run(config: Config, incident_dir: Path, metrics_path: str | None) -> int
             )
         return EXIT_VALIDATION_FAILED
     return EXIT_OK
+
+
+def cmd_sweep(config: Config, hours: int, metrics_path: str | None) -> int:
+    """The nightly CronJob's job: find incidents that started a run (wrote
+    events) but never finished one, and finish it — resuming from the graph,
+    not re-collecting. See `Neo4jMemory.find_incidents_needing_postmortem`
+    for exactly what this does and doesn't catch."""
+    since = datetime.now(UTC) - timedelta(hours=hours)
+    run_started_at = datetime.now(UTC)
+    any_failed = False
+
+    with Neo4jMemory.from_config(config.neo4j) as memory:
+        memory.ensure_schema()
+        candidates = memory.find_incidents_needing_postmortem(since=since)
+        if not candidates:
+            print(f"sweep: no incidents needing a postmortem in the last {hours}h")
+            return EXIT_OK
+        print(f"sweep: {len(candidates)} incident(s) needing a postmortem")
+
+        deps = build_recovery_deps(config, memory)
+        pipeline = build_recovery_pipeline(deps)
+
+        for incident in candidates:
+            events = memory.get_timeline(incident.id)
+            if not events:
+                # An Incident node only exists once build_graph wrote >=1
+                # event, so this shouldn't happen — but skip rather than
+                # crash the whole batch on graph state this code doesn't
+                # expect.
+                print(
+                    f"  {incident.id}: skipped, no events in the graph",
+                    file=sys.stderr,
+                )
+                any_failed = True
+                continue
+            sources_used = sorted({e.source for e in events})
+
+            started_at = datetime.now(UTC)
+            final = pipeline.invoke(
+                initial_state(incident, events=events, sources_used=sources_used),
+                {"recursion_limit": 12 + config.pipeline.max_validation_retries * 4},
+            )
+            finished_at = datetime.now(UTC)
+            report = build_run_report(
+                final, started_at=started_at, finished_at=finished_at
+            )
+
+            document_path = write_document(
+                incident.id, final.get("document_md", ""), config.output_dir
+            )
+            report_path = write_run_report(report, config.output_dir)
+
+            if report.succeeded:
+                memory.persist_hypotheses(
+                    incident.id, list(final.get("hypotheses") or []), now=finished_at
+                )
+                memory.link_similar_incidents(incident.id)
+                persist_corrective_actions(
+                    memory, incident.id, final.get("document_md", "")
+                )
+            else:
+                any_failed = True
+
+            validation = report.validation
+            observe_run(
+                succeeded=report.succeeded,
+                duration_seconds=report.duration_seconds,
+                event_count=report.event_count,
+                candidate_count=report.candidate_count,
+                retry_count=report.retry_count,
+                coverage=validation.coverage if validation else None,
+                hallucinated=validation.citations_hallucinated if validation else 0,
+                token_usage=dict(report.token_usage),
+                failed_sources=[failure.source for failure in report.sources_failed],
+            )
+            print(f"  {render_run_report_summary(report)}")
+            print(f"    document: {document_path}")
+            print(f"    report:   {report_path}")
+
+    if metrics_path:
+        write_metrics(metrics_path)
+    if config.pushgateway_url:
+        # One push for the whole batch, not per incident: observe_run above
+        # was called once per incident and the counters are cumulative for
+        # the life of this process, so a per-incident push here would carry
+        # every earlier incident's counts too. Grouped under a batch id
+        # instead of an incident id — a sweep run is naturally a batch
+        # metric, not a single-incident one.
+        push_metrics(
+            config.pushgateway_url, f"sweep-{run_started_at.strftime('%Y%m%dT%H%M%SZ')}"
+        )
+
+    return EXIT_VALIDATION_FAILED if any_failed else EXIT_OK
 
 
 def cmd_validate(config: Config, incident_id: str, document_path: Path) -> int:
@@ -281,6 +401,22 @@ def build_parser() -> argparse.ArgumentParser:
     validate.add_argument("--incident-id", required=True)
     validate.add_argument("--document", required=True, type=Path)
 
+    sweep = sub.add_parser(
+        "sweep", help="finish postmortems for incidents a run never completed"
+    )
+    sweep.add_argument(
+        "--hours",
+        type=int,
+        default=24,
+        help="how far back to look for closed incidents (default 24)",
+    )
+    sweep.add_argument(
+        "--metrics",
+        type=str,
+        default=None,
+        help="write Prometheus textfile metrics to this path",
+    )
+
     sub.add_parser("eval", help="run the eval suite (Phase 3.2)")
     return parser
 
@@ -304,6 +440,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             return cmd_run(config, args.incident, args.metrics)
         if args.command == "validate":
             return cmd_validate(config, args.incident_id, args.document)
+        if args.command == "sweep":
+            return cmd_sweep(config, args.hours, args.metrics)
     except ConfigError as exc:
         print(f"configuration error: {exc}", file=sys.stderr)
         return EXIT_USAGE

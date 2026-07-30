@@ -650,6 +650,41 @@ class Neo4jMemory:
             ).single()
         return int(record["linked"]) if record else 0
 
+    def find_incidents_needing_postmortem(self, since: datetime) -> list[Incident]:
+        """Closed incidents with events in the graph but no `Hypothesis`.
+
+        The nightly sweep's whole scope, stated precisely: an `Incident` node
+        only exists once `build_graph` has written it (after collection
+        produced at least one event), and `Hypothesis` nodes only exist for a
+        run that reached `persist_hypotheses` (invariant: only a published
+        document's reasoning becomes a graph fact). So this catches a run that
+        crashed, was OOM-killed, or exhausted validation retries after
+        collection succeeded — not an incident whose webhook was missed
+        outright, since no `Incident` node would exist for that case at all.
+        """
+        query = """
+        MATCH (i:Incident)
+        WHERE i.status = 'closed' AND i.end_time >= $since
+          AND NOT EXISTS { MATCH (:Hypothesis {incident_id: i.id}) }
+        RETURN i.id AS id, i.title AS title, i.start_time AS start_time,
+               i.end_time AS end_time, i.severity AS severity, i.status AS status,
+               i.fingerprint AS fingerprint
+        ORDER BY i.end_time ASC
+        """
+        with self._driver.session(database=self._database) as session:
+            return [
+                Incident(
+                    id=str(record["id"]),
+                    title=str(record["title"] or ""),
+                    start_time=_to_datetime(record["start_time"]) or since,
+                    end_time=_to_datetime(record["end_time"]) or since,
+                    severity=str(record["severity"] or "unknown"),
+                    status=str(record["status"] or "closed"),
+                    fingerprint=_tuple_of_str(record["fingerprint"]),
+                )
+                for record in session.run(query, since=since)
+            ]
+
     # -- internals -----------------------------------------------------------
     def _require_incident(self, incident_id: str) -> None:
         """Fail loudly rather than write zero rows.

@@ -127,6 +127,13 @@ def _env_optional_path(name: str) -> Path | None:
     return path if path.is_absolute() else (PROJECT_ROOT / path).resolve()
 
 
+def _env_optional_str(name: str) -> str | None:
+    """Like `_env_optional_path`, for plain strings. `PUSHGATEWAY_URL` is the
+    one caller: unset means "skip the push" — a local/CI run has nowhere to
+    push to and that must stay a no-op, not a connection error."""
+    return os.environ.get(name) or None
+
+
 # ---------------------------------------------------------------------------
 # YAML helpers
 # ---------------------------------------------------------------------------
@@ -338,6 +345,10 @@ class Config:
     #: ConfigMap mount) means a prompt edit is visible without a rebuild —
     #: the whole reason prompts are `.md` files and not inline strings.
     prompts_dir: Path | None
+    #: `None` means "don't push metrics" — safe for local/CI runs with no
+    #: gateway running. Set in k8s to the observability chart's Pushgateway
+    #: Service DNS name.
+    pushgateway_url: str | None
 
 
 # ---------------------------------------------------------------------------
@@ -392,6 +403,7 @@ def load_config(env_file: Path | None = None) -> Config:
         ),
         output_dir=_env_path("OUTPUT_DIR", "./out"),
         prompts_dir=_env_optional_path("PROMPTS_DIR"),
+        pushgateway_url=_env_optional_str("PUSHGATEWAY_URL"),
     )
 
 

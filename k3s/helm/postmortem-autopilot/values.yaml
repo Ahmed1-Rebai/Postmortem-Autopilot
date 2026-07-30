@@ -60,6 +60,17 @@ pipeline:
     limits: {cpu: "1", memory: 768Mi}
   backoffLimit: 2
   ttlSecondsAfterFinished: 3600
+  # The nightly sweep (docs/05's "2. CronJob" trigger path): finishes
+  # postmortems for incidents that started a run (wrote events) but never
+  # reached one — see `Neo4jMemory.find_incidents_needing_postmortem`'s
+  # docstring for exactly what that does and doesn't catch.
+  sweep:
+    schedule: "17 3 * * *"
+    hours: 24
+  # Empty = don't push (agent/config.py: `pushgateway_url: None` is a no-op,
+  # not an error) — set once the observability chart is installed. Points
+  # cross-namespace at that chart's own Pushgateway Service.
+  pushgatewayUrl: ""
 
 receiver:
   image:
