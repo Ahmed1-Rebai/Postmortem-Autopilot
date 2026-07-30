@@ -29,12 +29,21 @@ spec:
       # No runAsNonRoot: confirmed by running the image directly (`docker run
       # --entrypoint id neo4j:5-community`) that it starts as uid 0 with no
       # documented alternative — its entrypoint owns the chown-then-drop
-      # dance for the mounted volume itself. Enforcing non-root from outside
-      # breaks that: k8s refuses to start the container at all ("container
-      # has runAsNonRoot and image will run as root"), which is a worse
-      # outcome than the image's own default. Properly non-root (an
-      # initContainer pre-chowning the PVC to a pinned uid, or finding
-      # documented non-root guidance for this image) is Checkpoint 4 work.
+      # dance for the mounted volume itself, then runs the JVM as `neo4j`
+      # (uid 7474) via `su-exec`, confirmed with `ps aux` inside a running
+      # container: only PID 1 (the entrypoint) is root, the actual server
+      # process already isn't. Enforcing non-root from outside breaks PID 1's
+      # own chown-then-drop dance: k8s refuses to start the container at all
+      # ("container has runAsNonRoot and image will run as root"), which is a
+      # worse outcome than the image's own default. Properly non-root would
+      # need a patched/forked entrypoint image — out of scope here.
+      # 120s, not the 30s default: confirmed locally that a too-short
+      # shutdown leaves an "active logical log" (Neo4j's own recovery-needed
+      # state) — `neo4j-admin database dump` refuses to run against it until
+      # the database has had a genuine clean shutdown. Matters for the
+      # backup CronJob's scale-to-zero step, and for ordinary pod
+      # restarts/evictions too.
+      terminationGracePeriodSeconds: 120
       securityContext:
         seccompProfile: {type: RuntimeDefault}
       containers:
@@ -42,21 +51,38 @@ spec:
           image: {{ .Values.neo4j.image | quote }}
           securityContext:
             allowPrivilegeEscalation: false
-            # No capability drop, stated as a deliberate, investigated
-            # tradeoff, not an oversight. The entrypoint runs as uid 0 to
-            # chown-then-drop-privileges for the mounted volume, and that
-            # needs more than CAP_CHOWN alone: `drop: [ALL], add: [CHOWN,
-            # FOWNER]` got past the chown step but then failed traversing
-            # the same tree ("find: /var/lib/neo4j: Permission denied"),
-            # which is CAP_DAC_OVERRIDE/CAP_DAC_READ_SEARCH territory — "root"
-            # without those still respects ordinary permission bits. Chasing
-            # the exact minimal set for an undocumented upstream entrypoint
-            # is Checkpoint 4 hardening work, not this checkpoint's; the two
-            # capabilities actually confirmed necessary by testing are noted
-            # here so that work starts from a fact, not a guess.
-            # Not readOnlyRootFilesystem either, for the same underlying
-            # reason: the entrypoint writes logs, run state and plugin
-            # metadata under /var/lib/neo4j at startup.
+            # Checkpoint 4: re-tested locally and against the real cluster
+            # (`docker run --user 0:0 --cap-drop=ALL --cap-add=<set>`)
+            # rather than left at "no restriction." This set starts the
+            # container cleanly and a real `cypher-shell` query succeeds
+            # against it — CHOWN+FOWNER alone (checkpoint 1's attempt) gets
+            # past the initial chown but then fails traversing the tree
+            # ("find: /var/lib/neo4j: Permission denied", DAC_OVERRIDE/
+            # DAC_READ_SEARCH territory — "root" without those still
+            # respects ordinary permission bits); su-exec's own
+            # privilege-drop to uid 7474 additionally needs SETUID/SETGID
+            # ("su-exec: setgroups(7474): Operation not permitted" without
+            # them). KILL was the one found by a real production incident,
+            # not a local test: without it, `tini` (PID 1) cannot forward
+            # SIGTERM to the JVM child it started via su-exec under a
+            # different uid ("[FATAL tini (1)] Unexpected error when
+            # forwarding signal: 'Operation not permitted'", confirmed in
+            # this cluster's own pod logs) — every "graceful" shutdown was
+            # silently becoming a hard SIGKILL once the grace period
+            # elapsed, which is exactly what left Neo4j with an "active
+            # logical log" the backup CronJob's dump then refused to run
+            # against. This is still uid 0 for PID 1 (see above), but with
+            # every other Linux capability actually dropped, not full root.
+            capabilities:
+              drop: ["ALL"]
+              add: ["CHOWN", "FOWNER", "DAC_OVERRIDE", "DAC_READ_SEARCH", "SETUID", "SETGID", "KILL"]
+            # Not readOnlyRootFilesystem: re-tested and confirmed still
+            # breaks it — the entrypoint unconditionally chowns its entire
+            # install tree on every boot, including the bundled read-only
+            # .jars (`chown: changing ownership of
+            # '/var/lib/neo4j/lib/...jar': Read-only file system`), not just
+            # the mounted data volume. Fixing that needs a patched entrypoint,
+            # not a capability grant.
           ports:
             - {name: http, containerPort: 7474}
             - {name: bolt, containerPort: 7687}

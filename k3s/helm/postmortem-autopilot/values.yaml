@@ -72,6 +72,13 @@ pipeline:
   # cross-namespace at that chart's own Pushgateway Service.
   pushgatewayUrl: ""
 
+backup:
+  # k3s/images/kubectl/ — a tiny purpose-built image (alpine + one static
+  # binary, ~110 MB), not a published one. See cronjob-backup.yaml's own
+  # docstring for why bitnami/kubectl, rancher/kubectl, and alpine/k8s were
+  # each tried and ruled out.
+  kubectlImage: postmortem-kubectl:dev
+
 receiver:
   image:
     repository: postmortem-receiver

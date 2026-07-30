@@ -1,0 +1,110 @@
+# Neo4j Community Edition's `neo4j-admin database dump` only runs against an
+# offline DBMS (confirmed against Neo4j's own docs — online backup is
+# Enterprise-only), so this Job scales the `neo4j` StatefulSet to 0, dumps
+# from the now-unheld PVC, and scales back to 1 — real, bounded downtime
+# during the nightly window, stated plainly rather than glossed over. A
+# clean shutdown here depends on `neo4j-statefulset.yaml`'s `KILL`
+# capability (see that file's comment) — without it, `tini` can't forward
+# SIGTERM to the JVM at all, every "graceful" scale-down silently becomes a
+# SIGKILL once the grace period elapses, and the dump then refuses to run
+# ("Active logical log detected") — found for real against this cluster,
+# not assumed. `CALL db.checkpoint()` was tried as a belt-and-suspenders
+# fix and abandoned: that procedure doesn't exist in Community Edition at
+# all (confirmed: `SHOW PROCEDURES` lists nothing matching "checkpoint").
+#
+# One container, not initContainers, for the three steps (scale down, dump,
+# scale up): initContainers only proceed to the main container if *every*
+# initContainer succeeds, so a failed dump in an initContainer would leave
+# the StatefulSet stuck at 0 replicas forever — a strictly worse outcome
+# than a missed backup. A single container with a `trap ... EXIT` guarantees
+# the scale-up runs whether the dump succeeded or not. `kubectl` itself
+# isn't in the neo4j image, so a tiny initContainer (k3s/images/kubectl/ —
+# measured, not assumed: `bitnami/kubectl` no longer publishes a tag
+# matching this project's k3s version, `rancher/kubectl` is genuinely
+# distroless with no shell to run a copy step, and `alpine/k8s` works but
+# is ~850 MB for a one-binary need) copies the binary onto a shared
+# `emptyDir` first.
+#
+# Both `system` and `neo4j` databases are dumped, matching Neo4j's own
+# documented practice — `system` holds database registry/user metadata, not
+# just `neo4j`'s graph data.
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: postmortem-backup
+  namespace: {{ .Values.namespace.data }}
+spec:
+  # Before the sweep's 3am slot (cronjob-nightly.yaml, postmortem namespace)
+  # — no reason to overlap them, and the backup's downtime window should be
+  # over well before anything else runs.
+  schedule: "17 2 * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      ttlSecondsAfterFinished: 3600
+      template:
+        spec:
+          serviceAccountName: neo4j-backup
+          restartPolicy: Never
+          # fsGroup, not an in-container chown: kubelet chgrps the mounted
+          # neo4j-backups volume to this gid at mount time, which is a
+          # privileged, kubelet-side operation — more reliable than trying
+          # to chown a possibly-root-owned fresh PVC from inside the
+          # container. 7474 is neo4j's own uid/gid in the image.
+          securityContext:
+            fsGroup: 7474
+            seccompProfile: {type: RuntimeDefault}
+          initContainers:
+            - name: kubectl
+              image: {{ .Values.backup.kubectlImage | quote }}
+              command: ["sh", "-c", "cp $(which kubectl) /tools/kubectl && chmod +x /tools/kubectl"]
+              volumeMounts:
+                - {name: tools, mountPath: /tools}
+          containers:
+            - name: backup
+              image: {{ .Values.neo4j.image | quote }}
+              command: ["/bin/bash", "-c"]
+              args:
+                - |
+                  set -eu
+                  export PATH="/tools:$PATH"
+                  NS={{ .Values.namespace.data }}
+
+                  kubectl scale statefulset/neo4j -n "$NS" --replicas=0
+                  kubectl wait --for=delete pod -l app=neo4j -n "$NS" --timeout=180s
+
+                  # Runs on any exit — a failed dump must not leave Neo4j
+                  # scaled to 0.
+                  trap 'kubectl scale statefulset/neo4j -n "$NS" --replicas=1' EXIT
+
+                  ts=$(date -u +%Y%m%dT%H%M%SZ)
+                  mkdir -p "/backups/${ts}"
+                  neo4j-admin database dump --to-path="/backups/${ts}" neo4j
+                  neo4j-admin database dump --to-path="/backups/${ts}" system
+
+                  # 7-day rotation.
+                  find /backups -maxdepth 1 -mindepth 1 -type d -mtime +7 -exec rm -rf {} +
+              securityContext:
+                allowPrivilegeEscalation: false
+                # Re-tested for real (checkpoint 4): the same narrowed set
+                # neo4j-statefulset.yaml uses. `neo4j-admin` re-runs the same
+                # chown-the-install-tree dance the full server does whenever
+                # it detects unwritable files, so it needs the same
+                # capabilities, not fewer.
+                capabilities:
+                  drop: ["ALL"]
+                  add: ["CHOWN", "FOWNER", "DAC_OVERRIDE", "DAC_READ_SEARCH", "SETUID", "SETGID"]
+              volumeMounts:
+                - {name: data, mountPath: /data}
+                - {name: backups, mountPath: /backups}
+                - {name: tools, mountPath: /tools}
+              resources:
+                requests: {cpu: 100m, memory: 256Mi}
+                limits: {cpu: 500m, memory: 512Mi}
+          volumes:
+            - name: data
+              persistentVolumeClaim: {claimName: neo4j-data}
+            - name: backups
+              persistentVolumeClaim: {claimName: neo4j-backups}
+            - name: tools
+              emptyDir: {}

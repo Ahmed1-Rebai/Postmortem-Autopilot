@@ -191,10 +191,60 @@ correct tradeoff for single-node and the wrong one for anything else — say
 so explicitly rather than pretending it scales. Multi-node calls for Longhorn
 (still lightweight) or a cloud CSI driver.
 
-Backup is a CronJob running `neo4j-admin database dump`, retaining 7 days.
-Restore is documented and **must be tested once** — an untested restore is not
-a backup, and "I tested the restore" is a genuinely differentiating thing to
-be able to say.
+Backup is a CronJob (`cronjob-backup.yaml`, `postmortem-data`, `17 2 * * *`)
+running `neo4j-admin database dump` for both `neo4j` and `system`, retaining
+7 days. Neo4j Community Edition's dump command only runs against an offline
+DBMS (Enterprise-only has online backup), so the Job scales the `neo4j`
+StatefulSet to 0, dumps from the now-unheld PVC, and scales back to 1 — real,
+bounded downtime during the nightly window. A clean shutdown here depends on
+the StatefulSet's `KILL` capability (see its own security-context comment):
+without it, `tini` can't forward SIGTERM to the JVM at all, a "graceful"
+scale-down silently becomes a SIGKILL once the grace period elapses, and the
+dump then refuses to run against the resulting unclean log — found for real
+against a live cluster, not assumed.
+
+### Restore
+
+**Tested once for real** (not just documented — an untested restore is not a
+backup): a fresh, empty PVC, `neo4j-admin database load` against it from a
+dump on the `neo4j-backups` volume, then a throwaway single-pod Neo4j
+pointed at the restored volume, queried to confirm the data matches. Against
+the live cluster's actual data, not a synthetic fixture — the throwaway
+target means this never touches the real demo database.
+
+```bash
+# 1. A fresh, empty PVC — never the live neo4j-data volume.
+kubectl apply -f - <<'EOF'
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: restore-test-data, namespace: postmortem-data}
+spec:
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: local-path
+  resources: {requests: {storage: 1Gi}}
+EOF
+
+# 2. Load both databases from a dump directory on neo4j-backups.
+#    (See cronjob-backup.yaml for the matching container/capability spec —
+#    the load Job needs the same security context the dump Job does.)
+neo4j-admin database load --from-path=/backups/<timestamp> neo4j --overwrite-destination=true
+neo4j-admin database load --from-path=/backups/<timestamp> system --overwrite-destination=true
+
+# 3. Point a throwaway Neo4j at the restored volume and compare counts
+#    against the live graph.
+kubectl exec -n postmortem-data <restore-pod> -- cypher-shell -u neo4j -p <password> \
+  "MATCH (n) RETURN count(n) AS nodes"
+kubectl exec -n postmortem-data <restore-pod> -- cypher-shell -u neo4j -p <password> \
+  "MATCH ()-[r]->() RETURN count(r) AS rels"
+
+# 4. Delete the throwaway PVC and pod — this was never meant to persist.
+```
+
+The `system` database dump/load carries the original credentials — the
+throwaway pod's own `NEO4J_AUTH` gets overwritten by whatever `system` was
+loaded, so authenticate with the *original* password, not the one set at
+pod creation. Confirmed once for real: 21 nodes, 46 relationships, exact
+match between the live graph and the restored copy.
 
 ## Self-observability
 
@@ -264,9 +314,30 @@ Modest, but stated — these are cheap and interviewers ask:
   defaults.
 - Neo4j credentials in a Secret; auth **not** disabled even single-node.
 - Pipeline pods: `runAsNonRoot`, `readOnlyRootFilesystem`, all capabilities
-  dropped, `seccompProfile: RuntimeDefault`.
-- NetworkPolicy: only the pipeline and receiver may reach `postmortem-data`.
-- The receiver's RBAC is the narrow Role described above — it can create Jobs
-  and nothing else.
+  dropped, `seccompProfile: RuntimeDefault`. Valkey gets the same full
+  profile (checkpoint 4: re-tested, not just assumed by analogy to Neo4j —
+  it has no mounted volume at all with persistence disabled, so the
+  chown-a-volume problem that forces Neo4j's entrypoint to start as root
+  never applies to it). Neo4j itself can't be `runAsNonRoot` or
+  `readOnlyRootFilesystem` (its entrypoint's chown-then-drop dance needs to
+  start as root and unconditionally chowns its whole install tree on every
+  boot — confirmed, not assumed), but runs with a narrow, tested capability
+  set (`CHOWN, FOWNER, DAC_OVERRIDE, DAC_READ_SEARCH, SETUID, SETGID, KILL`)
+  rather than no restriction at all — see `neo4j-statefulset.yaml`'s own
+  comment for what each capability is for and how it was found.
+- NetworkPolicy: only the pipeline (Jobs and receiver) may reach
+  `postmortem-data`. **Stated limitation, not silently assumed working**:
+  tested for real on this project's k3d dev cluster, and traffic from a
+  different namespace was *not* blocked — k3d's default Flannel setup
+  doesn't enforce `NetworkPolicy` the way bare-metal k3s does with its
+  bundled kube-router controller. The policy itself is correct and would
+  enforce on a real k3s node or any NetworkPolicy-capable CNI (Calico,
+  Cilium); it just couldn't be verified as *active* in this specific dev
+  environment.
+- The receiver's RBAC is the narrow Role described above — it can create
+  Jobs and ConfigMaps and nothing else. The backup CronJob's own
+  ServiceAccount is separately scoped, narrowly, to scaling the `neo4j`
+  StatefulSet and watching its pods — nothing else, and nothing outside
+  `postmortem-data`.
 - The webhook endpoint validates a shared-secret header. It's reachable from
   the cluster network and should not be an open Job-creation API.

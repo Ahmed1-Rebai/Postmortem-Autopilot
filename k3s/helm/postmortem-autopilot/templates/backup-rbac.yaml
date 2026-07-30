@@ -1,0 +1,40 @@
+# Neo4j Community Edition's `neo4j-admin database dump` requires the target
+# DBMS to be fully offline (confirmed against Neo4j's own docs — there is no
+# online-backup command outside Enterprise). So the backup Job scales the
+# `neo4j` StatefulSet to 0, dumps from the now-unheld PVC, and scales back to
+# 1 — real, bounded downtime during the nightly backup window, which needs
+# a narrow, new RBAC surface: scale the StatefulSet, watch for its pod to
+# actually terminate before starting the dump.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: neo4j-backup
+  namespace: {{ .Values.namespace.data }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: neo4j-backup
+  namespace: {{ .Values.namespace.data }}
+rules:
+  - apiGroups: ["apps"]
+    resources: ["statefulsets", "statefulsets/scale"]
+    resourceNames: ["neo4j"]
+    verbs: ["get", "update", "patch"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: neo4j-backup
+  namespace: {{ .Values.namespace.data }}
+subjects:
+  - kind: ServiceAccount
+    name: neo4j-backup
+    namespace: {{ .Values.namespace.data }}
+roleRef:
+  kind: Role
+  name: neo4j-backup
+  apiGroup: rbac.authorization.k8s.io

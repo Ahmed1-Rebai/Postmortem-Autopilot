@@ -23,11 +23,19 @@ spec:
     metadata:
       labels: {app: valkey}
     spec:
-      # No runAsNonRoot — same finding as neo4j-statefulset.yaml: the
-      # official image starts as uid 0 with no documented non-root mode.
-      # allowPrivilegeEscalation/readOnlyRootFilesystem/dropped capabilities
-      # are kept, since none of those depend on the image's own uid.
+      # Checkpoint 1 assumed this needed the same exception as Neo4j's
+      # StatefulSet ("the official image starts as uid 0, same finding") —
+      # untested, written by analogy. Checkpoint 4 actually tested it
+      # (`docker run --user 999:999 --cap-drop=ALL --read-only`) and it
+      # starts cleanly: unlike Neo4j, this project runs Valkey with
+      # persistence disabled (`--save "" --appendonly no`, no mounted
+      # volume at all), so the chown-a-mounted-volume dance that forces
+      # Neo4j's entrypoint to start as root never applies here. Full
+      # hardening, same profile as the pipeline's own container.
       securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
+        runAsGroup: 1000
         seccompProfile: {type: RuntimeDefault}
       containers:
         - name: valkey

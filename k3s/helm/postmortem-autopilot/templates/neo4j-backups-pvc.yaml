@@ -1,0 +1,15 @@
+# Separate from neo4j-data on purpose: a dump landing on the same volume it
+# was taken from is not a backup. 5Gi matches docs/05's storage table —
+# dumps are compressed single-file archives, comfortably smaller than the
+# live store for this project's scale.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: neo4j-backups
+  namespace: {{ .Values.namespace.data }}
+spec:
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 5Gi

@@ -398,13 +398,85 @@ docker-compose" — everything else is follow-on.
 > provisioned-and-untested.
 
 ### Checkpoint 4 — hardening & backup
-- [ ] Neo4j backup CronJob (`neo4j-admin dump`, 7-day rotation)
-- [ ] 🔴 **Test the restore once.** An untested restore is not a backup
-- [ ] Pod security: non-root, read-only rootfs, caps dropped, seccomp
-      *(the pipeline Job already has this — this item is finishing the job
-      for Neo4j/Valkey, see checkpoint 1's capability finding above)*
-- [ ] NetworkPolicy for `postmortem-data`
-- [ ] k3s `HelmChart` CRD bootstrap manifest
+- [x] Neo4j backup CronJob (`neo4j-admin dump`, 7-day rotation)
+      *(`cronjob-backup.yaml`: scales the StatefulSet to 0 — Community
+      Edition's dump command only runs offline, confirmed against Neo4j's
+      own docs, no online-backup command outside Enterprise — dumps `system`
+      and `neo4j` from the now-unheld PVC to a separate `neo4j-backups`
+      PVC, scales back to 1. One container with a `trap ... EXIT`, not
+      initContainers: a failed dump in an initContainer would leave the
+      StatefulSet stuck at 0 replicas forever, worse than a missed backup)*
+- [x] 🔴 **Test the restore once.** An untested restore is not a backup
+      *(done for real against a throwaway target, not the live demo
+      database — see docs/05's new Restore section for the exact procedure.
+      21 nodes, 46 relationships, exact match between the live graph and
+      the restored copy)*
+- [x] Pod security: non-root, read-only rootfs, caps dropped, seccomp
+      *(the pipeline Job already had this — Valkey now gets the same full
+      profile too: checkpoint 1's "same finding as Neo4j" was never
+      actually tested for Valkey, and re-testing found it starts cleanly
+      fully hardened, since this project runs it with no mounted volume at
+      all. Neo4j itself still can't be `runAsNonRoot`/
+      `readOnlyRootFilesystem` (confirmed, not re-guessed: its entrypoint's
+      chown-then-drop dance must start as root and unconditionally chowns
+      its whole install tree every boot), but now runs with a narrow,
+      tested capability set instead of no restriction at all)*
+- [x] NetworkPolicy for `postmortem-data`
+      *(stated limitation, not silently assumed working: tested for real,
+      and k3d's default Flannel setup does not enforce it — traffic from a
+      different namespace was not blocked. The policy itself is correct
+      Kubernetes YAML and would enforce on bare-metal k3s or any
+      NetworkPolicy-capable CNI; only its *active enforcement in this dev
+      cluster* couldn't be verified)*
+- [x] k3s `HelmChart` CRD bootstrap manifest
+      *(`k3s/bootstrap/package.sh` + generated manifest, `chartContent`-based
+      since neither chart is published anywhere. Verified the mechanism for
+      real — `docker cp`ed into the running k3d server's own manifests
+      directory, k3s's controller picked it up with no cluster recreation
+      and spawned real `helm-install`/`helm-delete` Jobs from it — but
+      stopped short of letting a full second install reach `Deployed`:
+      doing so against the same target namespaces as the already-running,
+      verified deployment would create real Helm-ownership conflicts on
+      identical resource names. A genuine, stated scope boundary, not an
+      oversight)*
+
+> **Checkpoint 4 result (2026-07-30):** the standout finding was a real
+> production-shaped bug, not a local-test artifact: `tini` (PID 1 in the
+> Neo4j image) couldn't forward `SIGTERM` to the JVM it started via
+> `su-exec` under a different uid — `[FATAL tini (1)] Unexpected error when
+> forwarding signal: 'Operation not permitted'`, confirmed in this
+> cluster's own pod logs. Every "graceful" scale-down was silently becoming
+> a hard `SIGKILL` once the grace period elapsed, which is exactly what
+> left Neo4j with an "active logical log" the backup CronJob's dump then
+> refused to run against — no amount of increasing
+> `terminationGracePeriodSeconds` would have fixed it, since the signal
+> was never reaching the JVM at all. The fix was one missing capability
+> (`KILL`), not a timing workaround. `CALL db.checkpoint()` was tried first
+> as a belt-and-suspenders alternative and abandoned once `SHOW PROCEDURES`
+> confirmed it doesn't exist in Community Edition at all.
+>
+> Also found: `bitnami/kubectl` no longer publishes a tag matching this
+> project's k3s version, `rancher/kubectl` is genuinely distroless (no
+> shell, so it can't run a copy step), and `alpine/k8s` works but is ~850
+> MB for a one-binary need — `k3s/images/kubectl/` is a tiny purpose-built
+> alternative (alpine + one static binary, ~110 MB). And the k3d node's
+> image cache turned out to be genuinely evicting images mid-session
+> (confirmed via the host's own disk usage sitting at 86%) — several images
+> already imported earlier had to be re-imported when Jobs referencing them
+> came up `ImagePullBackOff` hours later, including mid-verification for
+> this very checkpoint. A real, reproducible characteristic of this dev
+> environment, not a one-off fluke.
+>
+> Full end-to-end verification, nothing torn down since checkpoint 1: both
+> hardened StatefulSet/Deployment came up healthy and a real pipeline run
+> (`postmortem-manual`) still produced `INC-0001: PASS · coverage 100.0% ·
+> hallucinated 0` afterward; the backup CronJob triggered manually produced
+> real, non-empty `neo4j.dump`/`system.dump` files; the restore round-trip
+> matched exactly; the NetworkPolicy's positive case (from `postmortem`)
+> and negative case (from `default`) were both tested, with the negative
+> case's result stated honestly above rather than assumed; the HelmChart
+> CRD mechanism was proven live and cleaned up before it could touch the
+> real deployment's resources.
 
 ## Phase 3 — Recurrence & Evaluation ⭐
 
