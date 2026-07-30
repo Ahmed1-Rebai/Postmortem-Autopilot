@@ -61,6 +61,29 @@ pipeline:
   backoffLimit: 2
   ttlSecondsAfterFinished: 3600
 
+receiver:
+  image:
+    repository: postmortem-receiver
+    tag: dev
+    pullPolicy: IfNotPresent
+  replicas: 1
+  # Padding on both sides of an alert's [startsAt, endsAt] — deliberately not
+  # pipeline.causalWindowMinutes (that's the linker's temporal-proximity
+  # threshold inside the graph, a different concept). See
+  # receiver/config.py's ReceiverConfig.window_pad_minutes docstring.
+  windowPadMinutes: 30
+  # How long a (groupKey, window-start) dedup key blocks a repeat Job — an
+  # alert flapping five times inside this window produces one Job (docs/05).
+  dedupTtlSeconds: 21600
+  resources:
+    requests: {cpu: 50m, memory: 64Mi}
+    limits: {cpu: 200m, memory: 128Mi}
+
 secrets:
   anthropicApiKey: ""
   openrouterApiKey: ""
+  # Compared against the webhook's X-Webhook-Secret header (docs/05: "should
+  # not be an open Job-creation API"). Real deployments set this via --set or
+  # a sealed secret; this default only works because it matches the same
+  # local-only convention as neo4j.password above.
+  webhookSecret: changeme-local-only

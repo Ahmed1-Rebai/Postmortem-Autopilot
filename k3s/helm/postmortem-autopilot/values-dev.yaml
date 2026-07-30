@@ -22,3 +22,7 @@ neo4j:
     requests: {cpu: 100m, memory: 640Mi}
     limits: {cpu: 500m, memory: 768Mi}
   storage: 2Gi
+
+receiver:
+  image:
+    pullPolicy: Never

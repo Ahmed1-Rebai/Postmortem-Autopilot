@@ -251,18 +251,70 @@ docker-compose" — everything else is follow-on.
 > genuinely live-editable via `helm upgrade` with no rebuild.
 
 ### Checkpoint 2 — webhook receiver
-- [ ] Webhook receiver (FastAPI): `/hooks/alertmanager`, `/healthz`, `/readyz`
+- [x] Webhook receiver (FastAPI): `/hooks/alertmanager`, `/healthz`, `/readyz`
       *(new top-level `receiver/` package, its own Dockerfile — kept out of
       the pipeline image, different failure-isolation story)*
-- [ ] Receiver creates Jobs; narrow RBAC (`jobs` create/get/list only)
+- [x] Receiver creates Jobs; narrow RBAC (`jobs` create/get/list only)
       *(plus `configmaps: create, patch` — the receiver synthesizes each
       incident's `meta.yaml`/`alerts.json` as a ConfigMap owner-referenced to
       its Job, so `ttlSecondsAfterFinished` garbage-collects both together)*
-- [ ] Dedup on `(fingerprint, startsAt)` in Valkey, 6h TTL
-      *(Alertmanager's own per-alert `fingerprint`, not `Incident.fingerprint`
-      in `agent/state.py` — same word, unrelated concepts, different layers)*
-- [ ] Shared-secret header on the webhook
-- [ ] Traefik Ingress
+- [x] Dedup on Valkey, 6h TTL
+      *(keyed on Alertmanager's own **`groupKey`** plus the derived window's
+      start time, not `(fingerprint, startsAt)` — a webhook call can bundle
+      several alerts under one `groupKey`, which is the sturdier anchor for
+      "was this exact incident already handled," and it's still nothing to
+      do with `Incident.fingerprint` in `agent/state.py`, a different,
+      unrelated concept computed post-run for recurrence matching)*
+- [x] Shared-secret header on the webhook
+- [x] Traefik Ingress
+
+> **Checkpoint 2 result (2026-07-30):** end-to-end against the same k3d
+> cluster from Checkpoint 1 (revision 5, `helm upgrade` — Neo4j/Valkey left
+> running, nothing torn down). `curl -X POST /hooks/alertmanager` with a
+> real-shaped resolved-alert payload → `202 {"action": "created", ...}`;
+> the receiver's own Job (not a baked-in golden) ran to `Complete` and
+> printed the exact same summary format as Checkpoint 1: `INC-ALERT-...:
+> PASS · 1 events · 0 candidates · 1 hypotheses · coverage 100.0% ·
+> hallucinated 0 · retries 0 · 5.7s · 368 tokens` — evidence sourced from
+> nothing but the receiver-synthesized `alerts.json` (no `logs`/`repo` keys
+> in its ConfigMap; `LogCollector`/`GitCollector` degraded to
+> `SourceFailure` exactly as designed, not a new failure mode). Re-POSTing
+> the identical payload within the TTL → `202 {"action": "deduped", ...}`,
+> no second Job. No `X-Webhook-Secret` header, or the wrong one → `401`
+> both times. The ConfigMap's `ownerReferences` patch was confirmed
+> pointing at the created Job's real UID (`kubectl get configmap -o
+> yaml`), so `ttlSecondsAfterFinished` reaping the Job will reap the
+> ConfigMap with it.
+>
+> **A real testability bug found and fixed along the way:** `receiver/main.py`
+> originally built its config/dedup/job-creator singletons at **module import
+> time**, which crashed hard importing the module with no env vars set or no
+> loadable kubeconfig — confirmed by running the built image with
+> `--entrypoint python -c "import receiver.main"` and watching it fail both
+> ways. This directly broke the project's own testability principle (a code
+> path CI exercises can't gain an unconditional external dependency). Fixed
+> by converting the three singletons to `@lru_cache`-decorated lazy functions,
+> the same shape `agent/config.py`'s own `get_config()` already uses —
+> verified with `env -i python -c "import receiver.main"` succeeding with a
+> completely empty environment. This is also what makes the FastAPI
+> `TestClient` unit tests possible at all (`app.dependency_overrides` swaps
+> the lazy functions for fakes; nothing touches a real cluster in CI).
+>
+> 51 new unit tests (window math, Pydantic model edge cases including
+> Alertmanager's `0001-01-01T00:00:00Z` unresolved-sentinel, Job/ConfigMap
+> manifest shape via fake `BatchV1Api`/`CoreV1Api` doubles, FastAPI routes)
+> plus 5 integration tests against a real Valkey via testcontainers (not
+> mocked — same standard `agent/memory.py` holds Neo4j to), covering
+> `SET NX EX`'s actual atomicity and TTL expiry. `ruff`/`mypy` clean on both
+> `agent` and `receiver`.
+>
+> **Accepted drift, stated not hidden:** `receiver/jobs.py`'s
+> `build_job()`/`build_configmap()` and `job-template.yaml`'s Helm-rendered
+> Job spec are two independent expressions of "what a pipeline Job looks
+> like" — nothing running in a pod can re-render a Helm chart it has no
+> access to, so they're kept in sync only by convention (both read the same
+> `values.yaml`-sourced settings), not a shared mechanism. A real risk for a
+> project this size, not a silent one.
 
 ### Checkpoint 3 — observability
 - [ ] Nightly sweep CronJob (incidents closed <24h with no postmortem)

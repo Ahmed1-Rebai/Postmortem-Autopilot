@@ -1,0 +1,77 @@
+# The receiver (docs/05's "always-responsive to probes" component). A
+# separate Deployment/image from the pipeline Job on purpose — a pipeline
+# crash must not take down the thing that accepts alerts. Env vars here are
+# receiver/config.py's ReceiverConfig field list; everything below
+# CAUSAL_WINDOW_MINUTES is copied onto each Job the receiver creates
+# (receiver/jobs.py), sourced from the same values.yaml keys job-template.yaml
+# reads — one values file, two independent consumers kept in sync by
+# convention, not by a shared mechanism (see job-template.yaml and
+# receiver/jobs.py's own docstrings on why that can't be otherwise).
+# The Service lives in receiver-service.yaml.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webhook-receiver
+  namespace: {{ .Values.namespace.app }}
+spec:
+  replicas: {{ .Values.receiver.replicas }}
+  selector:
+    matchLabels: {app: webhook-receiver}
+  template:
+    metadata:
+      labels: {app: webhook-receiver}
+    spec:
+      serviceAccountName: webhook-receiver
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: receiver
+          image: "{{ .Values.receiver.image.repository }}:{{ .Values.receiver.image.tag }}"
+          imagePullPolicy: {{ .Values.receiver.image.pullPolicy }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: ["ALL"]}
+          ports:
+            - {containerPort: 8000}
+          env:
+            - name: WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef: {name: postmortem-secrets, key: webhook-secret}
+            - name: VALKEY_URL
+              value: "redis://valkey.{{ .Values.namespace.data }}.svc.cluster.local:6379/0"
+            - {name: PIPELINE_NAMESPACE, value: {{ .Values.namespace.app | quote }}}
+            - name: PIPELINE_IMAGE
+              value: "{{ .Values.pipeline.image.repository }}:{{ .Values.pipeline.image.tag }}"
+            - {name: PIPELINE_IMAGE_PULL_POLICY, value: {{ .Values.pipeline.image.pullPolicy | quote }}}
+            - {name: INCIDENT_WINDOW_PAD_MINUTES, value: {{ .Values.receiver.windowPadMinutes | quote }}}
+            - {name: DEDUP_TTL_SECONDS, value: {{ .Values.receiver.dedupTtlSeconds | quote }}}
+            - {name: JOB_BACKOFF_LIMIT, value: {{ .Values.pipeline.backoffLimit | quote }}}
+            - {name: JOB_TTL_SECONDS_AFTER_FINISHED, value: {{ .Values.pipeline.ttlSecondsAfterFinished | quote }}}
+            - {name: LLM_PROVIDER, value: {{ .Values.pipeline.llm.provider | quote }}}
+            - {name: ANALYST_MODEL, value: {{ .Values.pipeline.llm.analystModel | quote }}}
+            - {name: WRITER_MODEL, value: {{ .Values.pipeline.llm.writerModel | quote }}}
+            - name: NEO4J_URI
+              value: "bolt://neo4j.{{ .Values.namespace.data }}.svc.cluster.local:7687"
+            - {name: NEO4J_USER, value: "neo4j"}
+            - {name: CITATION_COVERAGE_THRESHOLD, value: {{ .Values.pipeline.citationCoverageThreshold | quote }}}
+            - {name: MAX_VALIDATION_RETRIES, value: {{ .Values.pipeline.maxValidationRetries | quote }}}
+            - {name: CAUSAL_WINDOW_MINUTES, value: {{ .Values.pipeline.causalWindowMinutes | quote }}}
+            {{- if .Values.secrets.anthropicApiKey }}
+            - {name: ANTHROPIC_API_KEY_CONFIGURED, value: "true"}
+            {{- end }}
+            {{- if .Values.secrets.openrouterApiKey }}
+            - {name: OPENROUTER_API_KEY_CONFIGURED, value: "true"}
+            {{- end }}
+          resources: {{- toYaml .Values.receiver.resources | nindent 12 }}
+          livenessProbe:
+            httpGet: {path: /healthz, port: 8000}
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          readinessProbe:
+            httpGet: {path: /readyz, port: 8000}
+            initialDelaySeconds: 5
+            periodSeconds: 10

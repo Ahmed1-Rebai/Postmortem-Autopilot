@@ -1,8 +1,14 @@
-# Test + lint tooling. Installed in CI and locally, never in the runtime image.
+# Test + lint tooling. Installed in CI and locally, never in either runtime
+# image (agent/requirements.txt for the pipeline, receiver/requirements.txt
+# for the webhook receiver — two images, two dependency sets, see
+# receiver/requirements.txt's docstring for why).
 -r agent/requirements.txt
+-r receiver/requirements.txt
 
 pytest>=8.0,<9.0
-testcontainers[neo4j]>=4.5,<5.0
+# httpx: already in agent/requirements.txt — also what FastAPI's TestClient
+# needs, so no separate line here.
+testcontainers[neo4j,redis]>=4.5,<5.0
 ruff>=0.6,<1.0
 mypy>=1.11,<2.0
 types-PyYAML>=6.0

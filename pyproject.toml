@@ -42,6 +42,12 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["ANN"]
 "evals/**" = ["ANN"]
+# B008 flags `Depends(...)` in an argument default as a general Python
+# footgun (a mutable/expensive default evaluated once at def-time). FastAPI's
+# dependency-injection system requires exactly this pattern — it inspects
+# the default value at request time, it does not evaluate-once-and-reuse —
+# so the rule's premise doesn't hold here.
+"receiver/main.py" = ["B008"]
 
 [tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
@@ -61,7 +67,7 @@ disallow_any_generics = true
 # affordable here and catches the class of bug this project cares about.
 
 [[tool.mypy.overrides]]
-module = ["langgraph.*", "testcontainers.*"]
+module = ["langgraph.*", "testcontainers.*", "kubernetes.*"]
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]

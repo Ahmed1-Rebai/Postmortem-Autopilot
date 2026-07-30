@@ -17,7 +17,15 @@ evals/results/
 tests/
 docs/
 k3s/
-receiver/
+
+# NOT receiver/ — both this Dockerfile and receiver/Dockerfile build from the
+# repo root as context (receiver/Dockerfile needs agent/state.py, which lives
+# outside receiver/, so its context can't be scoped to receiver/ alone). This
+# Dockerfile's own COPY list never references receiver/, so its presence in
+# the uploaded context is harmless — just excluded from every layer by not
+# being copied, not by .dockerignore. (A per-Dockerfile `.dockerignore` would
+# be the cleaner fix, but that's a BuildKit/buildx feature and this host runs
+# the legacy builder with no buildx plugin installed.)
 
 evals/incidents/*
 !evals/incidents/inc-0001-missing-env-var

@@ -1,0 +1,12 @@
+# Runtime dependencies for the webhook receiver — deliberately separate from
+# agent/requirements.txt. No LangGraph, no Neo4j driver, no LLM client: the
+# receiver never runs the pipeline in-process (docs/05), so it doesn't need
+# any of what the pipeline needs, and the pipeline image doesn't need any of
+# this either.
+
+fastapi>=0.110,<1.0
+uvicorn[standard]>=0.30,<1.0
+kubernetes>=29.0,<37.0
+redis>=5.0,<7.0
+pydantic>=2.7,<3.0
+pyyaml>=6.0,<7.0

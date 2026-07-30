@@ -1,0 +1,11 @@
+# ClusterIP: only reachable inside the cluster (Alertmanager, the Ingress) —
+# matches docs/05's DNS name webhook-receiver.postmortem.svc.cluster.local.
+apiVersion: v1
+kind: Service
+metadata:
+  name: webhook-receiver
+  namespace: {{ .Values.namespace.app }}
+spec:
+  selector: {app: webhook-receiver}
+  ports:
+    - {port: 8000, targetPort: 8000}

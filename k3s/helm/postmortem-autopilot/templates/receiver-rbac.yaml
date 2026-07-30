@@ -1,0 +1,42 @@
+# The receiver's whole point is a narrow attack surface: a ServiceAccount
+# bound to a Role granting exactly what receiver/jobs.py's IncidentJobCreator
+# needs and nothing else (docs/05: "RBAC: jobs create only"). `configmaps:
+# create, patch` is a small, stated deviation from that line — the receiver
+# writes a per-incident ConfigMap (meta.yaml + alerts.json) before the Job,
+# then patches its own ownerReferences onto the ConfigMap once the Job
+# exists, so `ttlSecondsAfterFinished` reaping the Job cascades to reap the
+# ConfigMap too (receiver/jobs.py's module docstring). No `delete` on
+# either resource: the receiver never deletes anything itself, only k8s
+# garbage collection does.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: webhook-receiver
+  namespace: {{ .Values.namespace.app }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: webhook-receiver
+  namespace: {{ .Values.namespace.app }}
+rules:
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["create", "get", "list"]
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["create", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: webhook-receiver
+  namespace: {{ .Values.namespace.app }}
+subjects:
+  - kind: ServiceAccount
+    name: webhook-receiver
+    namespace: {{ .Values.namespace.app }}
+roleRef:
+  kind: Role
+  name: webhook-receiver
+  apiGroup: rbac.authorization.k8s.io
