@@ -1,0 +1,1 @@
+{"timestamp": "20260731T152316Z", "git_sha": "6234162", "model": "mock", "cases": 3, "precision_at_1": 1.0, "recall_at_3": 1.0, "citation_coverage": 1.0, "hallucinated_citation_rate": 0.0, "decoy_resistance": 1.0, "abstention_correctness": null, "confidence_separation": null, "tokens_total": 4483, "cost_usd": null, "latency_p50": 0.077598, "latency_p95": 0.101193}

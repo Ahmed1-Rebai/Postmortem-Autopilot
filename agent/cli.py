@@ -5,7 +5,10 @@ Commands
 `schema-init`  create Neo4j constraints and indexes (idempotent)
 `run`          collect → graph → link → analyze → write → validate → publish
 `validate`     re-check an existing document against the graph
-`eval`         the eval harness (Phase 3.2)
+`sweep`        finish postmortems for incidents a run never completed
+
+The eval harness lives outside this entry point — `python -m evals.runner`,
+not `agent.cli eval` (docs/07-evaluation.md).
 
 Exit codes matter here. A run whose document failed validation exits non-zero
 *and still writes the draft and the report to disk* — invariant 8: fail loudly,
@@ -370,8 +373,8 @@ def cmd_validate(config: Config, incident_id: str, document_path: Path) -> int:
 
 def cmd_eval() -> int:
     print(
-        "the eval harness lands in Phase 3.2 (evals/runner.py). "
-        "Until then, use `run` on a single incident directory.",
+        "the eval harness is its own entry point, not a subcommand of this "
+        "one: `python -m evals.runner --all` (see docs/07-evaluation.md).",
         file=sys.stderr,
     )
     return EXIT_USAGE
@@ -417,7 +420,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="write Prometheus textfile metrics to this path",
     )
 
-    sub.add_parser("eval", help="run the eval suite (Phase 3.2)")
+    sub.add_parser("eval", help="use `python -m evals.runner` instead — see docs/07")
     return parser
 
 

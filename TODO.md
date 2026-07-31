@@ -526,14 +526,63 @@ The phase that makes this more than a demo.
 > story ("the fix from six weeks ago never landed").
 
 ### 3.2 Eval harness
-- [ ] `evals/runner.py` + `evals/metrics.py`
+- [x] `evals/runner.py` + `evals/metrics.py`
+      *(plus `evals/labels.py`, not originally named in this checklist:
+      `expected.yaml`'s `root_cause_event_id`/`must_cite_events` are
+      human-readable pseudo-IDs — `"commit:<subject>"`, `"alert:<rule_name>"`,
+      `"log:sig:<signature>"` — not the real content-derived hash IDs, which
+      can't be known before a run happens. `evals/labels.py` resolves them
+      against the run's actual collected `Event`s; this project's own
+      reading of docs/07's illustrative strings, not a documented contract,
+      stated as such in the module's docstring)*
 - [ ] Remaining golden incidents 02, 03, 05, 06, 08, 09, 10
-- [ ] Every case seeded with a plausible decoy
-- [ ] All 10 metrics from [docs/07-evaluation.md](docs/07-evaluation.md)
-- [ ] Result JSON + summary table + markdown report
-- [ ] `--sweep-weights` for confidence sensitivity
-- [ ] `--mock` for free structural runs
-- [ ] `evals/results/history.jsonl` for trend plotting
+      *(deferred to a follow-on checkpoint — building 7 realistic fixtures
+      is comparable in effort to the harness itself, and the harness needed
+      to be proven correct first. See the result note below)*
+- [x] Every case seeded with a plausible decoy
+      *(true of the 3 existing golden incidents this checkpoint proves the
+      harness against — 0001, 0004, 0007; the 7 new ones inherit the same
+      requirement when built)*
+- [x] All 10 metrics from [docs/07-evaluation.md](docs/07-evaluation.md)
+- [x] Result JSON + summary table + markdown report
+- [x] `--sweep-weights` for confidence sensitivity
+      *(run for real under `--mock`: 5 signals × 2 variants = 10 extra
+      suite runs, all completed, confidence moved measurably per signal —
+      e.g. `metric_correlation` at half weight raised INC-0001's confidence
+      from 0.63 to 0.72. No renormalization needed — the model has no
+      sum-to-1 constraint)*
+- [x] `--mock` for free structural runs
+- [x] `evals/results/history.jsonl` for trend plotting
+      *(`.gitignore` was blanket-excluding all of `evals/results/`,
+      contradicting this doc's own "results are committed to history.jsonl"
+      — fixed to the same `dir/* / !dir/keep-this` negation pattern already
+      used for `evals/incidents/*`)*
+
+> **Checkpoint result (2026-07-31):** ran `python -m evals.runner --all
+> --mock` for real against the 3 existing golden incidents (0001, 0004,
+> 0007) — `P@1 1.00 · R@3 1.00 · COV 1.000 · HALL 0.000 · DECOY 1.00`,
+> zero unresolved labels, exit code 0. Found and fixed two real bugs along
+> the way, not just built the mechanism and hoped: (1) `inc-0004`'s
+> `must_cite_events` referenced `"log:sig:operationalerror: connection
+> pool exhausted"` — missing the trailing `, <num>/<num> in use` the real
+> `fingerprint()` output actually has, so the label resolved to nothing.
+> A genuine pre-existing fixture bug, caught by the harness's own
+> "unresolved label, not a silent miss" design working as intended, fixed
+> in the fixture rather than loosened in the resolver. (2) `--mock` runs
+> reported the `.env`'s real `WRITER_MODEL` (an OpenRouter free-tier model)
+> in the output instead of `"mock"` — the mock provider ignores the model
+> string entirely, but `.env`'s explicit override was winning over the
+> provider default; fixed by forcing both model fields to `"mock"` when
+> `--mock` is passed, so the report says what actually ran.
+>
+> Scope explicitly deferred, not silently skipped: the 7 new golden
+> incidents (02/03/05/06/08/09/10) — each one is a full `meta.yaml`/
+> `logs/`/`alerts.json`/`repo/`/`expected.yaml` set, comparable in total
+> effort to everything else in this checkpoint combined, and building them
+> against an unproven harness would have meant re-deriving the label
+> scheme by trial and error across 7 fixtures instead of 3. A real,
+> non-mock run (for genuine token-cost numbers) was intentionally not
+> spent without direction, since it costs real API usage.
 
 ### 3.3 CI
 - [ ] GitHub Actions: ruff → mypy → unit → integration (Neo4j service) → build

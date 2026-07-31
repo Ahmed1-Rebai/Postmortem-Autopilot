@@ -3,7 +3,12 @@
 
 # --- run artifacts ---
 out/
-evals/results/
+
+# Timestamped per-run reports are regenerated noise; history.jsonl is the
+# one file docs/07-evaluation.md wants committed, so metric trends over
+# time are plottable (and diffable in review, unlike the per-run JSON).
+evals/results/*
+!evals/results/history.jsonl
 
 # Generated git fixtures. A nested .git inside a tracked directory becomes a
 # broken gitlink; rebuild with each incident's build_repo.py.
