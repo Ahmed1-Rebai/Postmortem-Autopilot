@@ -1,0 +1,18 @@
+# THE LABEL. See docs/07-evaluation.md.
+#
+# The leak's commit predates the window and is absent from the evidence. The
+# label anchors to the leading symptom — GC forced pauses — with the terminal
+# OOM signature as the acceptable alternate. Both are the same failure.
+root_cause_event_id: "log:sig:gc forced pause <num>ms; heap size <num>mb"
+root_cause_summary: "Slow heap leak drove escalating GC pressure and eventually OOM restarts"
+acceptable_alternates:
+  - "log:sig:out of memory; container restarting"
+must_cite_events:
+  - "log:sig:gc forced pause <num>ms; heap size <num>mb"
+  - "alert:CheckoutMemoryHigh"
+# The decoy: an unrelated in-window change to the same service. It predates
+# nothing and explains no symptom; blaming it fails the case.
+must_not_conclude:
+  - "payment-gateway"
+  - "retry timeout"
+min_confidence: 0.70

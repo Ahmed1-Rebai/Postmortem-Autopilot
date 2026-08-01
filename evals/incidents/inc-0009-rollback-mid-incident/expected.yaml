@@ -1,0 +1,16 @@
+# THE LABEL. See docs/07-evaluation.md.
+root_cause_event_id: "commit:enable aggressive checkout retries"
+root_cause_summary: "Aggressive retry policy made checkout hammer a failing upstream; the mid-incident revert restored normal behavior"
+acceptable_alternates: []
+# The failure signature, plus the revert — the remediation is part of the
+# story, and citing it is what shows the model understood the timeline.
+must_cite_events:
+  - "log:sig:checkout retry policy exhausted after <num> attempts"
+  - "commit:Revert 'enable aggressive checkout retries'"
+# The decoy: an unrelated in-window inventory change. The revert is a commit
+# whose fingerprint (`revert <str>`) matches nothing the failure names, so it
+# must never be reported as the cause.
+must_not_conclude:
+  - "inventory"
+  - "batch"
+min_confidence: 0.70

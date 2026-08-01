@@ -1,0 +1,18 @@
+# Golden incident 0008 — alert fired on load-test traffic, not a real incident.
+id: INC-0008
+title: checkout error-rate alert fired on load-test traffic
+start: 2026-04-16T16:00:00Z
+end: 2026-04-16T17:00:00Z
+severity: sev3
+status: false-positive
+services:
+  - checkout
+description: >
+  A load test hit checkout and tripped the error-rate alert. The errors all
+  carry a load-test marker and stop when the test stops — there is no
+  production incident and no code change to blame. The system must decline to
+  name an internal change. An unrelated in-window checkout change is the
+  decoy.
+
+# Abstention case (docs/07, case 08): the alert is real but the incident is
+# not. Correct outcome is to refuse to manufacture a root cause.

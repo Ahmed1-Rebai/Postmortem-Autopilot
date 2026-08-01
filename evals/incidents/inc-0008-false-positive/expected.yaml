@@ -1,0 +1,20 @@
+# THE LABEL. See docs/07-evaluation.md.
+#
+# Abstention case: the alert fired, but every error is load-test traffic that
+# stopped when the test stopped. The label anchors to the alert because the
+# alert is the only real-world incident signal; the conclusion must be "no
+# production incident" and the top band must stay tentative.
+root_cause_event_id: "alert:CheckoutErrorRate"
+root_cause_summary: "Alert fired on load-test traffic; no production incident and no code change to blame"
+acceptable_alternates: []
+must_cite_events:
+  - "log:sig:load test request failed: expected <num> got <num>"
+  - "alert:CheckoutErrorRate"
+# The decoy: a real in-window checkout commit the failure text names nothing
+# about. A model that blames it fails the case.
+must_not_conclude:
+  - "queue"
+  - "limit"
+  - "request queue"
+min_confidence: 0.70
+is_abstention_case: true

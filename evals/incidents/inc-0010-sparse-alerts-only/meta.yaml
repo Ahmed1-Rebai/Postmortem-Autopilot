@@ -1,0 +1,17 @@
+# Golden incident 0010 — sparse evidence, alerts only.
+id: INC-0010
+title: checkout alert fired with no corroborating evidence
+start: 2026-05-07T13:00:00Z
+end: 2026-05-07T14:00:00Z
+severity: sev3
+status: resolved
+services:
+  - checkout
+description: >
+  The checkout error-rate alert fired but the window's logs contain no
+  matching failures at all — no error lines, no correlation with any change.
+  The evidence is one alert and two unrelated in-window commits. The system
+  must conclude that it cannot name a cause, not pick the nearest commit.
+
+# Abstention case (docs/07, case 10): sparse, alerts-only evidence. The honest
+# answer is "no internal cause can be concluded".

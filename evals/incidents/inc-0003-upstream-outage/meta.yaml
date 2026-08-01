@@ -1,0 +1,18 @@
+# Golden incident 0003 — upstream third-party outage, no internal change.
+id: INC-0003
+title: checkout errors during upstream payment provider outage
+start: 2026-03-26T10:00:00Z
+end: 2026-03-26T11:00:00Z
+severity: sev2
+status: closed
+services:
+  - checkout
+description: >
+  The external payment provider became unavailable upstream and checkout began
+  returning authorization failures and 503s from the gateway. No internal
+  change is in the window: an unrelated inventory template restyle is the only
+  deploy present, and it cannot explain the errors. The system must conclude
+  "no internal cause" rather than blame the random deploy.
+
+# Abstention case (docs/07, case 03): the correct outcome is to decline to
+# name an internal change, not to pick the nearest commit.

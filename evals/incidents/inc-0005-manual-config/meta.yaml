@@ -1,0 +1,18 @@
+# Golden incident 0005 — config change made outside git.
+id: INC-0005
+title: checkout cache outages after a manual config edit
+start: 2026-04-02T14:00:00Z
+end: 2026-04-02T15:00:00Z
+severity: sev2
+status: closed
+services:
+  - checkout
+description: >
+  A live Deployment's cache endpoint was edited with `kubectl edit` — a config
+  change that never touched git. Checkout then failed to reach Redis. No
+  commit in the evidence can explain the failure, so the system must say the
+  evidence is absent rather than invent a code change. An unrelated in-window
+  checkout change (request logging) is the decoy.
+
+# Abstention case (docs/07, case 05): evidence genuinely absent — the change
+# happened, but outside version control, so the evidence cannot see it.

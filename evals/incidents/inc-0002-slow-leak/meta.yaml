@@ -1,0 +1,18 @@
+# Golden incident 0002 — slow leak, cause outside the window.
+id: INC-0002
+title: checkout memory leak drives GC storms and OOM restarts
+start: 2026-03-19T09:00:00Z
+end: 2026-03-19T10:00:00Z
+severity: sev2
+status: closed
+services:
+  - checkout
+description: >
+  A checkout connection-cache TTL change landed six hours before the window
+  and leaked memory slowly. The incident's only in-window evidence is the
+  symptom: GC forced pauses escalate for forty minutes, then OOM restarts
+  begin. The leak's causal commit is *not* collectable, so the correct anchor
+  is the leading failure signature, and an unrelated in-window payment-gateway
+  change must not be blamed.
+
+# Weak-signal case (docs/07, case 02): the root change predates the window.

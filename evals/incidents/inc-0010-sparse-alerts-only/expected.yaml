@@ -1,0 +1,18 @@
+# THE LABEL. See docs/07-evaluation.md.
+#
+# Abstention case: the alert is the only evidence of an incident. The label
+# anchors to it because the alert is all there is; the conclusion must be that
+# no internal cause can be concluded, and the top band must stay tentative.
+root_cause_event_id: "alert:CheckoutErrorRate"
+root_cause_summary: "Alert fired with no corroborating evidence; no internal cause can be concluded"
+acceptable_alternates: []
+must_cite_events:
+  - "alert:CheckoutErrorRate"
+# The decoys: in-window commits the evidence names nothing about. A run that
+# blames one fails the case.
+must_not_conclude:
+  - "queue"
+  - "summary"
+  - "refactor"
+min_confidence: 0.70
+is_abstention_case: true

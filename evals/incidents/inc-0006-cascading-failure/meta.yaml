@@ -1,0 +1,17 @@
+# Golden incident 0006 — cascading failure across three services.
+id: INC-0006
+title: inventory slowdown cascades to checkout and payment failures
+start: 2026-04-09T11:00:00Z
+end: 2026-04-09T12:00:00Z
+severity: sev1
+status: closed
+services:
+  - inventory
+  - checkout
+  - payment-gateway
+description: >
+  A commit dropped the product-query index in inventory, slowing every read.
+  Inventory began timing out on database queries, checkout then timed out
+  calling inventory, and payment failures followed on top of checkout. Three
+  services, one root change, and a multi-hop chain between them. An unrelated
+  in-window checkout change is the decoy.

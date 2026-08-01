@@ -1,0 +1,40 @@
+{
+  "alerts": [
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "InventoryLatencyHigh",
+        "service": "inventory",
+        "severity": "page"
+      },
+      "annotations": {
+        "summary": "inventory query latency above 1s for 5m"
+      },
+      "startsAt": "2026-04-09T11:03:00Z"
+    },
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "CheckoutErrorRate",
+        "service": "checkout",
+        "severity": "page"
+      },
+      "annotations": {
+        "summary": "checkout error rate above 5% for 5m"
+      },
+      "startsAt": "2026-04-09T11:04:00Z"
+    },
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "PaymentGatewayErrorRate",
+        "service": "payment-gateway",
+        "severity": "page"
+      },
+      "annotations": {
+        "summary": "payment gateway error rate above 5% for 5m"
+      },
+      "startsAt": "2026-04-09T11:05:00Z"
+    }
+  ]
+}

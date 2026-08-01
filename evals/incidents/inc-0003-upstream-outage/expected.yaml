@@ -1,0 +1,20 @@
+# THE LABEL. See docs/07-evaluation.md.
+#
+# Abstention case: there is no internal root cause to name. The best the
+# evidence anchors to is the upstream symptom — the gateway errors that are
+# the only in-window signal of what actually went wrong.
+root_cause_event_id: "log:sig:upstream payment-gateway returned <num> after <num>ms"
+root_cause_summary: "Checkout failures traced to the upstream payment provider; no internal change explains them"
+acceptable_alternates: []
+must_cite_events:
+  - "log:sig:upstream payment-gateway returned <num> after <num>ms"
+  - "alert:CheckoutErrorRate"
+# The decoy: an unrelated in-window inventory change. The case is failed if
+# the top hypothesis blames it, and the abstention flag below is failed if the
+# top band is anything but tentative.
+must_not_conclude:
+  - "inventory"
+  - "template"
+  - "error page"
+min_confidence: 0.70
+is_abstention_case: true

@@ -1,0 +1,16 @@
+# Golden incident 0009 — bad deploy rolled back mid-incident.
+id: INC-0009
+title: checkout retries misconfig deployed, rolled back mid-incident
+start: 2026-04-30T10:00:00Z
+end: 2026-04-30T11:00:00Z
+severity: sev2
+status: resolved
+services:
+  - checkout
+  - inventory
+description: >
+  An aggressive checkout retry policy was deployed, failures followed minutes
+  later, and the change was reverted mid-incident — at which point the errors
+  stopped. The root cause is the misconfig commit, not the revert that fixed
+  it, and the revert is the evidence of the remediation. An unrelated
+  in-window inventory change is the decoy.

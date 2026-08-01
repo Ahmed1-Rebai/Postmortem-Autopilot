@@ -1,0 +1,14 @@
+# THE LABEL. See docs/07-evaluation.md.
+root_cause_event_id: "commit:drop product query index from inventory"
+root_cause_summary: "Removing the product query index slowed inventory reads; checkout timeouts and payment failures cascaded from it"
+acceptable_alternates: []
+must_cite_events:
+  - "log:sig:database timeout after <num>ms executing product query"
+  - "log:sig:upstream inventory-svc timed out after <num>ms"
+  - "alert:InventoryLatencyHigh"
+# The decoy: an unrelated checkout change that lands first and shares the
+# checkout service with two of the three failing services.
+must_not_conclude:
+  - "session"
+  - "checkout session timeout"
+min_confidence: 0.70

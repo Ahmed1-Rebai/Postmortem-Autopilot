@@ -1,0 +1,16 @@
+{
+  "alerts": [
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "CheckoutMemoryHigh",
+        "service": "checkout",
+        "severity": "page"
+      },
+      "annotations": {
+        "summary": "checkout memory usage above 90% for 10m"
+      },
+      "startsAt": "2026-03-19T09:05:00Z"
+    }
+  ]
+}

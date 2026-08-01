@@ -1,0 +1,20 @@
+# THE LABEL. See docs/07-evaluation.md.
+#
+# Abstention case: the change that broke checkout was made outside git, so no
+# commit can be the root cause. The label anchors to the cache-unreachable
+# symptom — the only in-window evidence of what actually went wrong.
+root_cause_event_id: "log:sig:redis connection refused at <ip>"
+root_cause_summary: "Checkout cannot reach its cache; the running config appears to have been changed outside git — no commit explains it"
+acceptable_alternates: []
+must_cite_events:
+  - "log:sig:redis connection refused at <ip>"
+  - "alert:CheckoutErrorRate"
+# The decoy: a real in-window commit to checkout that the failure names
+# nothing about. Blaming it — or inventing a commit that does not exist —
+# fails the case.
+must_not_conclude:
+  - "request logging"
+  - "middleware"
+  - "session"
+min_confidence: 0.70
+is_abstention_case: true
