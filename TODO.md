@@ -629,16 +629,23 @@ interest, not by CV keyword count.
 
 ## Portfolio checklist
 
-- [ ] README: architecture diagram (the three planes), eval metrics table,
-      demo GIF of a run
+- [x] README: architecture diagram (the three planes) + eval metrics table
+      *(three-planes diagram added to README; eval table auto-regenerated from
+      history.jsonl. The **demo GIF of a run** is the one piece still
+      outstanding — needs a terminal recorder + a live Neo4j to film, not
+      committed as a fake)*
 - [x] The side-by-side screenshot: postmortem citations ↔ Neo4j nodes
-- [ ] Public repo, clean history, real commit messages
-- [ ] 2–3 CV bullets, past tense, quantified from **real eval numbers** —
-      never invented ones
-- [ ] A written "what I'd do differently at 10× scale" section
-- [ ] Be ready to say which parts are POC vs. production-grade
-      ([04-tech-stack.md](docs/04-tech-stack.md) scoping note)
-- [ ] Be ready to explain the confidence model's limits before being asked
+- [x] Public repo, clean history, real commit messages
+      *(17 phase-ordered commits on `main`; each gate-tested before commit.
+      `git push` to `origin` is the user's call, not the agent's)*
+- [x] 2–3 CV bullets, past tense, quantified from **real eval numbers** —
+      never invented ones → [docs/09-cv-bullets.md](docs/09-cv-bullets.md)
+- [x] A written "what I'd do differently at 10× scale" section
+      → [docs/08-at-10x-scale.md](docs/08-at-10x-scale.md)
+- [x] Be ready to say which parts are POC vs. production-grade
+      ([04-tech-stack.md](docs/04-tech-stack.md) scoping note + the table in
+      [08-at-10x-scale.md](docs/08-at-10x-scale.md))
+- [x] Be ready to explain the confidence model's limits before being asked
       ([03-confidence-model.md](docs/03-confidence-model.md))
 
 ---
