@@ -63,6 +63,10 @@ python_version = "3.12"
 strict = true
 warn_unreachable = true
 disallow_any_generics = true
+# `evals/incidents/*/build_repo.py` / `build_logs.py` are fixture generators,
+# one per incident directory — unexcluded they collide as duplicate module
+# names. Same reason ruff's `extend-exclude` lists `evals/incidents`.
+exclude = ["^evals/incidents/"]
 # Dataclasses everywhere, driver types confined to memory.py — strict is
 # affordable here and catches the class of bug this project cares about.
 

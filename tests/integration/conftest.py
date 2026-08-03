@@ -1,13 +1,19 @@
-"""Real Neo4j via testcontainers.
+"""Real Neo4j, un-mocked.
 
 `memory.py` is deliberately not mocked. Mocking a graph driver tests the mock —
 and the specific things that break here (MERGE semantics, temporal type
 round-tripping, constraint enforcement) are exactly the things a mock asserts
 into existence rather than verifies.
+
+How the real Neo4j is provided:
+- locally, a testcontainers container per session (`NEO4J_URI` unset);
+- in CI, a GitHub Actions service container (`NEO4J_URI` set), so the workflow
+  doesn't nest a container inside the runner.
 """
 
 from __future__ import annotations
 
+import os
 from collections.abc import Iterator
 
 import pytest
@@ -22,16 +28,25 @@ NEO4J_PASSWORD = "testcontainer-local-only"
 
 @pytest.fixture(scope="session")
 def neo4j_driver() -> Iterator[Driver]:
-    """One container for the whole session — starting Neo4j costs ~20s, and
+    """One connection for the whole session — starting Neo4j costs ~20s, and
     per-test isolation comes from wiping data instead."""
-    container = Neo4jContainer(image=NEO4J_IMAGE, password=NEO4J_PASSWORD)
-    with container:
+    if uri := os.environ.get("NEO4J_URI"):
+        # CI service container: connect directly, no nested container.
+        driver = GraphDatabase.driver(
+            uri,
+            auth=(os.environ.get("NEO4J_USER", "neo4j"), os.environ["NEO4J_PASSWORD"]),
+        )
+    else:
+        container = Neo4jContainer(image=NEO4J_IMAGE, password=NEO4J_PASSWORD)
+        container.start()
         driver = GraphDatabase.driver(
             container.get_connection_url(), auth=("neo4j", NEO4J_PASSWORD)
         )
-        driver.verify_connectivity()
-        yield driver
-        driver.close()
+    driver.verify_connectivity()
+    yield driver
+    driver.close()
+    if not os.environ.get("NEO4J_URI"):
+        container.stop()
 
 
 @pytest.fixture

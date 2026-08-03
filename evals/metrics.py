@@ -143,6 +143,51 @@ def must_cite_recall(
 
 
 # ---------------------------------------------------------------------------
+# hard gates (docs/07-evaluation.md's CI-gate table)
+# ---------------------------------------------------------------------------
+#: Hallucinated-citation rate is a hard gate with target exactly zero (CLAUDE.md
+#: invariant 3). Coverage and precision@1 are the other two fail-gates; decoy
+#: resistance and cost are warn-gates (they degrade, they don't break CI).
+GATE_HALLUCINATIONS_MAX = 0.0
+GATE_COVERAGE_MIN = 0.95
+GATE_PRECISION_AT_1_MIN = 0.70
+WARN_DECOY_MIN = 0.90
+WARN_COST_USD_MAX = 0.15
+
+
+def check_gates(suite: SuiteResult) -> tuple[list[str], list[str]]:
+    """Return `(failures, warnings)` for a whole-suite run, per docs/07.
+
+    Failures are the three hard gates (hallucinations `== 0`, coverage
+    `>= 0.95`, precision@1 `>= 0.70`) — any breach fails CI. Warnings are the
+    two soft gates (decoy resistance, cost) — printed, not fatal. Each list is
+    human-readable ("why it failed"), not just a number.
+    """
+    failures: list[str] = []
+    warnings: list[str] = []
+
+    if suite.hallucinated_citation_rate != GATE_HALLUCINATIONS_MAX:
+        failures.append(
+            f"hallucinated citations {suite.hallucinated_citation_rate:.3f} != 0.000"
+        )
+    if suite.citation_coverage < GATE_COVERAGE_MIN:
+        failures.append(
+            f"citation coverage {suite.citation_coverage:.3f} < {GATE_COVERAGE_MIN:.2f}"
+        )
+    if suite.precision_at_1 < GATE_PRECISION_AT_1_MIN:
+        failures.append(
+            f"precision@1 {suite.precision_at_1:.2f} < {GATE_PRECISION_AT_1_MIN:.2f}"
+        )
+    if suite.decoy_resistance < WARN_DECOY_MIN:
+        warnings.append(
+            f"decoy resistance {suite.decoy_resistance:.2f} < {WARN_DECOY_MIN:.2f}"
+        )
+    if suite.cost_usd is not None and suite.cost_usd > WARN_COST_USD_MAX:
+        warnings.append(f"cost ${suite.cost_usd:.2f} > ${WARN_COST_USD_MAX:.2f}")
+    return failures, warnings
+
+
+# ---------------------------------------------------------------------------
 # cost
 # ---------------------------------------------------------------------------
 #: (input $/1M tokens, output $/1M tokens). Anthropic's published pricing as

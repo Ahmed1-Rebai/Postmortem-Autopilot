@@ -9,6 +9,8 @@ timestamped report.
     python -m evals.runner --all
     python -m evals.runner --case inc-0004-two-deploys -v
     python -m evals.runner --all --mock                 # free, structural only
+    python -m evals.runner --all --mock --gate           # CI's evals-quick
+    python -m evals.runner --all --gate                  # nightly, gated
     python -m evals.runner --all --model claude-opus-5
     python -m evals.runner --all --sweep-weights         # expensive: reruns
                                                           # the suite per signal
@@ -36,6 +38,7 @@ from evals.metrics import (
     ExpectedLabel,
     SuiteResult,
     aggregate,
+    check_gates,
     score_case,
 )
 
@@ -287,6 +290,19 @@ def build_parser() -> argparse.ArgumentParser:
         "--mock", action="store_true", help="force LLM_PROVIDER=mock (free, no tokens)"
     )
     parser.add_argument(
+        "--gate",
+        action="store_true",
+        help="enforce docs/07's hard gates (hallucinations==0, coverage>=0.95, "
+        "precision@1>=0.70); exit non-zero on any breach. Used by CI.",
+    )
+    parser.add_argument(
+        "--no-write",
+        action="store_true",
+        help="don't write per-case JSONs, report.md, or history.jsonl — score "
+        "only. Used by the evals-quick PR job so mock runs don't pollute the "
+        "committed trend.",
+    )
+    parser.add_argument(
         "--sweep-weights",
         action="store_true",
         help="rerun the suite per confidence signal, scaled up and down (expensive)",
@@ -352,12 +368,25 @@ def main(argv: list[str] | None = None) -> int:
         _print_case_line(result, verbose=args.verbose)
 
     suite = aggregate(results)
-    write_results(suite, raw_cases, model=config.llm.writer_model)
+    if not args.no_write:
+        write_results(suite, raw_cases, model=config.llm.writer_model)
+    else:
+        report = render_report(suite, model=config.llm.writer_model, git_sha=_git_sha())
+        print(f"\n{report}")
 
     any_unresolved = any(r.unresolved_labels for r in results)
     any_hallucinated = any(r.hallucinated_citation_rate > 0 for r in results)
     if any_unresolved or any_hallucinated:
         return EXIT_CASES_FAILED
+
+    if args.gate:
+        failures, warnings = check_gates(suite)
+        for warning in warnings:
+            print(f"warn: {warning}", file=sys.stderr)
+        if failures:
+            for failure in failures:
+                print(f"gate failure: {failure}", file=sys.stderr)
+            return EXIT_CASES_FAILED
     return EXIT_OK
 
 

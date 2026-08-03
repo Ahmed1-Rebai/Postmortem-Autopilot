@@ -535,7 +535,7 @@ The phase that makes this more than a demo.
       against the run's actual collected `Event`s; this project's own
       reading of docs/07's illustrative strings, not a documented contract,
       stated as such in the module's docstring)*
-- [ ] Remaining golden incidents 02, 03, 05, 06, 08, 09, 10
+- [x] Remaining golden incidents 02, 03, 05, 06, 08, 09, 10
       *(deferred to a follow-on checkpoint — building 7 realistic fixtures
       is comparable in effort to the harness itself, and the harness needed
       to be proven correct first. See the result note below)*
@@ -585,13 +585,32 @@ The phase that makes this more than a demo.
 > spent without direction, since it costs real API usage.
 
 ### 3.3 CI
-- [ ] GitHub Actions: ruff → mypy → unit → integration (Neo4j service) → build
-- [ ] `evals-quick` (mock) on every PR
-- [ ] Full eval nightly + on `main`
-- [ ] Hard gates: hallucinated citations `== 0`, coverage `≥ 0.95`,
+- [x] GitHub Actions: ruff → mypy → unit → integration (Neo4j service) → build
+      *(`.github/workflows/ci.yml`: `lint-and-types` + `unit` + `integration`
+      (Neo4j + Valkey service containers, same images as docker-compose) +
+      `evals-quick` + `build`, all gating the build job)*
+- [x] `evals-quick` (mock) on every PR
+      *(`python -m evals.runner --all --mock --gate --no-write` — the
+      `--no-write` flag keeps mock PR runs out of the committed trend, and
+      `--gate` fails the job on any hard-gate breach)*
+- [x] Full eval nightly + on `main`
+      *(`.github/workflows/eval.yml`: cron + `push: main` + `workflow_dispatch`;
+      real provider (OpenRouter preferred, Anthropic fallback) when the repo
+      has the matching API-key secret, mock otherwise; results written to
+      history.jsonl and the README table regenerated and committed by
+      `github-actions[bot]` via `git-auto-commit-action@v7` — GITHUB_TOKEN
+      commits don't re-trigger workflows)*
+- [x] Hard gates: hallucinated citations `== 0`, coverage `≥ 0.95`,
       precision@1 `≥ 0.70`
-- [ ] Push image to GHCR
-- [ ] Eval metrics table auto-updated in the README
+      *(`evals.metrics.check_gates()` — the three hard fail-gates from
+      docs/07's CI-gate table; decoy `≥ 0.90` and cost `≤ $0.15` warn only)*
+- [x] Push image to GHCR
+      *(`docker/build-push-action@v7.3.0`, `:dev` + `:sha` tags for both the
+      pipeline and receiver images; login + push conditional on `main` —
+      builds the images on every PR, pushes only on merge)*
+- [x] Eval metrics table auto-updated in the README
+      *(`evals/update_readme.py` between the `EVAL-METRICS:START/END` markers;
+      fails loudly if the markers ever get renamed away)*
 
 ## Phase 4 — Optional stretch
 

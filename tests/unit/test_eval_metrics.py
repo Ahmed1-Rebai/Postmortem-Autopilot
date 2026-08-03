@@ -10,8 +10,10 @@ from agent.state import Event, EventType, Hypothesis, ValidationReport
 from evals.metrics import (
     CaseResult,
     ExpectedLabel,
+    SuiteResult,
     abstention_correctness,
     aggregate,
+    check_gates,
     confidence_separation,
     correct_event_ids,
     cost_per_run,
@@ -379,3 +381,63 @@ def test_aggregate_abstention_only_averages_applicable_cases():
 def test_aggregate_abstention_none_when_no_case_is_applicable():
     results = [_a_case_result(abstention_correctness=None)]
     assert aggregate(results).abstention_correctness is None
+
+
+# ---------------------------------------------------------------------------
+# hard gates (docs/07-evaluation.md's CI-gate table)
+# ---------------------------------------------------------------------------
+def _a_suite(**overrides: object) -> SuiteResult:
+    defaults: dict[str, object] = {
+        "case_results": (),
+        "precision_at_1": 1.0,
+        "recall_at_3": 1.0,
+        "citation_coverage": 1.0,
+        "hallucinated_citation_rate": 0.0,
+        "decoy_resistance": 1.0,
+        "abstention_correctness": None,
+        "confidence_separation": None,
+        "tokens_total": 0,
+        "cost_usd": None,
+        "latency_p50": 0.0,
+        "latency_p95": 0.0,
+    }
+    defaults.update(overrides)
+    return SuiteResult(**defaults)  # type: ignore[arg-type]
+
+
+def test_gates_pass_on_a_clean_suite():
+    failures, warnings = check_gates(_a_suite())
+    assert failures == []
+    assert warnings == []
+
+
+def test_gate_fails_on_any_hallucinated_citation():
+    failures, _ = check_gates(_a_suite(hallucinated_citation_rate=0.5))
+    assert any("hallucinated" in f for f in failures)
+
+
+def test_gate_fails_when_coverage_below_threshold():
+    failures, _ = check_gates(_a_suite(citation_coverage=0.90))
+    assert any("coverage" in f for f in failures)
+
+
+def test_gate_fails_when_precision_at_1_below_threshold():
+    failures, _ = check_gates(_a_suite(precision_at_1=0.60))
+    assert any("precision" in f for f in failures)
+
+
+def test_gate_warns_but_does_not_fail_on_low_decoy_resistance():
+    failures, warnings = check_gates(_a_suite(decoy_resistance=0.80))
+    assert failures == []
+    assert any("decoy" in w for w in warnings)
+
+
+def test_gate_warns_on_high_cost():
+    failures, warnings = check_gates(_a_suite(cost_usd=0.20))
+    assert failures == []
+    assert any("cost" in w for w in warnings)
+
+
+def test_gate_treats_unknown_cost_as_not_breaching_the_cost_warning():
+    _, warnings = check_gates(_a_suite(cost_usd=None))
+    assert not any("cost" in w for w in warnings)
