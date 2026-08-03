@@ -15,6 +15,8 @@ expected to surface.
 
 from __future__ import annotations
 
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -40,6 +42,13 @@ from agent.normalize.services import ServiceCanonicalizer
 pytestmark = pytest.mark.integration
 
 FIXTURES = Path(__file__).resolve().parents[2] / "evals" / "incidents"
+
+
+def ensure_fixture_repo(directory: Path) -> None:
+    """Build the incident's git fixture if it hasn't been generated yet."""
+    if (directory / "repo" / ".git").exists():
+        return
+    subprocess.run([sys.executable, str(directory / "build_repo.py")], check=True)
 
 
 def a_config() -> Config:
@@ -83,6 +92,7 @@ def run_incident(memory: Neo4jMemory, directory: Path) -> str:
     post-success persistence, since recurrence depends on graph writes the
     graph's own `publish` node deliberately does not make (a rejected draft's
     hypotheses and proposed fixes must never become graph facts)."""
+    ensure_fixture_repo(directory)
     spec = load_incident_spec(directory)
     config = a_config()
     canonicalizer = ServiceCanonicalizer.from_config(
