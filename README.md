@@ -93,7 +93,7 @@ Latest run (from `evals/results/history.jsonl`):
 
 | Run | Model | Commit | Cases | P@1 | R@3 | COV | HALL | DECOY | ABST | Conf.sep | Cost |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| `2026-11-10 09:25 UTC` | mock | `6014cfe` | 10 | 1.00 | 1.00 | 1.000 | 0.000 | 1.00 | 1.00 | n/a | n/a |
+| `2026-11-11 08:59 UTC` | mock | `f36989b` | 10 | 1.00 | 1.00 | 1.000 | 0.000 | 1.00 | 1.00 | n/a | n/a |
 
 All hard gates passed: hallucinated citations = 0, coverage ≥ 0.95, precision@1 ≥ 0.70.
 <!-- EVAL-METRICS:END -->
